@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "diada"
+version = "0.1.0"
+description = "DIADA: relational soundness-based dataset cleaning + ARDA-style feature selection"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "scipy",
+    "tqdm",
+    "networkx",
+    "matplotlib",
+    "pyyaml",
+    "autogluon.tabular[lightgbm,xgboost]",
+]
+
+[project.scripts]
+diada-clean = "diada.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

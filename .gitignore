@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Datasets: not committed to the repo -- hosted externally instead, see the
+# "Getting the datasets" section in README.md for the download link.
+/data/
+/diada_pipeline_output/
+/results/

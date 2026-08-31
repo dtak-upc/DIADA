@@ -1,0 +1,85 @@
+jannis:
+  target_column: "class"
+  task: "classification"
+  metric: "accuracy"
+
+miniboone:
+  target_column: "signal"
+  task: "classification"
+  metric: "accuracy"
+
+bank:
+  target_column: "Class"
+  task: "classification"
+  metric: "accuracy"
+
+pendigits:
+  target_column: "class"
+  task: "classification"
+  metric: "accuracy"
+
+students:
+  target_column: "Target"
+  task: "classification"
+  metric: "accuracy"
+
+drive_diagnosis:
+  target_column: "RES"
+  task: "classification"
+  metric: "accuracy"
+
+covertype:
+  target_column: "class"
+  task: "classification"
+  metric: "accuracy"
+
+default_payment:
+  target_column: "default"
+  task: "classification"
+  metric: "accuracy"
+
+dry_beans:
+  target_column: "Class"
+  task: "classification"
+  metric: "accuracy"
+
+mice_protein:
+  target_column: "class"
+  task: "classification"
+  metric: "accuracy"
+
+house_sales:
+  target_column: "price"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+avocado_sales:
+  target_column: "AveragePrice"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+nasa:
+  target_column: "class"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+diamonds:
+  target_column: "price"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+pol:
+  target_column: "foo"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+appliances:
+  target_column: "Appliances"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+superconductivity:
+  target_column: "critical_temp"
+  task: "regression"
+  metric: "root_mean_squared_error"
+  
