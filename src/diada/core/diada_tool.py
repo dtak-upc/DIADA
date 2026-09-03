@@ -3,12 +3,14 @@ Column-soundness scoring: how related every pair of columns in a table is.
 
 Was benchmarks_generation/diada.py. Two engines are available:
 
-  - "lima" (default): the in-process Python port of LIMA under
-    diada.core.LIMA (moved here from the sibling LIMA_py repo -- see
+  - "jar" (default): the original DIADA-0.8.jar, invoked via `java -jar`
+    (requires a Java runtime on PATH). Deterministic -- see below.
+  - "lima": the in-process Python port of LIMA under diada.core.LIMA (moved
+    here from the sibling LIMA_py repo -- see
     src/diada/core/LIMA/__init__.py). This is the algorithm DIADA-0.8.jar
-    itself implements (in Java).
-  - "jar": the original DIADA-0.8.jar, invoked via `java -jar` (requires a
-    Java runtime on PATH). Kept for comparison/fallback.
+    itself implements (in Java); needs no JVM/Java install, but is a
+    randomized approximation of the jar's output -- see below -- so it's
+    opt-in rather than the default. Pass engine="lima" explicitly to use it.
 
 IMPORTANT -- the two engines are NOT numerically interchangeable:
 
@@ -87,7 +89,7 @@ KURTOSIS_SENSIBILITY = 2
 DEFAULT_APPROX = 0.000001  # LIMA's scheduler-threshold parameter; same value the jar was always called with
 
 
-def invoke_diada(df: pd.DataFrame, num_buckets: int, engine: str = "lima", jar_path: Optional[Path] = None,
+def invoke_diada(df: pd.DataFrame, num_buckets: int, engine: str = "jar", jar_path: Optional[Path] = None,
                   approx: float = DEFAULT_APPROX, verbose: bool = True) -> pd.DataFrame:
     """
     Score every pair of columns in `df` for soundness and return the result
@@ -103,9 +105,10 @@ def invoke_diada(df: pd.DataFrame, num_buckets: int, engine: str = "lima", jar_p
                   Integer/Double/String per column; >1 additionally buckets
                   every numeric column into `num_buckets` bins before typing
                   it as String (see _label_columns)
-    engine      : "lima" (default) -- the in-process Python port; or "jar"
-                  -- the original DIADA-0.8.jar via subprocess (needs Java).
-                  Both implement the same algorithm; see module docstring.
+    engine      : "jar" (default) -- the original DIADA-0.8.jar via subprocess
+                  (needs Java); or "lima" -- the in-process Python port,
+                  opt-in only (randomized approximation -- not numerically
+                  interchangeable, see module docstring).
     jar_path    : only used when engine="jar". Path to DIADA-0.8.jar
                   (default: paths.JAR_PATH)
     approx      : only used when engine="lima". LIMA's scheduler threshold

@@ -2,27 +2,29 @@
 Reproduce the exact experiment sweep the paper's results were built from.
 
 For every dataset in data/base_datasets (config per benchmarks.yaml), this
-runs ARDA's full feature-count sweep (1..max_features, same as
-arda/run_benchmarks.py) on five variants of that dataset:
+runs ARDA's full feature-count sweep (1..max_features) on five variants of
+that dataset:
 
     <name>            raw dataset, no injected noise, no DIADA cleaning (baseline)
-    <name>_un_dirty   univariate noise (CF1) injected, NOT cleaned
-    <name>_un_clean   CF1 injected, then DIADA-cleaned (kept columns only)
-    <name>_mn_dirty   multivariate/spurious-cluster noise (CF2) injected, NOT cleaned
-    <name>_mn_clean   CF2 injected, then DIADA-cleaned (target's own cluster only)
+    <name>_un_dirty   univariate noise (UN) injected, NOT cleaned
+    <name>_un_clean   UN injected, then DIADA-cleaned (kept columns only)
+    <name>_mn_dirty   multivariate/spurious-cluster noise (MN) injected, NOT cleaned
+    <name>_mn_clean   MN injected, then DIADA-cleaned (target's own cluster only)
 
 This is exactly the "benchmark" naming convention already used in
-results/results_final_regression.csv / results_final_classification.csv
-(e.g. "house_sales_un_clean"), and it reuses the same noise-injection /
-DIADA-cleaning code as experiments/generate_benchmarks.py -- specifically it
-calls generate_for_benchmark() from that module so the noisy/cleaned CSVs
-written under data/ come out identical to running that script directly, and
-noise generation isn't duplicated or allowed to drift (both use the same
+experiment_results/experiment_3_diada_arda/results_final_regression.csv /
+results_final_classification.csv (e.g. "house_sales_un_clean"), and it
+reuses the same noise-injection / DIADA-cleaning code as
+experiment_3_diada_arda/generate_benchmarks.py -- specifically it calls
+generate_for_benchmark() from that module so the noisy/cleaned CSVs written
+under data/ come out identical to running that script directly, and noise
+generation isn't duplicated or allowed to drift (both use the same
 random_state=0 default).
 
-IMPORTANT: this does NOT overwrite results_final_regression.csv /
-results_final_classification.csv -- those are the paper's original reference
-results. It writes results/reproduced_regression.csv and
+IMPORTANT: this does NOT overwrite the frozen
+experiment_results/experiment_3_diada_arda/results_final_regression.csv /
+results_final_classification.csv -- those are the paper's original
+reference results. It writes results/reproduced_regression.csv and
 results/reproduced_classification.csv instead (configurable via
 --output-dir), so a fresh run can always be diffed against the originals.
 
@@ -32,8 +34,8 @@ dataset, for every dataset in benchmarks.yaml (17 by default) -- expect it to
 take a long time. Use --datasets / --max-features to run a smaller slice
 (e.g. while testing).
 
-Run the full sweep with:   python -m diada.experiments.run_paper_experiments
-Run a quick subset with:   python -m diada.experiments.run_paper_experiments --datasets diamonds --max-features 5
+Run the full sweep with:   python -m diada.experiments.experiment_3_diada_arda.run_paper_experiments
+Run a quick subset with:   python -m diada.experiments.experiment_3_diada_arda.run_paper_experiments --datasets diamonds --max-features 5
 """
 
 from __future__ import annotations
@@ -45,8 +47,8 @@ from typing import List, Optional
 import pandas as pd
 import yaml
 
-from .. import paths
-from ..arda.arda import ARDA
+from ... import paths
+from ...arda.arda import ARDA
 from .generate_benchmarks import generate_for_benchmark
 
 MAX_FEATURES_DEFAULT = 40
@@ -71,7 +73,7 @@ def run_for_dataset(benchmark_name: str, target_column: str, task: str, metric: 
     (same columns as results_final_*.csv: benchmark, problem, ..., num_new_features,
     selected_features)."""
     # generate_for_benchmark() does the noise injection + DIADA cleaning (writing
-    # the same data/noise_cf1/, data/cleaned_cf1/, etc. artifacts
+    # the same data/noise_un/, data/cleaned_un/, etc. artifacts
     # experiments/generate_benchmarks.py always has), and hands back the
     # DataFrames we need so we don't redo that work.
     if verbose:
@@ -80,10 +82,10 @@ def run_for_dataset(benchmark_name: str, target_column: str, task: str, metric: 
 
     variants = [
         (benchmark_name, built["base_dataset"]),
-        (f"{benchmark_name}_un_dirty", built["noise_cf1"]),
-        (f"{benchmark_name}_un_clean", built["cf1_kept"]),
-        (f"{benchmark_name}_mn_dirty", built["noise_cf2"]),
-        (f"{benchmark_name}_mn_clean", built["cf2_datasets"]["target_cluster"]),
+        (f"{benchmark_name}_un_dirty", built["noise_un"]),
+        (f"{benchmark_name}_un_clean", built["un_kept"]),
+        (f"{benchmark_name}_mn_dirty", built["noise_mn"]),
+        (f"{benchmark_name}_mn_clean", built["mn_datasets"]["target_cluster"]),
     ]
 
     results = []
@@ -102,7 +104,7 @@ def run_for_dataset(benchmark_name: str, target_column: str, task: str, metric: 
 
 def main(argv: Optional[List[str]] = None) -> None:
     parser = argparse.ArgumentParser(
-        prog="python -m diada.experiments.run_paper_experiments",
+        prog="python -m diada.experiments.experiment_3_diada_arda.run_paper_experiments",
         description="Reproduce the paper's full noise/clean/ARDA experiment sweep across data/base_datasets.",
     )
     parser.add_argument("--datasets", nargs="*", default=None,

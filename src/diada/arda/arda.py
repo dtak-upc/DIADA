@@ -49,6 +49,7 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
+from .. import paths
 from .coreset import CoresetConstructor
 from .joins import join_tables
 from .feature_selection import RIFS, one_hot_encode_categorical, _is_classification
@@ -438,8 +439,18 @@ class ARDA:
         return pd.DataFrame(rows)
 
     def _log_result(self, row: Dict[str, Any], task: str) -> None:
-        """Append one evaluation result to results.csv (classification) or results_regression.csv."""
-        csv_path = "results_regression.csv" if task == "regression" else "results.csv"
+        """Append one evaluation result to results/results_regression.csv (regression) or
+        results/results.csv (classification) -- a running log of every individual model
+        fit, independent of and in addition to whatever the caller does with the
+        returned DataFrame (e.g. run_paper_experiments.py's own results/reproduced_*.csv).
+
+        Writes under paths.RESULTS_DIR, not a bare cwd-relative filename -- found by
+        smoke-testing run_paper_experiments.py, which left a stray results_regression.csv
+        at the repo root because this method used to write to cwd directly, the one
+        remaining hardcoded-relative-path spot in the package (everything else already
+        goes through paths.py for exactly this reason)."""
+        csv_path = paths.RESULTS_DIR / ("results_regression.csv" if task == "regression" else "results.csv")
+        csv_path.parent.mkdir(parents=True, exist_ok=True)
         df = pd.DataFrame([row])
-        file_exists = os.path.exists(csv_path)
+        file_exists = csv_path.exists()
         df.to_csv(csv_path, mode="a" if file_exists else "w", header=not file_exists, index=False)

@@ -22,7 +22,10 @@ def build_arg_parser() -> argparse.ArgumentParser:
     parser.add_argument("--metric", default="accuracy",
                          help="Evaluation metric passed to ARDA (accuracy/f1 for classification, "
                               "root_mean_squared_error/mae for regression).")
-    parser.add_argument("--mode", default="both", choices=["cf1", "cf2", "both"], help="Which cleaning strategy to run.")
+    parser.add_argument("--mode", default="both", choices=["un", "mn", "both"],
+                         help="Which cleaning strategy to run: 'un' (univariate-noise -- drop columns unrelated "
+                              "to anything), 'mn' (multivariate-noise -- also split noisy, intra-correlated "
+                              "column sets into their own partition(s)), or 'both'.")
     parser.add_argument("--threshold", type=float, default=4.0, help="Soundness threshold for the DIADA graph.")
     parser.add_argument("--num-buckets", type=int, default=10, dest="num_buckets",
                          help="DIADA column-typing mode: 0 = all String, 1 = typed but unbucketed, >1 = bucket numerics into this many bins.")
@@ -30,11 +33,12 @@ def build_arg_parser() -> argparse.ArgumentParser:
                          help="Exact number of top-ranked features to train the model with (default: 10). "
                               "Trains a single model -- if you want the full 1..N feature-count sweep used for "
                               "the paper's reproducibility experiments instead, use "
-                              "`python -m diada.experiments.run_paper_experiments`.")
-    parser.add_argument("--engine", default="lima", choices=["lima", "jar"],
-                         help="Soundness-scoring engine: 'lima' (default, pure Python, no Java needed) or "
-                              "'jar' (the original DIADA-0.8.jar, needs Java on PATH). NOT numerically "
-                              "interchangeable -- see README's 'Two soundness-scoring engines' section.")
+                              "`python -m diada.experiments.experiment_3_diada_arda.run_paper_experiments`.")
+    parser.add_argument("--engine", default="jar", choices=["lima", "jar"],
+                         help="Soundness-scoring engine: 'jar' (default, the original DIADA-0.8.jar, needs "
+                              "Java on PATH) or 'lima' (pure Python, no Java needed, but a randomized "
+                              "approximation -- opt-in only). NOT numerically interchangeable -- see README's "
+                              "'Two soundness-scoring engines' section.")
     parser.add_argument("--output-dir", default="diada_pipeline_output", dest="output_dir")
     parser.add_argument("--no-arda", action="store_false", dest="run_arda", help="Only produce cleaned datasets, skip running ARDA.")
     parser.add_argument("--quiet", action="store_false", dest="verbose")

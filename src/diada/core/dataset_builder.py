@@ -1,14 +1,19 @@
 """
-From a DIADA soundness table, build the cleaned dataset(s) for CF1 / CF2.
+From a DIADA soundness table, build the cleaned dataset(s) for UN / MN
+cleaning (univariate-noise / multivariate-noise -- renamed from the old
+"CF1"/"CF2" naming, which was confusing carried-over jargon from an earlier
+version; the goal each strategy serves is named directly instead: UN drops
+columns that don't correlate with anything else, MN additionally splits out
+sets of noisy, intra-correlated columns as their own partition(s)).
 
 Was benchmarks_generation/clean_benchmarks.py, generalized so nothing DIADA
 discards is thrown away silently:
 
-  - CF1 used to keep only the columns related (above threshold) to *something*
-    and drop the rest. `build_cf1_datasets` now also returns that discarded
+  - UN used to keep only the columns related (above threshold) to *something*
+    and drop the rest. `build_un_datasets` now also returns that discarded
     complement as a "leftover" dataset.
-  - CF2 used to keep only the connected component containing the target and
-    drop every other cluster. `build_cf2_datasets` now returns one dataset
+  - MN used to keep only the connected component containing the target and
+    drop every other cluster. `build_mn_datasets` now returns one dataset
     per component (the target's own, plus every other cluster) and a
     "leftover" dataset of columns that had no relation above threshold to
     anything at all (never became a graph node).
@@ -20,7 +25,7 @@ leftovers: e.g. does ARDA correctly score a spurious cluster's own dataset
 low against the real target, rather than being fooled by its internal
 correlation structure?
 
-Exception: the `include_synth_targets=True` branch of `build_cf1_datasets`
+Exception: the `include_synth_targets=True` branch of `build_un_datasets`
 mirrors the original script's behavior of deliberately dropping the *real*
 target_column from the cleaned output (that variant's actual prediction
 target is one of the synthetic_target_* columns instead) -- target-appending
@@ -91,17 +96,18 @@ def _ensure_target(df: pd.DataFrame, base_dataset: pd.DataFrame, target_column: 
 
 
 # ---------------------------------------------------------------------------
-# CF1: single "kept" set (+ its complement)
+# UN (univariate noise): single "kept" set (+ its complement)
 # ---------------------------------------------------------------------------
 
-def build_cf1_datasets(soundness_df: pd.DataFrame, base_dataset: pd.DataFrame, target_column: str,
-                        threshold: float = DEFAULT_THRESHOLD, include_synth_targets: bool = False) -> Dict[str, pd.DataFrame]:
+def build_un_datasets(soundness_df: pd.DataFrame, base_dataset: pd.DataFrame, target_column: str,
+                       threshold: float = DEFAULT_THRESHOLD, include_synth_targets: bool = False) -> Dict[str, pd.DataFrame]:
     """
     Returns {"kept": df, "leftover": df}.
 
     `kept` = every column with a soundness relation above `threshold` to
     anything (i.e. every node of the soundness graph) -- this is exactly
-    `generate_benchmark_clean_cf1`'s old selection.
+    `generate_benchmark_clean_cf1`'s old selection (old naming; see module
+    docstring for the CF1/CF2 -> UN/MN rename).
     `leftover` = every base_dataset column NOT selected into `kept`.
     """
     graph = build_soundness_graph(soundness_df, threshold)
@@ -122,11 +128,11 @@ def build_cf1_datasets(soundness_df: pd.DataFrame, base_dataset: pd.DataFrame, t
         kept = _ensure_target(kept, base_dataset, target_column)
         leftover = _ensure_target(leftover, base_dataset, target_column)
 
-    _log_cf1_selection(kept, target_column)
+    _log_un_selection(kept, target_column)
     return {"kept": kept, "leftover": leftover}
 
 
-def _log_cf1_selection(kept: pd.DataFrame, target_column: str) -> None:
+def _log_un_selection(kept: pd.DataFrame, target_column: str) -> None:
     cols = kept.columns.to_list()
     noise_features = len([c for c in cols if "noise" in c or "shuffle" in c or "spurious" in c])
     print("Num of selected columns:", len(cols))
@@ -135,11 +141,12 @@ def _log_cf1_selection(kept: pd.DataFrame, target_column: str) -> None:
 
 
 # ---------------------------------------------------------------------------
-# CF2: one dataset per connected component (+ a leftover of isolated columns)
+# MN (multivariate noise): one dataset per connected component (+ a leftover
+# of isolated columns)
 # ---------------------------------------------------------------------------
 
-def build_cf2_datasets(soundness_df: pd.DataFrame, base_dataset: pd.DataFrame, target_column: str,
-                        threshold: float = DEFAULT_THRESHOLD) -> Dict[str, pd.DataFrame]:
+def build_mn_datasets(soundness_df: pd.DataFrame, base_dataset: pd.DataFrame, target_column: str,
+                       threshold: float = DEFAULT_THRESHOLD) -> Dict[str, pd.DataFrame]:
     """
     Returns {"target_cluster": df, "cluster_2": df, ..., "leftover": df}.
 
@@ -148,7 +155,7 @@ def build_cf2_datasets(soundness_df: pd.DataFrame, base_dataset: pd.DataFrame, t
     old script's only output), the rest are "cluster_2", "cluster_3", ...
     ordered by size descending for determinism. "leftover" is every
     base_dataset column that never became a graph node at all (no relation
-    above threshold to anything) -- the CF2 analogue of CF1's leftover.
+    above threshold to anything) -- the MN analogue of UN's leftover.
     """
     graph = build_soundness_graph(soundness_df, threshold)
     all_clusters = list(nx.connected_components(graph))

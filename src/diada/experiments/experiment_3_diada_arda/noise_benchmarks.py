@@ -10,7 +10,7 @@ from .noise import random_numeric_noise, random_categorical_noise, shuffle_colum
 from .spurious_cluster import build_spurious_join_cluster
 
 
-def generate_benchmark_noise_cf1(df: pd.DataFrame, target_col: str, random_state: int = 0):
+def generate_benchmark_noise_un(df: pd.DataFrame, target_col: str, random_state: int = 0):
     return generate_benchmark_noise(
         df, target_col,
         include_synthetic_targets=False,
@@ -18,7 +18,7 @@ def generate_benchmark_noise_cf1(df: pd.DataFrame, target_col: str, random_state
         random_state=random_state,
     )
 
-def generate_benchmark_noise_cf1_synth_targets(df: pd.DataFrame, target_col: str, random_state: int = 0):
+def generate_benchmark_noise_un_synth_targets(df: pd.DataFrame, target_col: str, random_state: int = 0):
     return generate_benchmark_noise(
         df, target_col,
         include_synthetic_targets=True,
@@ -26,30 +26,31 @@ def generate_benchmark_noise_cf1_synth_targets(df: pd.DataFrame, target_col: str
         random_state=random_state,
     )
 
-def generate_benchmark_noise_cf2(noise_cf1_df: pd.DataFrame, report_cf1: dict,
-                                  spurious_cluster_multiplier: float = 0.75, random_state: int = 0) -> tuple[pd.DataFrame, dict]:
+def generate_benchmark_noise_mn(noise_un_df: pd.DataFrame, report_un: dict,
+                                 spurious_cluster_multiplier: float = 0.75, random_state: int = 0) -> tuple[pd.DataFrame, dict]:
     """
-    Build CF2 by taking the already-generated CF1 dataframe (base features + noise
-    columns produced for CF1) and appending a spurious correlated cluster on top of it.
-    This guarantees CF2 == CF1 + spurious cluster, rather than an independently
+    Build the MN (multivariate-noise) variant by taking the already-generated
+    UN (univariate-noise) dataframe (base features + noise columns produced
+    for UN) and appending a spurious correlated cluster on top of it. This
+    guarantees MN == UN + spurious cluster, rather than an independently
     regenerated (and therefore different) noisy dataset.
     """
     rng = np.random.default_rng(random_state)
 
-    n_rows = len(noise_cf1_df)
-    n_features = report_cf1["n_features"]
+    n_rows = len(noise_un_df)
+    n_features = report_un["n_features"]
     n_spurious = int(round(spurious_cluster_multiplier * n_features))
 
     spurious_df = build_spurious_join_cluster(n_rows=n_rows, n_cols=n_spurious, rng=rng)
 
     df_out = pd.concat(
-        [noise_cf1_df.reset_index(drop=True), spurious_df.reset_index(drop=True)],
+        [noise_un_df.reset_index(drop=True), spurious_df.reset_index(drop=True)],
         axis=1,
     )
 
-    report = dict(report_cf1)
+    report = dict(report_un)
     report["spurious_cols"] = list(spurious_df.columns)
-    report["total_new_columns"] = report_cf1["total_new_columns"] + len(spurious_df.columns)
+    report["total_new_columns"] = report_un["total_new_columns"] + len(spurious_df.columns)
 
     return df_out, report
 

@@ -1,8 +1,10 @@
 """
 The "system": given one CSV + target column, run DIADA, build cleaned
-dataset(s) (CF1 kept/leftover, CF2 per-component/leftover, or both), and
-optionally run ARDA's feature-selection pipeline (fit_transform_full_table)
-on each one.
+dataset(s) (UN kept/leftover, MN per-component/leftover, or both -- UN =
+univariate-noise cleaning, MN = multivariate-noise cleaning; renamed from
+the old "CF1"/"CF2" naming, see core/dataset_builder.py's module
+docstring), and optionally run ARDA's feature-selection pipeline
+(fit_transform_full_table) on each one.
 
 This is new -- there was previously no way to run this pipeline on anything
 other than the fixed benchmarks.yaml sweep. See cli.py for the command-line
@@ -17,7 +19,7 @@ from typing import Dict, Optional
 
 import pandas as pd
 
-from .core.dataset_builder import DEFAULT_THRESHOLD, build_cf1_datasets, build_cf2_datasets
+from .core.dataset_builder import DEFAULT_THRESHOLD, build_un_datasets, build_mn_datasets
 from .core.diada_tool import invoke_diada
 from .arda.arda import ARDA
 
@@ -28,14 +30,14 @@ class PipelineConfig:
     target_column: str
     task: str  # "classification" | "regression"
     metric: str = "accuracy"
-    mode: str = "both"  # "cf1" | "cf2" | "both"
+    mode: str = "both"  # "un" | "mn" | "both"
     threshold: float = DEFAULT_THRESHOLD
     num_buckets: int = 10
     run_arda: bool = True
     num_features: int = 10
     output_dir: str = "diada_pipeline_output"
-    engine: str = "lima"  # "lima" (default, pure Python) or "jar" (needs Java) -- see
-                          # core/diada_tool.py's module docstring: NOT numerically interchangeable
+    engine: str = "jar"  # "jar" (default, needs Java) or "lima" (pure Python, opt-in) -- see
+                         # core/diada_tool.py's module docstring: NOT numerically interchangeable
     rifs_k: int = 10
     rifs_eta: float = 0.2
     cv: int = 3
@@ -52,8 +54,8 @@ class PipelineResult:
 
 def run_pipeline(config: PipelineConfig) -> PipelineResult:
     """Run the full single-CSV system end to end; see module docstring."""
-    if config.mode not in ("cf1", "cf2", "both"):
-        raise ValueError(f"mode must be 'cf1', 'cf2' or 'both', got {config.mode!r}")
+    if config.mode not in ("un", "mn", "both"):
+        raise ValueError(f"mode must be 'un', 'mn' or 'both', got {config.mode!r}")
 
     base_dataset = pd.read_csv(config.csv_path)
     if config.target_column not in base_dataset.columns:
@@ -68,14 +70,14 @@ def run_pipeline(config: PipelineConfig) -> PipelineResult:
     soundness_df.to_csv(output_dir / "soundness.csv", index=False)
 
     datasets: Dict[str, pd.DataFrame] = {}
-    if config.mode in ("cf1", "both"):
-        cf1 = build_cf1_datasets(soundness_df, base_dataset, config.target_column, threshold=config.threshold)
-        datasets["cf1_kept"] = cf1["kept"]
-        datasets["cf1_leftover"] = cf1["leftover"]
-    if config.mode in ("cf2", "both"):
-        cf2 = build_cf2_datasets(soundness_df, base_dataset, config.target_column, threshold=config.threshold)
-        for name, df in cf2.items():
-            datasets[f"cf2_{name}"] = df
+    if config.mode in ("un", "both"):
+        un = build_un_datasets(soundness_df, base_dataset, config.target_column, threshold=config.threshold)
+        datasets["un_kept"] = un["kept"]
+        datasets["un_leftover"] = un["leftover"]
+    if config.mode in ("mn", "both"):
+        mn = build_mn_datasets(soundness_df, base_dataset, config.target_column, threshold=config.threshold)
+        for name, df in mn.items():
+            datasets[f"mn_{name}"] = df
 
     dataset_paths: Dict[str, Path] = {}
     for name, df in datasets.items():
