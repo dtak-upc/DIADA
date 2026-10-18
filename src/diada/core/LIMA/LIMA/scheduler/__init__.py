@@ -8,6 +8,7 @@ from .Schedule import (
 )
 from .Scheduler import Scheduler
 from .LIMAScheduler import LIMAScheduler
+from .MonoScheduler import MonoScheduler
 
 __all__ = [
     "Schedule",
@@ -18,4 +19,5 @@ __all__ = [
     "nodesAboveThreshold",
     "Scheduler",
     "LIMAScheduler",
+    "MonoScheduler",
 ]

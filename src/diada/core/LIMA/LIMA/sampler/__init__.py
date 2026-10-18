@@ -10,6 +10,8 @@ from .Sample import (
 )
 from .Sampler import Sampler
 from .LIMASampler import LIMASampler
+from .APRIORISampler import APRIORISampler
+from .FPSampler import FPSampler
 
 __all__ = [
     "Sample",
@@ -22,4 +24,6 @@ __all__ = [
     "explore",
     "Sampler",
     "LIMASampler",
+    "APRIORISampler",
+    "FPSampler",
 ]

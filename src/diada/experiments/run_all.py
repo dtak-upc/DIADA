@@ -43,7 +43,7 @@ def _log(msg: str) -> None:
 
 def run_experiment_1() -> None:
     from .experiment_1_scalability import scalability_benchmark
-    scalability_benchmark.main()
+    scalability_benchmark.main([])  # [] = its own defaults, not run_all's argv
 
 
 def run_experiment_2() -> None:
