@@ -20,6 +20,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = REPO_ROOT / "data"
 RESULTS_DIR = REPO_ROOT / "results"
 BENCHMARKS_YAML = REPO_ROOT / "benchmarks.yaml"
+BENCHMARKS_2TARGETS_YAML = REPO_ROOT / "benchmark_2targets.yaml"
 JAR_PATH = REPO_ROOT / "src" / "diada" / "core" / "DIADA-0.8.jar"
 
 BASE_DATASETS_DIR = DATA_DIR / "base_datasets"

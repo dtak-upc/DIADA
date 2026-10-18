@@ -193,8 +193,8 @@ separate, more expensive mode (see `ARDA.fit_transform_full_table(..., num_featu
 
 ## Reproducing the paper's experiments
 
-Three numbered experiments, each its own subpackage under
-`src/diada/experiments/`. Check `EXPERIMENTS.md` for what each one measures, its reproducibility status, and known caveats. `python -m diada.experiments.run_all` runs any/all of them in one invocation (`--experiments 1 2 3`, default: all three); each is independently runnable too, and all are resumable/checkpointed since each can take a long time on the full benchmark suite.
+Four numbered experiments, each its own subpackage under
+`src/diada/experiments/`. Check `EXPERIMENTS.md` for what each one measures, its reproducibility status, and known caveats. `python -m diada.experiments.run_all` runs any/all of them in one invocation (`--experiments 1 2 3 4`, default: all four); each is independently runnable too, and all are resumable/checkpointed since each can take a long time on the full benchmark suite.
 
 - **`python -m diada.experiments.experiment_1_scalability.scalability_benchmark`**: Mining algorithm (LIMA) vs. Apriori/FP-Growth row/column scalability (Figure 4). Add `--quick` for a few-minute smoke run (written to `results/experiment_1_scalability_quick/`), or select a subset with `--datasets`, `--algorithms`, `--series`, `--max-cols`, `--repeats` (see `--help`). Writes `scalability_raw.csv`, `results_live.pickle` (same schema as `experiment_results/experiment_1_scalability/results.pickle`) and a Figure 4-style `scalability_live.png` to `results/experiment_1_scalability/`. Note: the current Python port of LIMA does not reproduce the published LIMA timings yet.
 - **`python -m diada.experiments.experiment_2_ufs.ufs_benchmark`**: DIADA vs. 16 Unsupervised Feature Selection baselines (+ optional CAE) on how well each drops injected noise columns.
@@ -208,23 +208,7 @@ independently-seeded run that will NOT match the downloaded `data/`'s original b
   python -m diada.experiments.experiment_3_diada_arda.run_paper_experiments --datasets diamonds --max-features 10
   ```
 
-<!-- ### Synthetic-target benchmarks (Experiment 4)
-
-`experiments/experiment_3_diada_arda/synthetic_targets.py` and the `*_synth_targets` variants
-(`generate_benchmark_noise_un_synth_targets`, written to
-`data/noise_un_synth_targets/` / `data/cleaned_un_synth_targets/` by
-`generate_benchmarks.py`) are used, but for a separate ablation from the main
-results -- Experiment 4 (see `EXPERIMENTS.md`): they build synthetic proxy
-targets correlated with subsets of the real features, to test whether ARDA
-can be fooled into selecting features that predict a decoy rather than the
-real target. That experiment's frozen results live in
-`experiment_results/experiment_4_synthetic_targets/results_2targets_*.csv`
-(see the same folder's `results_analysis.ipynb` for the analysis, sharing
-plotting code with Experiment 3's via
-`src/diada/experiments/results_plotting.py`) and are not part of
-`run_paper_experiments.py` above -- there's no live-rerun script for this
-one yet, ask if you'd like that sweep scripted the same way as Experiments
-1-3. -->
+- **`python -m diada.experiments.experiment_4_synthetic_targets.run_synthetic_targets`**: one composition, any target (Section 6.4). For every dataset it injects UN noise plus two synthetic targets, runs DIADA (jar) once, and runs ARDA's sweep for each entry of `benchmark_2targets.yaml` (`<dataset>_synthetic_target_<k>`) on three variants: `_base` (no noise), `_noise` (pre-composition) and `_clean` (post-composition), matching the naming in `experiment_results/experiment_4_synthetic_targets/results_2targets_*.csv`. Results go to `results/experiment_4_synthetic_targets/reproduced_2targets_*.csv` and are compared against the frozen ones at the end (`comparison_reproduced.csv`). `--selection-only` skips model training and reproduces just the `selected_features` column (ARDA's ranking is computed before any model is trained), which takes hours instead of days; `--datasets`/`--max-features` run a slice; `--compare-only` re-runs the comparison.
 
 ## Original ARDA (join-based) pipeline
 

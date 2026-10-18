@@ -1,0 +1,169 @@
+jannis_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "classification"
+  metric: "accuracy"
+
+jannis_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "classification"
+  metric: "accuracy"
+
+miniboone_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "classification"
+  metric: "accuracy"
+
+miniboone_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "classification"
+  metric: "accuracy"
+
+bank_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "classification"
+  metric: "accuracy"
+
+bank_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "classification"
+  metric: "accuracy"
+
+pendigits_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "classification"
+  metric: "accuracy"
+
+pendigits_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "classification"
+  metric: "accuracy"
+
+students_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "classification"
+  metric: "accuracy"
+
+students_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "classification"
+  metric: "accuracy"
+
+drive_diagnosis_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "classification"
+  metric: "accuracy"
+
+drive_diagnosis_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "classification"
+  metric: "accuracy"
+
+covertype_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "classification"
+  metric: "accuracy"
+
+covertype_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "classification"
+  metric: "accuracy"
+
+default_payment_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "classification"
+  metric: "accuracy"
+
+default_payment_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "classification"
+  metric: "accuracy"
+
+dry_beans_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "classification"
+  metric: "accuracy"
+
+dry_beans_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "classification"
+  metric: "accuracy"
+
+mice_protein_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "classification"
+  metric: "accuracy"
+
+mice_protein_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "classification"
+  metric: "accuracy"
+
+house_sales_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+house_sales_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+avocado_sales_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+avocado_sales_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+nasa_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+nasa_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+diamonds_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+diamonds_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+pol_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+pol_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+appliances_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+appliances_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+superconductivity_synthetic_target_1:
+  target_column: "synthetic_target_1"
+  task: "regression"
+  metric: "root_mean_squared_error"
+
+superconductivity_synthetic_target_2:
+  target_column: "synthetic_target_2"
+  task: "regression"
+  metric: "root_mean_squared_error"

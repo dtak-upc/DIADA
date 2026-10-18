@@ -9,17 +9,19 @@ details):
     2  experiment_2_ufs.ufs_benchmark                   -- DIADA vs. UFS baselines
     3  experiment_3_diada_arda.run_paper_experiments    -- DIADA+ARDA on every
                                                              benchmark x noise variant
+    4  experiment_4_synthetic_targets.run_synthetic_targets -- one composition,
+                                                             two synthetic targets
 
 This script just sequences their existing `main()` entry points -- no
 experiment logic lives here. Every experiment is independently resumable/
 checkpointed (see each module's own docstring), so interrupting a run
 started here and re-running is safe.
 
-All three are expensive (each can run for hours on the full benchmark
+All four are expensive (each can run for hours on the full benchmark
 suite); nothing here shortcuts that. Select a subset with --experiments if
 you don't want to run everything.
 
-Run all three:        python -m diada.experiments.run_all
+Run all four:         python -m diada.experiments.run_all
 Run a subset:          python -m diada.experiments.run_all --experiments 1 2
 Pass Experiment 3 args (the only one with its own CLI options) after --:
                        python -m diada.experiments.run_all --experiments 3 -- --datasets diamonds --max-features 5
@@ -34,6 +36,7 @@ EXPERIMENTS = {
     1: ("Experiment 1: LIMA scalability vs. Apriori/FP-Growth", "experiment_1_scalability"),
     2: ("Experiment 2: DIADA vs. UFS baselines", "experiment_2_ufs"),
     3: ("Experiment 3: DIADA+ARDA on every benchmark x noise variant", "experiment_3_diada_arda"),
+    4: ("Experiment 4: one composition, two synthetic targets", "experiment_4_synthetic_targets"),
 }
 
 
@@ -56,7 +59,12 @@ def run_experiment_3(argv: Optional[List[str]] = None) -> None:
     run_paper_experiments.main(argv)
 
 
-_RUNNERS = {1: run_experiment_1, 2: run_experiment_2, 3: run_experiment_3}
+def run_experiment_4() -> None:
+    from .experiment_4_synthetic_targets import run_synthetic_targets
+    run_synthetic_targets.main([])  # [] = its own defaults, not run_all's argv
+
+
+_RUNNERS = {1: run_experiment_1, 2: run_experiment_2, 3: run_experiment_3, 4: run_experiment_4}
 
 
 def main(argv: Optional[List[str]] = None) -> None:
@@ -64,8 +72,8 @@ def main(argv: Optional[List[str]] = None) -> None:
         prog="python -m diada.experiments.run_all",
         description="Run any/all of the numbered reproducibility experiments in sequence.",
     )
-    parser.add_argument("--experiments", type=int, nargs="+", choices=[1, 2, 3], default=[1, 2, 3],
-                         help="Which experiment(s) to run, by number (default: all three, in order).")
+    parser.add_argument("--experiments", type=int, nargs="+", choices=[1, 2, 3, 4], default=[1, 2, 3, 4],
+                         help="Which experiment(s) to run, by number (default: all four, in order).")
     parser.add_argument("experiment_3_args", nargs=argparse.REMAINDER,
                          help="Everything after '--' is forwarded to Experiment 3's own argument "
                               "parser (--datasets, --max-features, --output-dir, --quiet). Ignored "
