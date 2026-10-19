@@ -204,9 +204,13 @@ def visualize_clusters(soundness_df: pd.DataFrame, target_column: str, output_pa
     unconditionally, which blocks on an interactive matplotlib backend with
     no display (e.g. a fresh clone of this repo run headless/on a server).
     Pass `show=True` explicitly for interactive use (e.g. a notebook).
-    """
-    import matplotlib.pyplot as plt
 
+    With `show=False` the figure is drawn on a plain Agg canvas, never
+    through pyplot: pyplot's default backend on Windows is Tk, and the Tk
+    objects it leaves behind get garbage-collected later from ARDA's worker
+    threads, which crashes the process ("Tcl_AsyncDelete: async handler
+    deleted by the wrong thread") in the middle of run_paper_experiments.
+    """
     graph = build_soundness_graph(soundness_df, threshold)
     clusters = list(nx.connected_components(graph))
     target_cluster = next((c for c in clusters if target_column in c), set())
@@ -218,14 +222,23 @@ def visualize_clusters(soundness_df: pd.DataFrame, target_column: str, output_pa
         for node in graph.nodes()
     ]
 
-    plt.figure(figsize=(10, 8))
+    if show:
+        import matplotlib.pyplot as plt
+        fig = plt.figure(figsize=(10, 8))
+    else:
+        from matplotlib.backends.backend_agg import FigureCanvasAgg
+        from matplotlib.figure import Figure
+        fig = Figure(figsize=(10, 8))
+        FigureCanvasAgg(fig)
+    ax = fig.add_subplot(1, 1, 1)
+
     pos = nx.spring_layout(graph, k=0.6, seed=42)
-    nx.draw_networkx_nodes(graph, pos, node_size=600, node_color=node_colors, alpha=0.9)
-    nx.draw_networkx_edges(graph, pos, width=1.5, alpha=0.3)
-    nx.draw_networkx_labels(graph, pos, font_size=9, font_weight="bold")
-    plt.title(f"Feature Clusters (Target: {target_column} in Red/Orange)")
-    plt.axis("off")
-    plt.savefig(output_path)
+    nx.draw_networkx_nodes(graph, pos, node_size=600, node_color=node_colors, alpha=0.9, ax=ax)
+    nx.draw_networkx_edges(graph, pos, width=1.5, alpha=0.3, ax=ax)
+    nx.draw_networkx_labels(graph, pos, font_size=9, font_weight="bold", ax=ax)
+    ax.set_title(f"Feature Clusters (Target: {target_column} in Red/Orange)")
+    ax.axis("off")
+    fig.savefig(output_path)
     if show:
         plt.show()
-    plt.close()
+        plt.close(fig)

@@ -206,6 +206,10 @@ class ARDA:
         self.target_col = target_column
         self._task_resolved = task
         candidate_cols = [c for c in dataset.columns if c != target_column]
+        if not candidate_cols:
+            if self.verbose:
+                print(f"No candidate features besides '{target_column}' -- nothing to train.")
+            return pd.DataFrame()
 
         start_time = time.time()
         feature_ranking = self.select_features(dataset, candidate_cols)
@@ -375,8 +379,9 @@ class ARDA:
 
     def select_features(self, df: pd.DataFrame, new_cols: List[str]) -> pd.DataFrame:
         """Run RIFS over `new_cols` and return them ranked best-first."""
+        empty_ranking = pd.DataFrame(columns=["feature"])  # same shape callers index into
         if not new_cols:
-            return []
+            return empty_ranking
         y = df[self.target_col]
         X_raw = df[[c for c in new_cols if c in df.columns]]
 
@@ -384,7 +389,7 @@ class ARDA:
         X_bin = one_hot_encode_categorical(X_raw)
         X_num = X_bin.select_dtypes(include=[np.number])
         if X_num.empty:
-            return []
+            return empty_ranking
 
         rifs = RIFS(eta=self.rifs_eta, k=self.rifs_k, nu=self.rifs_nu, task=self._task_resolved or self.task,
                     cv=self.cv, random_state=self.random_state)

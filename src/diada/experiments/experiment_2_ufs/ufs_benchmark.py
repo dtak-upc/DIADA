@@ -5,8 +5,7 @@ Live, re-runnable port of
 experiment_results/experiment_2_ufs/ufs_extended.ipynb -- the notebook that
 produced experiment_results/experiment_2_ufs/ufs_results_final.csv, the
 paper's noise-filtering comparison table (does DIADA drop injected noise
-columns better than generic UFS methods?). See EXPERIMENTS.md for the
-running list of numbered reproducibility experiments this belongs to; see
+columns better than generic UFS methods?). See
 ufs_baselines.py for the ported UFS scoring functions themselves.
 
 Differences from the notebook, all disclosed here rather than silently
@@ -68,14 +67,17 @@ applied
      scalability_benchmark.py.
 
 Run with: python3 -m diada.experiments.experiment_2_ufs.ufs_benchmark
-Env vars (optional): OUT_DIR (default results/experiment_2_ufs under the
-repo root).
+Subset:   ... --datasets students pendigits
+Options:  --out-dir (default results/experiment_2_ufs under the repo root;
+the OUT_DIR env var also works).
 """
 from __future__ import annotations
 
+import argparse
 import os
 import time
 from pathlib import Path
+from typing import List, Optional
 
 import numpy as np
 import pandas as pd
@@ -98,11 +100,20 @@ DIADA_ENGINE = "jar"  # matches invoke_diada's own default and generate_benchmar
 
 DISPLAY_NAME_OVERRIDES = {"diada": "DIADA"}
 
-OUT_DIR = Path(os.environ.get("OUT_DIR", str(paths.RESULTS_DIR / "experiment_2_ufs")))
-RAW_CSV = OUT_DIR / "ufs_raw.csv"
-SUMMARY_CSV = OUT_DIR / "ufs_summary.csv"
+OUT_DIR: Path
+RAW_CSV: Path
+SUMMARY_CSV: Path
 
-OUT_DIR.mkdir(parents=True, exist_ok=True)
+
+def _set_out_dir(out_dir: Path) -> None:
+    global OUT_DIR, RAW_CSV, SUMMARY_CSV
+    OUT_DIR = Path(out_dir)
+    RAW_CSV = OUT_DIR / "ufs_raw.csv"
+    SUMMARY_CSV = OUT_DIR / "ufs_summary.csv"
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+
+
+_set_out_dir(Path(os.environ.get("OUT_DIR", str(paths.RESULTS_DIR / "experiment_2_ufs"))))
 
 # Copied from experiment_results/experiment_2_ufs/ufs_extended.ipynb's analysis cell -- raw column counts
 # (excluding injected noise/duplicate columns) per benchmark, used to
@@ -309,9 +320,26 @@ def build_summary():
     print(summary.to_string(index=False))
 
 
-def main():
+def main(argv: Optional[List[str]] = None):
+    parser = argparse.ArgumentParser(
+        prog="python -m diada.experiments.experiment_2_ufs.ufs_benchmark",
+        description="Experiment 2: DIADA vs. unsupervised feature selection baselines on the UN benchmarks.",
+    )
+    parser.add_argument("--datasets", nargs="*", default=None,
+                        help="Subset of benchmark names (default: every entry in benchmarks.yaml).")
+    parser.add_argument("--out-dir", type=Path, default=None,
+                        help="Output directory (default: results/experiment_2_ufs, or the OUT_DIR env var).")
+    args = parser.parse_args(argv)
+    if args.out_dir is not None:
+        _set_out_dir(args.out_dir)
+
     with open(paths.BENCHMARKS_YAML) as f:
         benchmarks = yaml.safe_load(f)
+    if args.datasets:
+        unknown = [n for n in args.datasets if n not in benchmarks]
+        if unknown:
+            raise ValueError(f"Unknown benchmark name(s): {unknown}. Known: {sorted(benchmarks)}")
+        benchmarks = {n: benchmarks[n] for n in args.datasets}
 
     log(f"Experiment 2 (UFS comparison) -- {len(benchmarks)} benchmarks, "
         f"{len(_method_names())} UFS methods + diada")

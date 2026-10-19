@@ -236,7 +236,7 @@ def compare_with_published(out_dir: Path, selection_only: bool) -> pd.DataFrame:
             same = [d == 0 for d in diffs]
             mismatched = [int(n) for n, d in zip(joined["num_new_features"], diffs) if d]
             row = {"benchmark": benchmark, "task": task, "counts_mine": len(m), "counts_published": len(p),
-                   "selection_matches": sum(same), "first_mismatch_at": mismatched[0] if mismatched else None,
+                   "counts_compared": len(joined), "selection_matches": sum(same), "first_mismatch_at": mismatched[0] if mismatched else None,
                    # 1 = at worst one feature swapped in/out at any count (rank-order ties)
                    "max_features_differing": max(diffs, default=0),
                    "mismatched_counts": " ".join(map(str, mismatched))}
@@ -247,16 +247,19 @@ def compare_with_published(out_dir: Path, selection_only: bool) -> pd.DataFrame:
     if summary.empty:
         log("nothing to compare yet")
         return summary
-    # every published feature count reproduced; a published sweep that stopped
-    # early (fewer counts than candidates) is flagged rather than failed
-    summary["all_match"] = summary["selection_matches"] == summary["counts_published"]
+    # every feature count present in both runs reproduced. Sweeps of different
+    # length are flagged rather than failed: a published sweep that stopped
+    # early, or a --max-features slice of this one.
+    summary["all_match"] = summary["selection_matches"] == summary["counts_compared"]
     summary["published_sweep_incomplete"] = summary["counts_mine"] > summary["counts_published"]
+    summary["partial_run"] = summary["counts_mine"] < summary["counts_published"]
     path = out_dir / f"comparison_{'selection' if selection_only else 'reproduced'}.csv"
     summary.to_csv(path, index=False)
     with pd.option_context("display.max_rows", None, "display.width", 200):
         print(summary.to_string(index=False))
     log(f"{int(summary['all_match'].sum())}/{len(summary)} benchmark variants reproduce the published "
-        f"selected_features at every feature count; wrote {path}")
+        f"selected_features at every compared feature count ({int(summary['partial_run'].sum())} of them "
+        f"with fewer feature counts than published); wrote {path}")
     return summary
 
 

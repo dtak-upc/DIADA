@@ -2,8 +2,8 @@
 Run any/all of the numbered reproducibility experiments in one invocation.
 
 Each experiment lives in its own subpackage and is independently runnable
-(see EXPERIMENTS.md for what each one measures and its own module for full
-details):
+(see the README's "Reproducing the paper's experiments" section and each
+module's own docstring for details):
 
     1  experiment_1_scalability.scalability_benchmark  -- LIMA vs. Apriori/FP-Growth
     2  experiment_2_ufs.ufs_benchmark                   -- DIADA vs. UFS baselines
@@ -51,7 +51,7 @@ def run_experiment_1() -> None:
 
 def run_experiment_2() -> None:
     from .experiment_2_ufs import ufs_benchmark
-    ufs_benchmark.main()
+    ufs_benchmark.main([])  # [] = its own defaults, not run_all's argv
 
 
 def run_experiment_3(argv: Optional[List[str]] = None) -> None:

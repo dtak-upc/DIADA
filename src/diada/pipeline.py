@@ -92,6 +92,12 @@ def run_pipeline(config: PipelineConfig) -> PipelineResult:
                 if config.verbose:
                     print(f"Skipping ARDA on '{name}': no target column present.")
                 continue
+            if df.shape[1] < 2:
+                # e.g. un_leftover / mn_leftover when DIADA kept every column:
+                # nothing but the target, so there is nothing to select from
+                if config.verbose:
+                    print(f"Skipping ARDA on '{name}': no candidate features besides the target.")
+                continue
             if config.verbose:
                 print(f"Running ARDA on '{name}' ({df.shape[1] - 1} candidate feature(s), "
                       f"requesting num_features={config.num_features})...")
