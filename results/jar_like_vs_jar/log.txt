@@ -1,0 +1,52 @@
+{'benchmark': 'bank', 'exact': 289, 'cells': 289, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 29, 'edges_py': 29, 'only_jar': 0, 'only_py': 0, 'jar_s': 0.6, 'py_s': 0.17}
+{'benchmark': 'house_sales', 'exact': 324, 'cells': 324, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 51, 'edges_py': 51, 'only_jar': 0, 'only_py': 0, 'jar_s': 0.66, 'py_s': 0.18}
+{'benchmark': 'bank_mn', 'exact': 4225, 'cells': 4225, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 71, 'edges_py': 71, 'only_jar': 0, 'only_py': 0, 'jar_s': 2.86, 'py_s': 1.52}
+{'benchmark': 'jannis UN', 'exact': 27889, 'cells': 27889, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 139, 'edges_py': 139, 'only_jar': 0, 'only_py': 0, 'jar_s': 20.79, 'py_s': 12.84}
+{'benchmark': 'jannis MN', 'exact': 42849, 'cells': 42849, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 630, 'edges_py': 630, 'only_jar': 0, 'only_py': 0, 'jar_s': 60.57, 'py_s': 25.43}
+{'benchmark': 'miniboone UN', 'exact': 24025, 'cells': 24025, 'max_diff_ge2': 3.552713678800501e-15, 'edges_jar': 353, 'edges_py': 353, 'only_jar': 0, 'only_py': 0, 'jar_s': 21.22, 'py_s': 13.45}
+{'benchmark': 'miniboone MN', 'exact': 37249, 'cells': 37249, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 799, 'edges_py': 799, 'only_jar': 0, 'only_py': 0, 'jar_s': 57.91, 'py_s': 24.14}
+{'benchmark': 'bank UN', 'exact': 2809, 'cells': 2809, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 29, 'edges_py': 29, 'only_jar': 0, 'only_py': 0, 'jar_s': 1.94, 'py_s': 1.14}
+{'benchmark': 'bank MN', 'exact': 4225, 'cells': 4225, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 71, 'edges_py': 71, 'only_jar': 0, 'only_py': 0, 'jar_s': 2.69, 'py_s': 1.78}
+{'benchmark': 'pendigits UN', 'exact': 2809, 'cells': 2809, 'max_diff_ge2': 3.552713678800501e-15, 'edges_jar': 112, 'edges_py': 112, 'only_jar': 0, 'only_py': 0, 'jar_s': 1.84, 'py_s': 0.75}
+{'benchmark': 'pendigits MN', 'exact': 4225, 'cells': 4225, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 151, 'edges_py': 151, 'only_jar': 0, 'only_py': 0, 'jar_s': 2.74, 'py_s': 1.0}
+{'benchmark': 'students UN', 'exact': 9604, 'cells': 9604, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 170, 'edges_py': 170, 'only_jar': 0, 'only_py': 0, 'jar_s': 6.99, 'py_s': 2.67}
+{'benchmark': 'students MN', 'exact': 14641, 'cells': 14641, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 327, 'edges_py': 327, 'only_jar': 0, 'only_py': 0, 'jar_s': 11.13, 'py_s': 3.88}
+{'benchmark': 'drive_diagnosis UN', 'exact': 22201, 'cells': 22201, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 511, 'edges_py': 511, 'only_jar': 0, 'only_py': 0, 'jar_s': 21.49, 'py_s': 11.72}
+{'benchmark': 'drive_diagnosis MN', 'exact': 34225, 'cells': 34225, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 959, 'edges_py': 959, 'only_jar': 0, 'only_py': 0, 'jar_s': 49.24, 'py_s': 21.92}
+{'benchmark': 'covertype UN', 'exact': 1681, 'cells': 1681, 'max_diff_ge2': 1.7763568394002505e-15, 'edges_jar': 21, 'edges_py': 21, 'only_jar': 0, 'only_py': 0, 'jar_s': 1.53, 'py_s': 0.92}
+{'benchmark': 'covertype MN', 'exact': 2500, 'cells': 2500, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 50, 'edges_py': 50, 'only_jar': 0, 'only_py': 0, 'jar_s': 2.25, 'py_s': 1.18}
+{'benchmark': 'default_payment UN', 'exact': 5476, 'cells': 5476, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 158, 'edges_py': 158, 'only_jar': 0, 'only_py': 0, 'jar_s': 3.86, 'py_s': 2.22}
+{'benchmark': 'default_payment MN', 'exact': 8281, 'cells': 8281, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 244, 'edges_py': 244, 'only_jar': 0, 'only_py': 0, 'jar_s': 6.71, 'py_s': 3.56}
+{'benchmark': 'dry_beans UN', 'exact': 2809, 'cells': 2809, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 116, 'edges_py': 116, 'only_jar': 0, 'only_py': 0, 'jar_s': 2.03, 'py_s': 0.84}
+{'benchmark': 'dry_beans MN', 'exact': 4225, 'cells': 4225, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 154, 'edges_py': 154, 'only_jar': 0, 'only_py': 0, 'jar_s': 3.13, 'py_s': 1.2}
+{'benchmark': 'mice_protein UN', 'exact': 60025, 'cells': 60025, 'max_diff_ge2': 3.552713678800501e-15, 'edges_jar': 1701, 'edges_py': 1701, 'only_jar': 0, 'only_py': 0, 'jar_s': 126.21, 'py_s': 30.73}
+Traceback (most recent call last):
+  File "C:\Projects\DIADA\explorations\jar_like_vs_jar.py", line 110, in <module>
+    main()
+    ~~~~^^
+  File "C:\Projects\DIADA\explorations\jar_like_vs_jar.py", line 101, in main
+    r = compare(name, rel)
+  File "C:\Projects\DIADA\explorations\jar_like_vs_jar.py", line 69, in compare
+    mj = jar_matrix(csv, len(data), data.shape[1])
+  File "C:\Projects\DIADA\explorations\jar_like_vs_jar.py", line 49, in jar_matrix
+    subprocess.run(cmd, check=True, capture_output=True, cwd=tmp)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\marc.maynou\miniconda3\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['java', '-jar', 'C:\\Projects\\DIADA\\src\\diada\\core\\DIADA-0.8.jar', 'C:\\Users\\MARC~1.MAY\\AppData\\Local\\Temp\\jarlike_mr_d3x06\\temp_data.csv', '0.000001', '1080']' returned non-zero exit status 1.
+{'benchmark': 'mice_protein MN', 'exact': 93025, 'cells': 93025, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 2933, 'edges_py': 2933, 'only_jar': 0, 'only_py': 0, 'jar_s': 291.99, 'py_s': 52.36}
+{'benchmark': 'house_sales UN', 'exact': 3136, 'cells': 3136, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 52, 'edges_py': 52, 'only_jar': 0, 'only_py': 0, 'jar_s': 2.77, 'py_s': 1.42}
+{'benchmark': 'house_sales MN', 'exact': 4761, 'cells': 4761, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 105, 'edges_py': 105, 'only_jar': 0, 'only_py': 0, 'jar_s': 3.72, 'py_s': 1.45}
+{'benchmark': 'avocado_sales UN', 'exact': 1936, 'cells': 1936, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 53, 'edges_py': 53, 'only_jar': 0, 'only_py': 0, 'jar_s': 2.17, 'py_s': 0.74}
+{'benchmark': 'avocado_sales MN', 'exact': 2916, 'cells': 2916, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 80, 'edges_py': 80, 'only_jar': 0, 'only_py': 0, 'jar_s': 2.51, 'py_s': 0.85}
+{'benchmark': 'nasa UN', 'exact': 4624, 'cells': 4624, 'max_diff_ge2': 3.552713678800501e-15, 'edges_jar': 67, 'edges_py': 67, 'only_jar': 0, 'only_py': 0, 'jar_s': 3.16, 'py_s': 1.7}
+{'benchmark': 'nasa MN', 'exact': 7056, 'cells': 7056, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 140, 'edges_py': 140, 'only_jar': 0, 'only_py': 0, 'jar_s': 5.16, 'py_s': 3.15}
+{'benchmark': 'diamonds UN', 'exact': 1024, 'cells': 1024, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 18, 'edges_py': 18, 'only_jar': 0, 'only_py': 0, 'jar_s': 1.1, 'py_s': 0.48}
+{'benchmark': 'diamonds MN', 'exact': 1521, 'cells': 1521, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 29, 'edges_py': 29, 'only_jar': 0, 'only_py': 0, 'jar_s': 1.36, 'py_s': 0.94}
+{'benchmark': 'pol UN', 'exact': 22201, 'cells': 22201, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 112, 'edges_py': 112, 'only_jar': 0, 'only_py': 0, 'jar_s': 11.87, 'py_s': 2.32}
+{'benchmark': 'pol MN', 'exact': 34225, 'cells': 34225, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 534, 'edges_py': 534, 'only_jar': 0, 'only_py': 0, 'jar_s': 30.93, 'py_s': 6.75}
+{'benchmark': 'appliances UN', 'exact': 7396, 'cells': 7396, 'max_diff_ge2': 3.552713678800501e-15, 'edges_jar': 187, 'edges_py': 187, 'only_jar': 0, 'only_py': 0, 'jar_s': 5.13, 'py_s': 2.31}
+{'benchmark': 'appliances MN', 'exact': 11236, 'cells': 11236, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 307, 'edges_py': 307, 'only_jar': 0, 'only_py': 0, 'jar_s': 8.91, 'py_s': 3.42}
+{'benchmark': 'superconductivity UN', 'exact': 61504, 'cells': 61504, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 3294, 'edges_py': 3294, 'only_jar': 0, 'only_py': 0, 'jar_s': 181.38, 'py_s': 65.35}
+{'benchmark': 'superconductivity MN', 'exact': 95481, 'cells': 95481, 'max_diff_ge2': 7.105427357601002e-15, 'edges_jar': 4542, 'edges_py': 4542, 'only_jar': 0, 'only_py': 0, 'jar_s': 392.31, 'py_s': 103.81}

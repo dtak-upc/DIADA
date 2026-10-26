@@ -1,0 +1,125 @@
+benchmark,variant,seed,selection,jar_original,jar_injected,py_original,py_injected,overlap,jar_s,py_s
+appliances,MN,0,UN kept,26,20,25,20,0.979,10.65,21.66
+appliances,MN,0,MN target group,1,0,23,0,0.083,10.65,21.66
+appliances,MN,1,UN kept,26,20,24,20,0.957,10.65,20.95
+appliances,MN,1,MN target group,1,0,1,0,1.0,10.65,20.95
+appliances,UN,0,UN kept,26,0,25,0,0.963,7.36,14.45
+appliances,UN,0,MN target group,1,0,23,0,0.083,7.36,14.45
+appliances,UN,1,UN kept,26,0,24,0,0.926,7.36,14.35
+appliances,UN,1,MN target group,1,0,1,0,1.0,7.36,14.35
+avocado_sales,MN,0,UN kept,11,10,10,10,0.955,3.17,6.03
+avocado_sales,MN,0,MN target group,11,0,10,0,0.917,3.17,6.03
+avocado_sales,MN,1,UN kept,11,10,10,10,0.955,3.17,5.33
+avocado_sales,MN,1,MN target group,11,0,10,0,0.917,3.17,5.33
+avocado_sales,UN,0,UN kept,11,0,10,0,0.917,3.57,5.3
+avocado_sales,UN,0,MN target group,11,0,10,0,0.917,3.57,5.3
+avocado_sales,UN,1,UN kept,11,0,10,2,0.786,3.57,4.13
+avocado_sales,UN,1,MN target group,11,0,10,0,0.917,3.57,4.13
+bank,MN,0,UN kept,15,12,11,12,0.857,5.04,5.87
+bank,MN,0,MN target group,11,0,7,0,0.667,5.04,5.87
+bank,MN,1,UN kept,15,12,12,12,0.893,5.04,5.43
+bank,MN,1,MN target group,11,0,10,0,0.917,5.04,5.43
+bank,UN,0,UN kept,15,0,11,0,0.75,3.57,4.04
+bank,UN,0,MN target group,11,0,7,0,0.667,3.57,4.04
+bank,UN,1,UN kept,15,0,12,0,0.812,3.57,3.9
+bank,UN,1,MN target group,11,0,10,0,0.917,3.57,3.9
+covertype,MN,0,UN kept,12,9,10,9,0.909,4.52,5.03
+covertype,MN,0,MN target group,10,0,3,0,0.364,4.52,5.03
+covertype,MN,1,UN kept,12,9,10,9,0.909,4.52,4.56
+covertype,MN,1,MN target group,10,0,3,0,0.364,4.52,4.56
+covertype,UN,0,UN kept,12,0,10,0,0.846,3.61,4.05
+covertype,UN,0,MN target group,10,0,3,0,0.364,3.61,4.05
+covertype,UN,1,UN kept,12,0,10,0,0.846,3.61,4.21
+covertype,UN,1,MN target group,10,0,3,0,0.364,3.61,4.21
+default_payment,MN,0,UN kept,21,17,21,17,1.0,7.82,29.47
+default_payment,MN,0,MN target group,19,0,19,0,1.0,7.82,29.47
+default_payment,MN,1,UN kept,21,17,21,17,1.0,7.82,24.87
+default_payment,MN,1,MN target group,19,0,19,0,1.0,7.82,24.87
+default_payment,UN,0,UN kept,21,0,21,2,0.917,5.29,23.02
+default_payment,UN,0,MN target group,19,0,19,0,1.0,5.29,23.02
+default_payment,UN,1,UN kept,21,0,21,0,1.0,5.29,19.41
+default_payment,UN,1,MN target group,19,0,19,0,1.0,5.29,19.41
+diamonds,MN,0,UN kept,9,7,7,7,0.882,3.24,3.14
+diamonds,MN,0,MN target group,9,0,4,0,0.5,3.24,3.14
+diamonds,MN,1,UN kept,9,7,7,7,0.882,3.24,3.05
+diamonds,MN,1,MN target group,9,0,4,0,0.5,3.24,3.05
+diamonds,UN,0,UN kept,9,0,7,0,0.8,2.81,2.31
+diamonds,UN,0,MN target group,9,0,4,0,0.5,2.81,2.31
+diamonds,UN,1,UN kept,9,0,7,0,0.8,2.81,2.33
+diamonds,UN,1,MN target group,9,0,4,0,0.5,2.81,2.33
+drive_diagnosis,MN,0,UN kept,48,36,46,37,0.965,64.49,93.11
+drive_diagnosis,MN,0,MN target group,48,0,44,0,0.918,64.49,93.11
+drive_diagnosis,MN,1,UN kept,48,36,41,38,0.897,64.49,91.41
+drive_diagnosis,MN,1,MN target group,48,0,41,38,0.483,64.49,91.41
+drive_diagnosis,UN,0,UN kept,48,0,46,0,0.959,33.84,55.99
+drive_diagnosis,UN,0,MN target group,48,0,44,0,0.918,33.84,55.99
+drive_diagnosis,UN,1,UN kept,48,0,41,1,0.84,33.84,45.33
+drive_diagnosis,UN,1,MN target group,48,0,41,1,0.84,33.84,45.33
+dry_beans,MN,0,UN kept,16,12,15,12,0.966,4.23,8.74
+dry_beans,MN,0,MN target group,16,0,15,0,0.941,4.23,8.74
+dry_beans,MN,1,UN kept,16,12,15,12,0.966,4.23,9.32
+dry_beans,MN,1,MN target group,16,0,15,0,0.941,4.23,9.32
+dry_beans,UN,0,UN kept,16,0,15,0,0.941,3.16,6.91
+dry_beans,UN,0,MN target group,16,0,15,0,0.941,3.16,6.91
+dry_beans,UN,1,UN kept,16,0,15,0,0.941,3.16,7.05
+dry_beans,UN,1,MN target group,16,0,15,0,0.941,3.16,7.05
+house_sales,MN,0,UN kept,15,14,14,13,0.933,5.47,9.85
+house_sales,MN,0,MN target group,13,1,12,0,0.867,5.47,9.85
+house_sales,MN,1,UN kept,15,14,13,13,0.9,5.47,9.0
+house_sales,MN,1,MN target group,13,1,11,0,0.8,5.47,9.0
+house_sales,UN,0,UN kept,15,1,14,0,0.882,3.19,7.34
+house_sales,UN,0,MN target group,13,0,12,0,0.929,3.19,7.34
+house_sales,UN,1,UN kept,15,1,13,0,0.824,3.19,6.9
+house_sales,UN,1,MN target group,13,0,11,0,0.857,3.19,6.9
+jannis,MN,0,UN kept,26,40,25,42,0.929,77.4,123.35
+jannis,MN,0,MN target group,26,0,25,0,0.893,77.4,123.35
+jannis,MN,1,UN kept,26,40,24,40,0.97,77.4,175.47
+jannis,MN,1,MN target group,26,0,24,0,0.926,77.4,175.47
+jannis,UN,0,UN kept,26,0,25,0,0.893,35.42,42.98
+jannis,UN,0,MN target group,26,0,25,0,0.893,35.42,42.98
+jannis,UN,1,UN kept,26,0,24,1,0.893,35.42,44.64
+jannis,UN,1,MN target group,26,0,24,1,0.893,35.42,44.64
+mice_protein,UN,0,UN kept,80,0,75,11,0.826,126.59,182.02
+mice_protein,UN,0,MN target group,80,0,73,9,0.822,126.59,182.02
+mice_protein,UN,1,UN kept,80,0,73,1,0.902,126.59,230.56
+mice_protein,UN,1,MN target group,80,0,71,1,0.878,126.59,230.56
+miniboone,MN,0,UN kept,50,39,45,40,0.913,73.77,106.45
+miniboone,MN,0,MN target group,50,1,40,1,0.774,73.77,106.45
+miniboone,MN,1,UN kept,50,39,48,38,0.967,73.77,111.32
+miniboone,MN,1,MN target group,50,1,46,0,0.904,73.77,111.32
+miniboone,UN,0,UN kept,50,0,45,0,0.902,38.08,48.19
+miniboone,UN,0,MN target group,50,0,40,0,0.804,38.08,48.19
+miniboone,UN,1,UN kept,50,0,48,2,0.925,38.08,45.57
+miniboone,UN,1,MN target group,50,0,46,0,0.922,38.08,45.57
+nasa,MN,0,UN kept,19,16,15,16,0.889,9.33,15.79
+nasa,MN,0,MN target group,19,0,10,0,0.55,9.33,15.79
+nasa,MN,1,UN kept,19,16,14,17,0.838,9.33,16.4
+nasa,MN,1,MN target group,19,0,9,0,0.5,9.33,16.4
+nasa,UN,0,UN kept,19,0,15,0,0.8,7.01,12.46
+nasa,UN,0,MN target group,19,0,10,0,0.55,7.01,12.46
+nasa,UN,1,UN kept,19,0,14,2,0.682,7.01,12.38
+nasa,UN,1,MN target group,19,0,9,0,0.5,7.01,12.38
+pendigits,MN,0,UN kept,16,12,16,15,0.906,3.43,9.26
+pendigits,MN,0,MN target group,16,0,16,3,0.85,3.43,9.26
+pendigits,MN,1,UN kept,16,12,16,12,1.0,3.43,7.59
+pendigits,MN,1,MN target group,16,0,16,0,1.0,3.43,7.59
+pendigits,UN,0,UN kept,16,0,16,2,0.895,2.51,8.99
+pendigits,UN,0,MN target group,16,0,16,2,0.895,2.51,8.99
+pendigits,UN,1,UN kept,16,0,16,0,1.0,2.51,6.92
+pendigits,UN,1,MN target group,16,0,16,0,1.0,2.51,6.92
+pol,MN,0,UN kept,16,36,15,36,0.981,31.49,138.68
+pol,MN,0,MN target group,16,0,15,0,0.941,31.49,138.68
+pol,MN,1,UN kept,16,36,15,36,0.981,31.49,139.67
+pol,MN,1,MN target group,16,0,15,0,0.941,31.49,139.67
+pol,UN,0,UN kept,16,0,15,0,0.941,13.82,58.87
+pol,UN,0,MN target group,16,0,15,0,0.941,13.82,58.87
+pol,UN,1,UN kept,16,0,15,0,0.941,13.82,68.75
+pol,UN,1,MN target group,16,0,15,0,0.941,13.82,68.75
+students,MN,0,UN kept,31,30,31,35,0.817,10.41,41.44
+students,MN,0,MN target group,27,7,22,35,0.388,10.41,41.44
+students,MN,1,UN kept,31,30,31,24,0.903,10.41,28.43
+students,MN,1,MN target group,27,7,25,1,0.771,10.41,28.43
+students,UN,0,UN kept,31,7,31,2,0.825,6.51,27.63
+students,UN,0,MN target group,27,7,22,2,0.667,6.51,27.63
+students,UN,1,UN kept,31,7,31,1,0.846,6.51,16.87
+students,UN,1,MN target group,27,7,25,1,0.771,6.51,16.87

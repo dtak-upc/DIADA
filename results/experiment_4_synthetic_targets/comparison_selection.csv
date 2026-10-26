@@ -1,0 +1,78 @@
+benchmark,task,counts_mine,counts_published,counts_compared,selection_matches,first_mismatch_at,max_features_differing,mismatched_counts,all_match,published_sweep_incomplete,partial_run
+mice_protein_synthetic_target_1_base,classification,40,40,40,40,,0,,True,False,False
+mice_protein_synthetic_target_1_noise,classification,40,40,40,40,,0,,True,False,False
+mice_protein_synthetic_target_1_clean,classification,40,40,40,40,,0,,True,False,False
+mice_protein_synthetic_target_2_base,classification,40,40,40,40,,0,,True,False,False
+mice_protein_synthetic_target_2_noise,classification,40,40,40,40,,0,,True,False,False
+mice_protein_synthetic_target_2_clean,classification,40,40,40,40,,0,,True,False,False
+students_synthetic_target_1_base,classification,34,34,34,34,,0,,True,False,False
+students_synthetic_target_1_noise,classification,40,40,40,40,,0,,True,False,False
+students_synthetic_target_1_clean,classification,39,39,39,39,,0,,True,False,False
+students_synthetic_target_2_base,classification,34,34,34,34,,0,,True,False,False
+students_synthetic_target_2_noise,classification,40,40,40,40,,0,,True,False,False
+students_synthetic_target_2_clean,classification,39,39,39,39,,0,,True,False,False
+pendigits_synthetic_target_1_base,classification,19,19,19,19,,0,,True,False,False
+pendigits_synthetic_target_1_noise,classification,40,40,40,40,,0,,True,False,False
+pendigits_synthetic_target_1_clean,classification,17,17,17,17,,0,,True,False,False
+pendigits_synthetic_target_2_base,classification,19,19,19,19,,0,,True,False,False
+pendigits_synthetic_target_2_noise,classification,40,40,40,40,,0,,True,False,False
+pendigits_synthetic_target_2_clean,classification,17,17,17,17,,0,,True,False,False
+dry_beans_synthetic_target_1_base,classification,19,19,19,19,,0,,True,False,False
+dry_beans_synthetic_target_1_noise,classification,40,40,40,40,,0,,True,False,False
+dry_beans_synthetic_target_1_clean,classification,17,12,12,12,,0,,True,True,False
+dry_beans_synthetic_target_2_base,classification,19,19,19,19,,0,,True,False,False
+dry_beans_synthetic_target_2_noise,classification,40,40,40,40,,0,,True,False,False
+dry_beans_synthetic_target_2_clean,classification,17,17,17,17,,0,,True,False,False
+default_payment_synthetic_target_1_base,classification,26,26,26,26,,0,,True,False,False
+default_payment_synthetic_target_1_noise,classification,40,40,40,40,,0,,True,False,False
+default_payment_synthetic_target_1_clean,classification,23,23,23,23,,0,,True,False,False
+default_payment_synthetic_target_2_base,classification,26,26,26,26,,0,,True,False,False
+default_payment_synthetic_target_2_noise,classification,40,40,40,40,,0,,True,False,False
+default_payment_synthetic_target_2_clean,classification,23,23,23,23,,0,,True,False,False
+covertype_synthetic_target_1_base,classification,15,15,15,15,,0,,True,False,False
+covertype_synthetic_target_1_noise,classification,40,40,40,40,,0,,True,False,False
+covertype_synthetic_target_1_clean,classification,13,13,13,13,,0,,True,False,False
+covertype_synthetic_target_2_base,classification,15,15,15,15,,0,,True,False,False
+covertype_synthetic_target_2_noise,classification,40,40,40,40,,0,,True,False,False
+covertype_synthetic_target_2_clean,classification,13,13,13,13,,0,,True,False,False
+bank_synthetic_target_1_base,classification,19,19,19,19,,0,,True,False,False
+bank_synthetic_target_1_noise,classification,40,40,40,40,,0,,True,False,False
+bank_synthetic_target_1_clean,classification,16,16,16,16,,0,,True,False,False
+bank_synthetic_target_2_base,classification,19,19,19,19,,0,,True,False,False
+bank_synthetic_target_2_noise,classification,40,40,40,40,,0,,True,False,False
+bank_synthetic_target_2_clean,classification,16,16,16,16,,0,,True,False,False
+avocado_sales_synthetic_target_1_base,regression,16,16,16,16,,0,,True,False,False
+avocado_sales_synthetic_target_1_noise,regression,40,40,40,40,,0,,True,False,False
+avocado_sales_synthetic_target_1_clean,regression,13,13,13,13,,0,,True,False,False
+avocado_sales_synthetic_target_2_base,regression,16,16,16,16,,0,,True,False,False
+avocado_sales_synthetic_target_2_noise,regression,40,40,40,40,,0,,True,False,False
+avocado_sales_synthetic_target_2_clean,regression,13,13,13,13,,0,,True,False,False
+pol_synthetic_target_1_base,regression,40,40,40,39,30.0,1,30,False,False,False
+pol_synthetic_target_1_noise,regression,40,40,40,40,,0,,True,False,False
+pol_synthetic_target_1_clean,regression,17,17,17,17,,0,,True,False,False
+pol_synthetic_target_2_base,regression,40,40,40,38,16.0,1,16 28,False,False,False
+pol_synthetic_target_2_noise,regression,40,40,40,40,,0,,True,False,False
+pol_synthetic_target_2_clean,regression,17,17,17,17,,0,,True,False,False
+house_sales_synthetic_target_1_base,regression,20,20,20,20,,0,,True,False,False
+house_sales_synthetic_target_1_noise,regression,40,40,40,40,,0,,True,False,False
+house_sales_synthetic_target_1_clean,regression,16,16,16,16,,0,,True,False,False
+house_sales_synthetic_target_2_base,regression,20,20,20,20,,0,,True,False,False
+house_sales_synthetic_target_2_noise,regression,40,40,40,40,,0,,True,False,False
+house_sales_synthetic_target_2_clean,regression,16,16,16,16,,0,,True,False,False
+appliances_synthetic_target_1_base,regression,30,30,30,30,,0,,True,False,False
+appliances_synthetic_target_1_noise,regression,40,40,40,40,,0,,True,False,False
+appliances_synthetic_target_1_clean,regression,27,27,27,27,,0,,True,False,False
+appliances_synthetic_target_2_base,regression,30,30,30,29,25.0,1,25,False,False,False
+appliances_synthetic_target_2_noise,regression,40,40,40,38,17.0,1,17 23,False,False,False
+appliances_synthetic_target_2_clean,regression,27,27,27,27,,0,,True,False,False
+superconductivity_synthetic_target_1_base,regression,40,40,40,37,16.0,1,16 27 30,False,False,False
+superconductivity_synthetic_target_1_noise,regression,40,40,40,29,20.0,1,20 21 22 26 29 30 31 32 36 37 40,False,False,False
+superconductivity_synthetic_target_1_clean,regression,40,40,40,39,23.0,1,23,False,False,False
+superconductivity_synthetic_target_2_base,regression,40,40,40,39,23.0,1,23,False,False,False
+superconductivity_synthetic_target_2_noise,regression,40,40,40,27,11.0,2,11 17 23 26 29 30 32 34 36 37 38 39 40,False,False,False
+superconductivity_synthetic_target_2_clean,regression,40,40,40,34,12.0,1,12 15 16 29 30 34,False,False,False
+nasa_synthetic_target_1_base,regression,24,24,24,21,2.0,1,2 13 14,False,False,False
+nasa_synthetic_target_1_noise,regression,40,40,40,40,,0,,True,False,False
+nasa_synthetic_target_1_clean,regression,20,20,20,20,,0,,True,False,False
+nasa_synthetic_target_2_base,regression,24,24,24,24,,0,,True,False,False
+nasa_synthetic_target_2_noise,regression,40,40,40,40,,0,,True,False,False

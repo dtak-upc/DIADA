@@ -1,0 +1,9 @@
+triangle,rows,I_AC,I_AC_given_B,share,share_low,share_high,G,df,p,ttest_says,bic_says,equivalence_02
+synthetic chain (true mediation),5000,0.4422,-0.0012,-0.003,0.004,0.018,27.5,36,0.8429128368665668,independent,independent,split (explained)
+"synthetic hub_join (true mediation, weak link)",5120,0.0721,-0.0118,-0.164,-0.023,0.079,0.0,84,1.0,independent,independent,split (explained)
+synthetic direct triangle (real A-C link),5000,0.5347,0.5347,1.0,1.003,1.015,3741.4,36,0.0,dependent,dependent,keep (not explained)
+diamonds: carat-price via y,53940,1.1145,0.0355,0.032,0.03,0.034,2677.7,140,0.0,dependent,dependent,split (explained)
+house_sales: bathrooms-price via sqft_living,21613,0.2298,0.027,0.118,0.127,0.158,958.3,235,5.505697756718178e-88,dependent,independent,split (explained)
+bank: previous-Class via poutcome,45211,0.0087,0.0001,0.012,0.001,0.035,9.8,4,0.04398066632895841,independent,independent,split (explained)
+bank: pdays-month via housing_loan,45211,0.0596,0.0562,0.943,0.925,0.968,3544.4,22,0.0,dependent,dependent,keep (not explained)
+house_sales: price-yr_built via sqft_living,21613,0.0524,0.0929,1.774,1.795,2.109,3148.4,441,0.0,dependent,independent,keep (not explained)

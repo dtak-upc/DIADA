@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PC Algorithm Stepper</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;1,500&display=swap">
+<style>
+/* Layout: a lab-notebook bench. Controls strip on top, two graph-paper panels (truth vs. PC so far) side by side,
+   the current test card under them, and the full test log as a numbered sequence beside it. */
+:root {
+  --paper: #f3f6f9;
+  --surface: #ffffff;
+  --ink: #1b2430;
+  --muted: #5b6675;
+  --line: #d9e0e8;
+  --grid: #e6ebf1;
+  --edge: #2f5da8;
+  --remove: #c2412d;
+  --focus: #b7791f;
+  --cond: #1f7a6b;
+  --chip-keep: #e6eefb;
+  --chip-remove: #fbe9e5;
+  --font-display: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #11161c; --surface: #19202a; --ink: #e3e8ef; --muted: #96a3b3; --line: #2b3542; --grid: #1c242e;
+    --edge: #82a8ea; --remove: #f07a63; --focus: #e3b158; --cond: #5cc6b1; --chip-keep: #1e2a3d; --chip-remove: #3a221e;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #11161c; --surface: #19202a; --ink: #e3e8ef; --muted: #96a3b3; --line: #2b3542; --grid: #1c242e;
+  --edge: #82a8ea; --remove: #f07a63; --focus: #e3b158; --cond: #5cc6b1; --chip-keep: #1e2a3d; --chip-remove: #3a221e;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5;
+  padding-block: 20px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 1240px; margin: 0 auto; display: grid; gap: 18px; }
+header h1 { font-family: var(--font-display); font-weight: 500; font-size: 1.9rem; margin: 0; text-wrap: balance; }
+header p { margin: 4px 0 0; color: var(--muted); max-width: 70ch; }
+.phases { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 12px 0 0; padding: 0; list-style: none; counter-reset: ph; font-size: 0.86rem; color: var(--muted); }
+.phases li { counter-increment: ph; }
+.phases li::before { content: counter(ph); font-family: var(--font-data); color: var(--edge); margin-right: 6px; }
+.controls { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: end; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.field { display: grid; gap: 4px; min-width: 0; }
+.field label { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+select, input[type="number"] { font: inherit; font-size: 0.92rem; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); color: var(--ink); }
+input[type="number"] { width: 6.5em; }
+.buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-left: auto; }
+button { font: inherit; font-size: 0.9rem; padding: 7px 14px; border-radius: 6px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); cursor: pointer; }
+button.primary { background: var(--edge); border-color: var(--edge); color: var(--surface); font-weight: 600; }
+button:disabled { opacity: 0.45; cursor: default; }
+button:focus-visible, select:focus-visible, input:focus-visible, .log li:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.blurb { margin: 0; color: var(--muted); font-size: 0.92rem; max-width: 95ch; }
+.graphs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px 12px; min-width: 0; }
+.panel h2 { font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 2px 0 6px; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.panel h2 span { font-family: var(--font-data); text-transform: none; letter-spacing: 0; font-weight: 400; }
+.paper { background-color: var(--paper); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 20px 20px; border-radius: 6px; }
+svg { display: block; width: 100%; height: auto; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.78rem; color: var(--muted); margin-top: 8px; }
+.legend i { display: inline-block; width: 18px; height: 0; border-top: 2px solid var(--edge); vertical-align: middle; margin-right: 6px; }
+.legend i.rm { border-top: 2px dashed var(--remove); }
+.legend i.fx { border-top: 3px solid var(--focus); }
+.legend b { display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; margin-right: 6px; }
+.lower { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+.card .phase { font-family: var(--font-data); font-size: 0.8rem; color: var(--muted); }
+.card h3 { font-family: var(--font-display); font-weight: 500; font-size: 1.25rem; margin: 2px 0 8px; text-wrap: balance; }
+.card p { margin: 0 0 10px; max-width: 68ch; }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 18px; font-family: var(--font-data); font-size: 0.85rem; font-variant-numeric: tabular-nums; padding: 10px 12px; border-radius: 6px; background: var(--paper); margin: 0 0 10px; }
+.stats div span { color: var(--muted); margin-right: 6px; }
+.chip { display: inline-block; font-size: 0.82rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; }
+.chip.keep { background: var(--chip-keep); color: var(--edge); }
+.chip.remove { background: var(--chip-remove); color: var(--remove); }
+.chip.orient { background: var(--chip-keep); color: var(--cond); }
+.tests { font-family: var(--font-data); font-size: 0.82rem; color: var(--muted); }
+table.summary { border-collapse: collapse; font-size: 0.88rem; margin-top: 4px; font-variant-numeric: tabular-nums; }
+table.summary td, table.summary th { padding: 4px 12px 4px 0; text-align: left; border-bottom: 1px solid var(--line); }
+table.summary th { font-weight: 500; color: var(--muted); }
+.log { max-height: 460px; overflow-y: auto; margin: 0; padding: 0 4px 0 0; list-style: none; counter-reset: st; font-size: 0.84rem; }
+.log li { counter-increment: st; display: grid; grid-template-columns: 2.6em 1fr; gap: 6px; padding: 5px 6px; border-radius: 5px; cursor: pointer; }
+.log li::before { content: counter(st); font-family: var(--font-data); color: var(--muted); text-align: right; }
+.log li.cur { background: var(--paper); box-shadow: inset 3px 0 0 var(--focus); }
+.log li.lvl { font-weight: 600; margin-top: 4px; }
+.log li .rm { color: var(--remove); }
+.log li .kp { color: var(--muted); }
+.log li .or { color: var(--cond); }
+.mono { font-family: var(--font-data); }
+.hint { font-size: 0.8rem; color: var(--muted); }
+@media (max-width: 860px) {
+  .graphs, .lower { grid-template-columns: 1fr; }
+  .buttons { margin-left: 0; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .edge-line { transition: opacity 0.25s ease; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>PC Algorithm Stepper</h1>
+    <p>Generate data from a structure you know, then watch the PC algorithm rebuild it from independence tests on that data, one test at a time.</p>
+    <ol class="phases" aria-label="Phases of the PC algorithm">
+      <li>Start with every pair of columns linked</li>
+      <li>Level 0: remove pairs that are independent</li>
+      <li>Level 1, 2, …: remove pairs that become independent given 1, 2, … neighbours, and remember what separated them</li>
+      <li>Colliders: X – Z – Y with X, Y unlinked and Z not in their separating set becomes X → Z ← Y</li>
+      <li>Propagate directions that avoid new colliders and cycles</li>
+    </ol>
+  </header>
+
+  <section class="controls" aria-label="Settings">
+    <div class="field"><label for="scenario">Structure</label>
+      <select id="scenario"></select></div>
+    <div class="field"><label for="rows">Rows of data</label>
+      <select id="rows">
+        <option>100</option><option>200</option><option>500</option><option>1000</option><option>2000</option>
+        <option selected>5000</option><option>10000</option><option>20000</option>
+      </select></div>
+    <div class="field"><label for="alpha">Significance level α</label>
+      <select id="alpha">
+        <option value="0.05">0.05</option><option value="0.01" selected>0.01</option><option value="0.001">0.001</option><option value="0.0001">0.0001</option>
+      </select></div>
+    <div class="field"><label for="depth">Largest conditioning set</label>
+      <select id="depth">
+        <option value="0">0 (level 0 only)</option><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option>
+      </select></div>
+    <div class="field"><label for="seed">Random seed</label>
+      <input id="seed" type="number" min="1" max="9999" value="1"></div>
+    <div class="buttons">
+      <button id="back" type="button">Back</button>
+      <button id="next" type="button" class="primary">Next step</button>
+      <button id="end" type="button">Run to end</button>
+      <button id="restart" type="button">Restart</button>
+    </div>
+  </section>
+  <p class="blurb" id="blurb"></p>
+
+  <section class="graphs">
+    <div class="panel">
+      <h2>True structure <span>generated the data</span></h2>
+      <div class="paper"><svg id="truth" viewBox="0 0 440 300" role="img" aria-label="True causal structure"></svg></div>
+    </div>
+    <div class="panel">
+      <h2>PC so far <span id="progress"></span></h2>
+      <div class="paper"><svg id="current" viewBox="0 0 440 300" role="img" aria-label="Graph learned by PC so far"></svg></div>
+      <div class="legend">
+        <span><i></i>link kept</span><span><i class="rm"></i>removed, with what separated it</span><span><i class="fx"></i>link being tested</span>
+        <span><b style="background:var(--focus)"></b>pair tested</span><span><b style="background:var(--cond)"></b>known (conditioning set)</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="lower">
+    <div class="panel card" id="card" aria-live="polite"></div>
+    <div class="panel">
+      <h2>Every step <span class="hint">click to jump · ← → keys</span></h2>
+      <ol class="log" id="log"></ol>
+    </div>
+  </section>
+</div>
+
+<script id="engine">
+/* Pure engine: data generation, G-test, PC skeleton (PC-stable), collider orientation, Meek rules R1-R3. */
+function mulberry32(a) {
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+const pick = (r, k) => Math.floor(r() * k);
+const copyOr = (r, value, keep, k) => (r() < keep ? value : pick(r, k));
+
+const SCENARIOS = {
+  sprinkler: {
+    name: "Sprinkler (5 columns)",
+    blurb: "Cloudy weather makes the sprinkler less likely and rain more likely; both wet the grass, and wet grass is slippery. Cloudy and Wet grass only become independent once both Sprinkler and Rain are known, so PC needs a level-2 test here.",
+    vars: [["Cloudy", 2], ["Sprinkler", 2], ["Rain", 2], ["Wet grass", 2], ["Slippery", 2]],
+    edges: [[0, 1], [0, 2], [1, 3], [2, 3], [3, 4]],
+    pos: [[220, 40], [80, 130], [360, 130], [220, 205], [220, 275]],
+    sample(r) {
+      const c = r() < 0.5 ? 1 : 0;
+      const s = r() < (c ? 0.1 : 0.5) ? 1 : 0;
+      const ra = r() < (c ? 0.8 : 0.2) ? 1 : 0;
+      const w = r() < (s && ra ? 0.99 : s || ra ? 0.9 : 0.02) ? 1 : 0;
+      const sl = r() < (w ? 0.7 : 0.05) ? 1 : 0;
+      return [c, s, ra, w, sl];
+    },
+  },
+  chain: {
+    name: "Chain A → B → C",
+    blurb: "A drives B and B drives C. A and C are related only through B, so PC removes A – C at level 1. There is no collider, so PC cannot tell which way the links point.",
+    vars: [["A", 3], ["B", 3], ["C", 3]],
+    edges: [[0, 1], [1, 2]],
+    pos: [[70, 150], [220, 150], [370, 150]],
+    sample(r) { const a = pick(r, 3); const b = copyOr(r, a, 0.7, 3); return [a, b, copyOr(r, b, 0.7, 3)]; },
+  },
+  common: {
+    name: "Common cause A ← B → C",
+    blurb: "B drives both A and C. The skeleton and the output are the same as for the chain: from independence tests alone, a chain and a common cause look identical.",
+    vars: [["A", 3], ["B", 4], ["C", 3]],
+    edges: [[1, 0], [1, 2]],
+    pos: [[90, 230], [220, 70], [350, 230]],
+    sample(r) { const b = pick(r, 4); return [copyOr(r, [0, 1, 2, 2][b], 0.7, 3), b, copyOr(r, [2, 0, 1, 0][b], 0.7, 3)]; },
+  },
+  collider: {
+    name: "Collider A → B ← C",
+    blurb: "A and C are independent coins and B is their sum. A and C are unrelated, but become related once B is known. B is a collider, and it is the one shape whose directions PC can read from the data.",
+    vars: [["A", 2], ["B", 3], ["C", 2]],
+    edges: [[0, 1], [2, 1]],
+    pos: [[90, 70], [220, 230], [350, 70]],
+    sample(r) { const a = pick(r, 2), c = pick(r, 2); return [a, r() < 0.9 ? a + c : pick(r, 3), c]; },
+  },
+  hub: {
+    name: "Data-lake hub (join on a key)",
+    blurb: "A country key joins two tables: economy (GDP band → population band) and climate (temperature → tourism). Columns from different tables are related only through the key, so PC separates them given country.",
+    vars: [["country", 5], ["gdp", 3], ["population", 3], ["temperature", 3], ["tourism", 3]],
+    edges: [[0, 1], [1, 2], [0, 3], [3, 4]],
+    pos: [[220, 150], [75, 60], [75, 245], [365, 60], [365, 245]],
+    sample(r) {
+      const k = pick(r, 5);
+      const g = copyOr(r, [0, 0, 1, 2, 2][k], 0.75, 3);
+      const t = copyOr(r, [2, 1, 0, 0, 1][k], 0.75, 3);
+      return [k, g, copyOr(r, g, 0.7, 3), t, copyOr(r, t, 0.7, 3)];
+    },
+  },
+  weak: {
+    name: "Weak direct link A → C",
+    blurb: "A → B → C plus a weak direct A → C. With few rows PC cannot see the direct link and removes it given B; with many rows it keeps it. Try 500 rows, then 20000.",
+    vars: [["A", 2], ["B", 2], ["C", 2]],
+    edges: [[0, 1], [1, 2], [0, 2]],
+    pos: [[70, 230], [220, 60], [370, 230]],
+    sample(r) {
+      const a = pick(r, 2), b = copyOr(r, a, 0.8, 2), u = r();
+      return [a, b, u < 0.7 ? b : u < 0.78 ? a : pick(r, 2)];
+    },
+  },
+};
+
+function generate(sc, n, seed) {
+  const r = mulberry32(seed * 7919 + 13);
+  const cols = sc.vars.map(() => new Uint8Array(n));
+  for (let i = 0; i < n; i++) {
+    const row = sc.sample(r);
+    for (let j = 0; j < row.length; j++) cols[j][i] = row[j];
+  }
+  return cols;
+}
+
+function lnGamma(z) {
+  const c = [0.99999999999980993, 676.5203681218851, -1259.1392167224028, 771.32342877765313, -176.61502916214059,
+    12.507343278686905, -0.13857109526572012, 9.9843695780195716e-6, 1.5056327351493116e-7];
+  if (z < 0.5) return Math.log(Math.PI / Math.sin(Math.PI * z)) - lnGamma(1 - z);
+  z -= 1;
+  let x = c[0];
+  for (let i = 1; i < 9; i++) x += c[i] / (z + i);
+  const t = z + 7.5;
+  return 0.5 * Math.log(2 * Math.PI) + (z + 0.5) * Math.log(t) - t + Math.log(x);
+}
+function gammaQ(a, x) {
+  if (x <= 0) return 1;
+  const front = Math.exp(-x + a * Math.log(x) - lnGamma(a));
+  if (x < a + 1) {
+    let ap = a, sum = 1 / a, del = sum;
+    for (let n = 0; n < 1000; n++) { ap += 1; del *= x / ap; sum += del; if (Math.abs(del) < Math.abs(sum) * 1e-15) break; }
+    return Math.max(0, 1 - sum * front);
+  }
+  let b = x + 1 - a, c = 1e300, d = 1 / b, h = d;
+  for (let i = 1; i < 1000; i++) {
+    const an = -i * (i - a); b += 2;
+    d = an * d + b; if (Math.abs(d) < 1e-300) d = 1e-300;
+    c = b + an / c; if (Math.abs(c) < 1e-300) c = 1e-300;
+    d = 1 / d; const del = d * c; h *= del;
+    if (Math.abs(del - 1) < 1e-15) break;
+  }
+  return Math.min(1, front * h);
+}
+
+/* G-test of "x independent of y given the columns in S": counts per combination of S's values. */
+function gtest(cols, ks, x, y, S) {
+  const n = cols[0].length, kx = ks[x], ky = ks[y];
+  let ns = 1;
+  for (const s of S) ns *= ks[s];
+  const cnt = new Float64Array(ns * kx * ky);
+  for (let i = 0; i < n; i++) {
+    let st = 0;
+    for (const s of S) st = st * ks[s] + cols[s][i];
+    cnt[(st * kx + cols[x][i]) * ky + cols[y][i]]++;
+  }
+  let G = 0, df = 0, used = 0;
+  for (let st = 0; st < ns; st++) {
+    const base = st * kx * ky, row = new Float64Array(kx), col = new Float64Array(ky);
+    let tot = 0;
+    for (let a = 0; a < kx; a++) for (let b = 0; b < ky; b++) { const o = cnt[base + a * ky + b]; row[a] += o; col[b] += o; tot += o; }
+    if (tot === 0) continue;
+    used++;
+    for (let a = 0; a < kx; a++) for (let b = 0; b < ky; b++) {
+      const o = cnt[base + a * ky + b];
+      if (o > 0) G += 2 * o * Math.log(o / ((row[a] * col[b]) / tot));
+    }
+    const nr = row.filter((v) => v > 0).length, nc = col.filter((v) => v > 0).length;
+    df += Math.max(0, (nr - 1) * (nc - 1));
+  }
+  G = Math.max(0, G);
+  const p = df > 0 ? gammaQ(df / 2, G / 2) : 1;
+  const V = Math.sqrt(G / (n * Math.max(1, Math.min(kx, ky) - 1)));
+  return { G, df, p, V, strata: used };
+}
+
+function* combinations(arr, k, start = 0, prefix = []) {
+  if (prefix.length === k) { yield prefix.slice(); return; }
+  for (let i = start; i < arr.length; i++) { prefix.push(arr[i]); yield* combinations(arr, k, i + 1, prefix); prefix.pop(); }
+}
+
+/* Runs PC and returns every step, each with a snapshot of the graph. */
+function runPC(cols, ks, alpha, maxDepth) {
+  const p = ks.length;
+  const adj = Array.from({ length: p }, (_, i) => new Set([...Array(p).keys()].filter((j) => j !== i)));
+  const sep = new Map(), heads = new Set(), removed = [], steps = [], perLevel = [];
+  const key = (a, b) => (a < b ? `${a},${b}` : `${b},${a}`);
+  const snap = () => {
+    const edges = [];
+    for (let a = 0; a < p; a++) for (let b = a + 1; b < p; b++)
+      if (adj[a].has(b)) edges.push({ a, b, headAtB: heads.has(`${a}>${b}`), headAtA: heads.has(`${b}>${a}`) });
+    return { edges, removed: removed.map((r) => ({ ...r })) };
+  };
+  const isAdj = (a, b) => adj[a].has(b);
+  const directed = (a, b) => isAdj(a, b) && heads.has(`${a}>${b}`) && !heads.has(`${b}>${a}`);
+  const undirected = (a, b) => isAdj(a, b) && !heads.has(`${a}>${b}`) && !heads.has(`${b}>${a}`);
+
+  steps.push({ type: "start", graph: snap() });
+  let stoppedByLimit = false;
+  for (let l = 0; ; l++) {
+    const testable = [...Array(p).keys()].some((i) => adj[i].size - 1 >= l);
+    if (!testable) { steps.push({ type: "skeleton-end", l, graph: snap() }); break; }
+    if (l > maxDepth) { stoppedByLimit = true; steps.push({ type: "limit", l, graph: snap() }); break; }
+    steps.push({ type: "level", l, graph: snap() });
+    const fixed = adj.map((s) => new Set(s));
+    let nt = 0;
+    for (let x = 0; x < p; x++) for (let y = x + 1; y < p; y++) {
+      if (!adj[x].has(y)) continue;
+      const tried = new Set();
+      let done = false;
+      for (const [u, v] of [[x, y], [y, x]]) {
+        if (done) break;
+        const cand = [...fixed[u]].filter((z) => z !== v);
+        if (cand.length < l) continue;
+        for (const S of combinations(cand, l)) {
+          const sk = S.slice().sort((m, n) => m - n).join(",");
+          if (tried.has(sk)) continue;
+          tried.add(sk);
+          const t = gtest(cols, ks, x, y, S);
+          nt++;
+          const indep = t.p >= alpha;
+          if (indep) { adj[x].delete(y); adj[y].delete(x); sep.set(key(x, y), S); removed.push({ a: x, b: y, S }); }
+          steps.push({ type: "test", l, x, y, S, ...t, indep, graph: snap() });
+          if (indep) { done = true; break; }
+        }
+      }
+    }
+    perLevel.push(nt);
+  }
+
+  steps.push({ type: "orient", graph: snap() });
+  for (let z = 0; z < p; z++) {
+    const nb = [...adj[z]].sort((m, n) => m - n);
+    for (let i = 0; i < nb.length; i++) for (let j = i + 1; j < nb.length; j++) {
+      const x = nb[i], y = nb[j];
+      if (isAdj(x, y)) continue;
+      const S = sep.get(key(x, y)) || [];
+      const coll = !S.includes(z);
+      if (coll) { heads.add(`${x}>${z}`); heads.add(`${y}>${z}`); }
+      steps.push({ type: "triple", x, z, y, S, coll, graph: snap() });
+    }
+  }
+  let changed = true;
+  while (changed) {
+    changed = false;
+    outer: for (let a = 0; a < p; a++) for (let b = 0; b < p; b++) for (let c = 0; c < p; c++) {
+      if (a === b || b === c || a === c) continue;
+      if (directed(a, b) && undirected(b, c) && !isAdj(a, c)) {
+        heads.add(`${b}>${c}`); steps.push({ type: "meek", rule: 1, a, b, c, graph: snap() }); changed = true; break outer;
+      }
+      if (undirected(a, c) && directed(a, b) && directed(b, c)) {
+        heads.add(`${a}>${c}`); steps.push({ type: "meek", rule: 2, a, b, c, graph: snap() }); changed = true; break outer;
+      }
+    }
+    if (changed) continue;
+    outer3: for (let a = 0; a < p; a++) for (let b = 0; b < p; b++) {
+      if (a === b || !undirected(a, b)) continue;
+      const cs = [...Array(p).keys()].filter((c) => c !== a && c !== b && undirected(a, c) && directed(c, b));
+      for (let i = 0; i < cs.length; i++) for (let j = i + 1; j < cs.length; j++) {
+        if (!isAdj(cs[i], cs[j])) {
+          heads.add(`${a}>${b}`); steps.push({ type: "meek", rule: 3, a, b, c: cs[i], d: cs[j], graph: snap() }); changed = true; break outer3;
+        }
+      }
+    }
+  }
+  steps.push({ type: "done", graph: snap(), perLevel, stoppedByLimit });
+  return { steps, perLevel };
+}
+
+/* Compares PC's final graph with the true one. */
+function score(trueEdges, graph) {
+  const t = new Map(trueEdges.map(([u, v]) => [u < v ? `${u},${v}` : `${v},${u}`, [u, v]]));
+  let found = 0, extra = 0, right = 0, reversed = 0, open = 0;
+  for (const e of graph.edges) {
+    const k = `${e.a},${e.b}`;
+    if (!t.has(k)) { extra++; continue; }
+    found++;
+    const [u, v] = t.get(k);
+    const dir = e.headAtB && !e.headAtA ? [e.a, e.b] : e.headAtA && !e.headAtB ? [e.b, e.a] : null;
+    if (!dir) open++; else if (dir[0] === u && dir[1] === v) right++; else reversed++;
+  }
+  return { found, missing: t.size - found, extra, right, reversed, open, total: t.size };
+}
+</script>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const state = { sc: null, steps: [], at: 0, labels: [], ks: [] };
+const fmtP = (p) => (p < 1e-4 ? p.toExponential(1) : p.toFixed(4));
+const setText = (S, L) => (S.length ? "{" + S.map((s) => L[s]).join(", ") + "}" : "∅");
+
+for (const [k, sc] of Object.entries(SCENARIOS)) {
+  const o = document.createElement("option");
+  o.value = k; o.textContent = sc.name;
+  $("scenario").appendChild(o);
+}
+
+function nodeSize(label) { return { rx: Math.max(26, label.length * 4.1 + 14), ry: 17 }; }
+function boundary(c, other, size) {
+  const dx = other[0] - c[0], dy = other[1] - c[1];
+  const s = 1 / Math.sqrt((dx / size.rx) ** 2 + (dy / size.ry) ** 2);
+  return [c[0] + dx * s, c[1] + dy * s];
+}
+const NS = "http://www.w3.org/2000/svg";
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+function defs(svg) {
+  const d = el("defs", {}, svg);
+  for (const [id, cls] of [["ah-edge", "fill-edge"], ["ah-focus", "fill-focus"], ["ah-cond", "fill-cond"]]) {
+    const m = el("marker", { id: svg.id + id, viewBox: "0 0 10 10", refX: "9", refY: "5", markerWidth: "7", markerHeight: "7", orient: "auto-start-reverse" }, d);
+    el("path", { d: "M0,0 L10,5 L0,10 z", class: cls }, m);
+  }
+}
+
+function drawGraph(svg, sc, graph, hl, truthMode) {
+  svg.innerHTML = "";
+  const style = el("style", {}, svg);
+  style.textContent = `.fill-edge{fill:var(--edge)}.fill-focus{fill:var(--focus)}.fill-cond{fill:var(--cond)}
+    .lbl{font:500 12px var(--font-body);fill:var(--ink)}.sep{font:11px var(--font-data);fill:var(--remove)}`;
+  defs(svg);
+  const pos = sc.pos, L = sc.vars.map((v) => v[0]), size = L.map(nodeSize);
+  const line = (a, b, attrs) => {
+    const p1 = boundary(pos[a], pos[b], size[a]), p2 = boundary(pos[b], pos[a], size[b]);
+    return el("line", { x1: p1[0], y1: p1[1], x2: p2[0], y2: p2[1], class: "edge-line", ...attrs }, svg);
+  };
+  if (truthMode) {
+    for (const [u, v] of sc.edges) line(u, v, { stroke: "var(--edge)", "stroke-width": 2, "marker-end": `url(#${svg.id}ah-edge)` });
+  } else {
+    for (const r of graph.removed) {
+      line(r.a, r.b, { stroke: "var(--remove)", "stroke-width": 1.4, "stroke-dasharray": "5 4", opacity: 0.75 });
+      const mx = (pos[r.a][0] + pos[r.b][0]) / 2, my = (pos[r.a][1] + pos[r.b][1]) / 2;
+      const t = el("text", { x: mx, y: my - 5, "text-anchor": "middle", class: "sep" }, svg);
+      t.textContent = "⊥ " + setText(r.S, L);
+    }
+    for (const e of graph.edges) {
+      const focus = hl && hl.edge && ((hl.edge[0] === e.a && hl.edge[1] === e.b) || (hl.edge[0] === e.b && hl.edge[1] === e.a));
+      const color = focus ? "focus" : "edge";
+      const attrs = { stroke: `var(--${color})`, "stroke-width": focus ? 3.2 : 2 };
+      if (e.headAtB) attrs["marker-end"] = `url(#${svg.id}ah-${color})`;
+      if (e.headAtA) attrs["marker-start"] = `url(#${svg.id}ah-${color})`;
+      line(e.a, e.b, attrs);
+    }
+  }
+  L.forEach((label, i) => {
+    const pair = hl && hl.pair && hl.pair.includes(i), cond = hl && hl.cond && hl.cond.includes(i);
+    el("ellipse", { cx: pos[i][0], cy: pos[i][1], rx: size[i].rx, ry: size[i].ry, fill: "var(--surface)",
+      stroke: pair ? "var(--focus)" : cond ? "var(--cond)" : "var(--muted)", "stroke-width": pair || cond ? 3 : 1.2 }, svg);
+    const t = el("text", { x: pos[i][0], y: pos[i][1] + 4, "text-anchor": "middle", class: "lbl" }, svg);
+    t.textContent = label;
+  });
+}
+
+function stepSummary(s, L) {
+  switch (s.type) {
+    case "start": return { html: "Start: every pair linked", cls: "lvl" };
+    case "level": return { html: `Level ${s.l}: test given ${s.l} neighbour${s.l === 1 ? "" : "s"}`, cls: "lvl" };
+    case "test": return { html: `${L[s.x]} ⊥ ${L[s.y]} | ${setText(s.S, L)} ? <span class="${s.indep ? "rm" : "kp"}">p = ${fmtP(s.p)} → ${s.indep ? "remove" : "keep"}</span>` };
+    case "limit": return { html: `Stop: conditioning-set limit reached`, cls: "lvl" };
+    case "skeleton-end": return { html: `Skeleton done`, cls: "lvl" };
+    case "orient": return { html: "Orientation", cls: "lvl" };
+    case "triple": return { html: `${L[s.x]} – ${L[s.z]} – ${L[s.y]}: <span class="${s.coll ? "or" : "kp"}">${s.coll ? "collider" : "not a collider"}</span>` };
+    case "meek": return { html: `<span class="or">Rule ${s.rule}: ${L[s.b === undefined ? s.a : s.b]} → ${L[s.rule === 1 ? s.c : s.rule === 2 ? s.c : s.b]}</span>` };
+    case "done": return { html: "Result", cls: "lvl" };
+  }
+  return { html: "" };
+}
+
+function card(s, L) {
+  const total = state.steps.length;
+  const phase = `Step ${state.at + 1} of ${total}`;
+  let title = "", body = "", hl = null;
+  if (s.type === "start") {
+    title = "Every pair of columns starts linked";
+    body = `<p>PC assumes nothing at first: each of the ${L.length} columns is linked to every other one. It will remove links that independence tests can explain away, starting with level 0.</p>`;
+  } else if (s.type === "level") {
+    title = s.l === 0 ? "Level 0: are the two columns related at all?" : `Level ${s.l}: are they still related once ${s.l} other column${s.l === 1 ? " is" : "s are"} known?`;
+    body = s.l === 0
+      ? `<p>For every linked pair, a G-test on the two columns alone. If the data are consistent with independence (p ≥ α), the link goes.</p>`
+      : `<p>For every remaining link X – Y, PC tries each set of ${s.l} of X's (then Y's) current neighbours as the known columns. The neighbours are fixed at the start of the level (the "stable" variant), so the order of the tests does not change the result. The first set that makes X and Y independent is remembered as their separating set.</p>`;
+  } else if (s.type === "test") {
+    hl = { pair: [s.x, s.y], cond: s.S, edge: [s.x, s.y] };
+    const q = s.S.length
+      ? `Once ${setText(s.S, L)} ${s.S.length === 1 ? "is" : "are"} known, are ${L[s.x]} and ${L[s.y]} still related?`
+      : `Are ${L[s.x]} and ${L[s.y]} related?`;
+    title = q;
+    body = `<div class="stats">
+        <div><span>G</span>${s.G.toFixed(2)}</div><div><span>df</span>${s.df}</div><div><span>p</span>${fmtP(s.p)}</div>
+        <div><span>α</span>${state.alpha}</div><div><span>strength V</span>${s.V.toFixed(3)}</div>
+        <div><span>groups of rows</span>${s.strata}</div></div>
+      <p><span class="chip ${s.indep ? "remove" : "keep"}">${s.indep ? "Independent: remove the link" : "Related: keep the link"}</span></p>
+      <p>${s.S.length
+        ? `The test counts ${L[s.x]} against ${L[s.y]} separately within each combination of values of ${setText(s.S, L)} (${s.strata} groups of rows), and adds up how far each table is from what independence would predict.`
+        : `The test compares the counts of ${L[s.x]} against ${L[s.y]} with what they would be if the two were unrelated.`}
+      ${s.indep
+        ? ` A difference this small is likely by chance (p = ${fmtP(s.p)} ≥ α), so PC removes the link and remembers ${setText(s.S, L)} as what separates them.`
+        : ` A difference this large is unlikely by chance (p = ${fmtP(s.p)} < α), so the link stays${s.S.length ? " for now" : ""}.`}
+      Strength V is how strong the relation is (0 none, 1 perfect); p only says how sure the test is, and with many rows even a weak relation gives a small p.</p>`;
+  } else if (s.type === "limit" || s.type === "skeleton-end") {
+    title = s.type === "limit" ? `Stopped before level ${s.l}` : "The skeleton is finished";
+    body = s.type === "limit"
+      ? `<p>The largest conditioning set is set to ${state.depth}, so PC stops here even though some links could still be tested given ${s.l} columns. Links that only a bigger set would explain stay in the graph.</p>`
+      : `<p>No column has ${s.l} other neighbours left to condition on, so no further tests are possible.</p>`;
+  } else if (s.type === "orient") {
+    title = "Orientation: which way do the links point?";
+    body = `<p>Directions come from colliders. For every pair X, Y that is not linked but shares a neighbour Z: if Z was not part of what separated X and Y, then X and Y became related only once Z is known, which happens when both point into Z: X → Z ← Y.</p>`;
+  } else if (s.type === "triple") {
+    hl = { pair: [s.x, s.y], cond: [s.z] };
+    title = `${L[s.x]} – ${L[s.z]} – ${L[s.y]}`;
+    body = s.coll
+      ? `<p><span class="chip orient">Collider: ${L[s.x]} → ${L[s.z]} ← ${L[s.y]}</span></p><p>${L[s.x]} and ${L[s.y]} were separated by ${setText(s.S, L)}, which does not contain ${L[s.z]}. They are unrelated without ${L[s.z]} and related through it, so both links point into ${L[s.z]}.</p>`
+      : `<p><span class="chip keep">Not a collider</span></p><p>${L[s.z]} was part of what separated ${L[s.x]} and ${L[s.y]} (${setText(s.S, L)}): knowing it removes their relation, as in a chain or a common cause. That says nothing about direction, so the links stay as they are.</p>`;
+  } else if (s.type === "meek") {
+    const [from, to] = s.rule === 1 ? [s.b, s.c] : s.rule === 2 ? [s.a, s.c] : [s.a, s.b];
+    hl = { pair: [from, to], edge: [from, to] };
+    title = `Rule ${s.rule}: orient ${L[from]} → ${L[to]}`;
+    const why = {
+      1: `${L[s.a]} → ${L[s.b]} – ${L[s.c]}, and ${L[s.a]} and ${L[s.c]} are not linked. If the link pointed ${L[s.c]} → ${L[s.b]}, ${L[s.b]} would be a collider, which the tests ruled out.`,
+      2: `${L[s.a]} → ${L[s.b]} → ${L[s.c]}. Pointing ${L[s.c]} → ${L[s.a]} would close a cycle.`,
+      3: `${L[s.c]} → ${L[s.b]} ← ${L[s.d]}, with ${L[s.a]} linked to all three and ${L[s.c]}, ${L[s.d]} not linked. Any other direction would create a new collider or a cycle.`,
+    }[s.rule];
+    body = `<p><span class="chip orient">${L[from]} → ${L[to]}</span></p><p>${why}</p>`;
+  } else if (s.type === "done") {
+    const r = score(state.sc.edges, s.graph);
+    const tests = s.perLevel.map((n, l) => `level ${l}: ${n}`).join(" · ");
+    title = "Result";
+    body = `<table class="summary"><tbody>
+        <tr><th>True links found</th><td>${r.found} of ${r.total}</td></tr>
+        <tr><th>True links missed</th><td>${r.missing}</td></tr>
+        <tr><th>Extra links</th><td>${r.extra}</td></tr>
+        <tr><th>Found links pointing the right way</th><td>${r.right}</td></tr>
+        <tr><th>Found links left undirected</th><td>${r.open}</td></tr>
+        <tr><th>Found links pointing the wrong way</th><td>${r.reversed}</td></tr>
+      </tbody></table>
+      <p class="tests">Independence tests run: ${s.perLevel.reduce((a, b) => a + b, 0)} (${tests})</p>
+      <p>Links left undirected are not a failure: without a collider nearby, the same data could come from either direction, so no method based on independence tests can orient them.${s.stoppedByLimit ? " PC stopped at the conditioning-set limit, so some links that only a bigger set explains may remain." : ""}</p>`;
+  }
+  $("card").innerHTML = `<div class="phase">${phase}</div><h3>${title}</h3>${body}`;
+  return hl;
+}
+
+function render() {
+  const s = state.steps[state.at], L = state.labels;
+  const hl = card(s, L);
+  drawGraph($("current"), state.sc, s.graph, hl, false);
+  $("progress").textContent = `${s.graph.edges.length} link${s.graph.edges.length === 1 ? "" : "s"}`;
+  const items = $("log").children;
+  for (let i = 0; i < items.length; i++) items[i].classList.toggle("cur", i === state.at);
+  const cur = items[state.at];
+  if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: "nearest" });
+  $("back").disabled = state.at === 0;
+  $("next").disabled = $("end").disabled = state.at === state.steps.length - 1;
+}
+
+function rebuild() {
+  const sc = SCENARIOS[$("scenario").value];
+  const n = parseInt($("rows").value, 10), alpha = parseFloat($("alpha").value), depth = parseInt($("depth").value, 10);
+  const seed = Math.max(1, parseInt($("seed").value, 10) || 1);
+  state.sc = sc; state.labels = sc.vars.map((v) => v[0]); state.ks = sc.vars.map((v) => v[1]);
+  state.alpha = alpha; state.depth = depth;
+  const cols = generate(sc, n, seed);
+  state.steps = runPC(cols, state.ks, alpha, depth).steps;
+  state.at = 0;
+  $("blurb").textContent = sc.blurb;
+  drawGraph($("truth"), sc, null, null, true);
+  const log = $("log");
+  log.innerHTML = "";
+  state.steps.forEach((s, i) => {
+    const li = document.createElement("li");
+    const sm = stepSummary(s, state.labels);
+    li.innerHTML = `<span>${sm.html}</span>`;
+    if (sm.cls) li.classList.add(sm.cls);
+    li.tabIndex = 0;
+    li.addEventListener("click", () => { state.at = i; render(); });
+    li.addEventListener("keydown", (e) => { if (e.key === "Enter") { state.at = i; render(); } });
+    log.appendChild(li);
+  });
+  render();
+}
+
+for (const id of ["scenario", "rows", "alpha", "depth", "seed"]) $(id).addEventListener("change", rebuild);
+$("next").addEventListener("click", () => { if (state.at < state.steps.length - 1) { state.at++; render(); } });
+$("back").addEventListener("click", () => { if (state.at > 0) { state.at--; render(); } });
+$("end").addEventListener("click", () => { state.at = state.steps.length - 1; render(); });
+$("restart").addEventListener("click", () => { state.at = 0; render(); });
+document.addEventListener("keydown", (e) => {
+  if (["INPUT", "SELECT"].includes(document.activeElement.tagName)) return;
+  if (e.key === "ArrowRight") $("next").click();
+  if (e.key === "ArrowLeft") $("back").click();
+});
+rebuild();
+</script>
+
+</html>

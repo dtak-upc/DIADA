@@ -1,0 +1,13 @@
+(a) share of pairs whose two rows share a month
+  both rows housing_loan = yes: same pdays 0.278 (482M pairs), different pdays 0.267 (150M pairs)
+  both rows housing_loan = no: same pdays 0.154 (364M pairs), different pdays 0.083 (39M pairs)
+  pooled: the rows agree on housing_loan (what the pooled test used): same pdays 0.225 (845M pairs), different pdays 0.228 (189M pairs)
+  housing_loan = yes: 25130 rows, high-pdays rows 3459
+  housing_loan = no: 20081 rows, high-pdays rows 1037
+(b) share of 'yes' (Class = 2)
+  all clients: pdays -1..185: 0.113 (40715 rows) | pdays 186..871: 0.153 (4496 rows)
+  poutcome = failure: pdays -1..185: 0.164 (1910 rows) | pdays 186..871: 0.102 (2991 rows)
+  poutcome = other: pdays -1..185: 0.213 (743 rows) | pdays 186..871: 0.136 (1097 rows)
+  poutcome = success: pdays -1..185: 0.674 (1106 rows) | pdays 186..871: 0.575 (405 rows)
+  poutcome = unknown: pdays -1..185: 0.092 (36956 rows) | pdays 186..871: 0.333 (3 rows)
+  the low bucket holds 36954 never-contacted rows (pdays = -1, 0.092 yes) and 3761 contacted 0-185 days ago (0.324 yes)

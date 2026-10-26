@@ -1,0 +1,14 @@
+A: independent done
+A: pair_isolated done
+A: chain done
+A: common_cause done
+A: hub_join done
+A: direct_triangle done
+A: sum_collider done
+A: xor done
+A: interaction done
+B: diamonds done
+B: bank done
+B: house_sales done
+B: bank_mn done
+done in 81s

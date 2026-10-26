@@ -1,0 +1,100 @@
+benchmark,version,seed,edges,splits,tests,grouping,expected,ok,seconds,seconds_v2_step
+independent,V0,0,none,,,A | B | C,A | B | C,True,0.479,0.0
+independent,V1,0,none,,,A | B | C,A | B | C,True,0.016,0.0
+independent,V2,0,none,,,A | B | C,A | B | C,True,0.761,0.745
+independent,V1,1,none,,,A | B | C,A | B | C,True,0.016,0.0
+independent,V2,1,none,,,A | B | C,A | B | C,True,0.744,0.728
+independent,V1,2,none,,,A | B | C,A | B | C,True,0.016,0.0
+independent,V2,2,none,,,A | B | C,A | B | C,True,0.709,0.693
+independent,V1,3,none,,,A | B | C,A | B | C,True,0.017,0.0
+independent,V2,3,none,,,A | B | C,A | B | C,True,0.693,0.676
+independent,V1,4,none,,,A | B | C,A | B | C,True,0.017,0.0
+independent,V2,4,none,,,A | B | C,A | B | C,True,0.703,0.685
+pair_isolated,V0,0,A-B,,,A-B | C,A-B | C,True,0.286,0.0
+pair_isolated,V1,0,A-B,,,A-B | C,A-B | C,True,0.016,0.0
+pair_isolated,V2,0,A-B,,,A-B | C,A-B | C,True,0.707,0.691
+pair_isolated,V1,1,A-B,,,A-B | C,A-B | C,True,0.019,0.0
+pair_isolated,V2,1,A-B,,,A-B | C,A-B | C,True,0.739,0.72
+pair_isolated,V1,2,A-B,,,A-B | C,A-B | C,True,0.02,0.0
+pair_isolated,V2,2,A-B,,,A-B | C,A-B | C,True,0.702,0.682
+pair_isolated,V1,3,A-B,,,A-B | C,A-B | C,True,0.015,0.0
+pair_isolated,V2,3,A-B,,,A-B | C,A-B | C,True,0.879,0.864
+pair_isolated,V1,4,A-B,,,A-B | C,A-B | C,True,0.018,0.0
+pair_isolated,V2,4,A-B,,,A-B | C,A-B | C,True,1.085,1.067
+chain,V0,0,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.335,0.0
+chain,V1,0,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.026,0.0
+chain,V2,0,A-B A-C B-C,A-C at B,A-B|C:1.39 A-C|B:0.08 B-C|A:1.38,A-B | B-C,A-B | B-C,True,1.086,1.06
+chain,V1,1,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.024,0.0
+chain,V2,1,A-B A-C B-C,A-C at B,A-B|C:1.38 A-C|B:0.07 B-C|A:1.37,A-B | B-C,A-B | B-C,True,1.231,1.208
+chain,V1,2,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.023,0.0
+chain,V2,2,A-B A-C B-C,A-C at B,A-B|C:1.37 A-C|B:0.09 B-C|A:1.37,A-B | B-C,A-B | B-C,True,1.156,1.133
+chain,V1,3,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.023,0.0
+chain,V2,3,A-B A-C B-C,A-C at B,A-B|C:1.38 A-C|B:0.09 B-C|A:1.37,A-B | B-C,A-B | B-C,True,1.06,1.038
+chain,V1,4,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.029,0.0
+chain,V2,4,A-B A-C B-C,A-C at B,A-B|C:1.38 A-C|B:0.07 B-C|A:1.37,A-B | B-C,A-B | B-C,True,1.174,1.145
+common_cause,V0,0,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.323,0.0
+common_cause,V1,0,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.028,0.0
+common_cause,V2,0,A-B A-C B-C,A-C at B,A-B|C:1.35 A-C|B:0.06 B-C|A:1.34,A-B | B-C,A-B | B-C,True,1.012,0.984
+common_cause,V1,1,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.024,0.0
+common_cause,V2,1,A-B A-C B-C,A-C at B,A-B|C:1.33 A-C|B:0.06 B-C|A:1.33,A-B | B-C,A-B | B-C,True,0.957,0.933
+common_cause,V1,2,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.026,0.0
+common_cause,V2,2,A-B A-C B-C,A-C at B,A-B|C:1.35 A-C|B:0.06 B-C|A:1.34,A-B | B-C,A-B | B-C,True,0.974,0.948
+common_cause,V1,3,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.029,0.0
+common_cause,V2,3,A-B A-C B-C,A-C at B,A-B|C:1.33 A-C|B:0.06 B-C|A:1.33,A-B | B-C,A-B | B-C,True,0.797,0.768
+common_cause,V1,4,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.026,0.0
+common_cause,V2,4,A-B A-C B-C,A-C at B,A-B|C:1.33 A-C|B:0.07 B-C|A:1.33,A-B | B-C,A-B | B-C,True,0.791,0.765
+hub_join,V0,0,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.291,0.0
+hub_join,V1,0,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.024,0.0
+hub_join,V2,0,A-B A-C B-C,,C-B|A:0.96 C-A|B:0.51 B-A|C:0.96,A-B-C,A-B | B-C,False,0.809,0.784
+hub_join,V1,1,A-B A-C B-C,,,A-B-C,A-B | B-C,False,0.056,0.0
+hub_join,V2,1,A-B A-C B-C,,C-B|A:0.96 C-A|B:0.55 B-A|C:0.96,A-B-C,A-B | B-C,False,0.83,0.774
+hub_join,V1,2,A-B B-C,,,A-B-C,A-B | B-C,False,0.026,0.0
+hub_join,V2,2,A-B B-C,,,A-B-C,A-B | B-C,False,0.668,0.642
+hub_join,V1,3,A-B B-C,,,A-B-C,A-B | B-C,False,0.024,0.0
+hub_join,V2,3,A-B B-C,,,A-B-C,A-B | B-C,False,0.722,0.697
+hub_join,V1,4,A-B B-C,,,A-B-C,A-B | B-C,False,0.025,0.0
+hub_join,V2,4,A-B B-C,,,A-B-C,A-B | B-C,False,0.719,0.694
+direct_triangle,V0,0,A-B A-C B-C,,,A-B-C,A-B-C,True,0.281,0.0
+direct_triangle,V1,0,A-B A-C B-C,,,A-B-C,A-B-C,True,0.02,0.0
+direct_triangle,V2,0,A-B A-C B-C,,A-C|B:1.29 A-B|C:1.29 C-B|A:1.29,A-B-C,A-B-C,True,0.838,0.818
+direct_triangle,V1,1,A-B A-C B-C,,,A-B-C,A-B-C,True,0.022,0.0
+direct_triangle,V2,1,A-B A-C B-C,,A-B|C:1.29 A-C|B:1.29 B-C|A:1.29,A-B-C,A-B-C,True,0.951,0.929
+direct_triangle,V1,2,A-B A-C B-C,,,A-B-C,A-B-C,True,0.02,0.0
+direct_triangle,V2,2,A-B A-C B-C,,C-B|A:1.29 C-A|B:1.29 B-A|C:1.30,A-B-C,A-B-C,True,0.829,0.809
+direct_triangle,V1,3,A-B A-C B-C,,,A-B-C,A-B-C,True,0.021,0.0
+direct_triangle,V2,3,A-B A-C B-C,,A-B|C:1.28 A-C|B:1.28 B-C|A:1.28,A-B-C,A-B-C,True,0.898,0.877
+direct_triangle,V1,4,A-B A-C B-C,,,A-B-C,A-B-C,True,0.022,0.0
+direct_triangle,V2,4,A-B A-C B-C,,A-B|C:1.29 A-C|B:1.28 B-C|A:1.29,A-B-C,A-B-C,True,0.887,0.865
+sum_collider,V0,0,A-B B-C,,,A-B-C,A-B-C,True,0.276,0.0
+sum_collider,V1,0,A-B B-C,,,A-B-C,A-B-C,True,0.02,0.0
+sum_collider,V2,0,A-B B-C,,,A-B-C,A-B-C,True,0.721,0.701
+sum_collider,V1,1,A-B B-C,,,A-B-C,A-B-C,True,0.017,0.0
+sum_collider,V2,1,A-B B-C,,,A-B-C,A-B-C,True,0.693,0.676
+sum_collider,V1,2,A-B B-C,,,A-B-C,A-B-C,True,0.022,0.0
+sum_collider,V2,2,A-B B-C,,,A-B-C,A-B-C,True,0.712,0.69
+sum_collider,V1,3,A-B B-C,,,A-B-C,A-B-C,True,0.02,0.0
+sum_collider,V2,3,A-B B-C,,,A-B-C,A-B-C,True,0.684,0.665
+sum_collider,V1,4,A-B B-C,,,A-B-C,A-B-C,True,0.019,0.0
+sum_collider,V2,4,A-B B-C,,,A-B-C,A-B-C,True,0.653,0.634
+xor,V0,0,none,,,A | B | C,n/a,,0.292,0.0
+xor,V1,0,none,,,A | B | C,n/a,,0.019,0.0
+xor,V2,0,none,,,A | B | C,n/a,,0.682,0.662
+xor,V1,1,none,,,A | B | C,n/a,,0.016,0.0
+xor,V2,1,none,,,A | B | C,n/a,,0.696,0.68
+xor,V1,2,none,,,A | B | C,n/a,,0.015,0.0
+xor,V2,2,none,,,A | B | C,n/a,,0.917,0.902
+xor,V1,3,none,,,A | B | C,n/a,,0.016,0.0
+xor,V2,3,none,,,A | B | C,n/a,,0.763,0.747
+xor,V1,4,none,,,A | B | C,n/a,,0.017,0.0
+xor,V2,4,none,,,A | B | C,n/a,,0.763,0.746
+interaction,V0,0,A-B B-C,,,A-B-C,A-B-C,True,0.296,0.0
+interaction,V1,0,A-B B-C,,,A-B-C,A-B-C,True,0.018,0.0
+interaction,V2,0,A-B B-C,,,A-B-C,A-B-C,True,1.01,0.992
+interaction,V1,1,A-B B-C,,,A-B-C,A-B-C,True,0.027,0.0
+interaction,V2,1,A-B B-C,,,A-B-C,A-B-C,True,0.946,0.919
+interaction,V1,2,A-B B-C,,,A-B-C,A-B-C,True,0.022,0.0
+interaction,V2,2,A-B B-C,,,A-B-C,A-B-C,True,1.666,1.644
+interaction,V1,3,A-B B-C,,,A-B-C,A-B-C,True,0.023,0.0
+interaction,V2,3,A-B B-C,,,A-B-C,A-B-C,True,2.092,2.069
+interaction,V1,4,A-B B-C,,,A-B-C,A-B-C,True,0.036,0.0
+interaction,V2,4,A-B B-C,,,A-B-C,A-B-C,True,1.839,1.803

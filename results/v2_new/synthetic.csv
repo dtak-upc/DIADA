@@ -1,0 +1,253 @@
+benchmark,version,seed,edges,graph_ok,splits,tests,grouping,expected,ok,seconds,seconds_extra
+independent,V0,42,none,True,,,A | B | C,A | B | C,True,0.01,0.0
+independent,V1 new,42,none,True,,,A | B | C,A | B | C,True,0.009,0.0
+independent,V2 new,42,none,True,,,A | B | C,A | B | C,True,0.421,0.412
+independent,V0,0,none,True,,,A | B | C,A | B | C,True,0.009,0.0
+independent,V1 new,0,none,True,,,A | B | C,A | B | C,True,0.008,0.0
+independent,V2 new,0,none,True,,,A | B | C,A | B | C,True,0.344,0.336
+independent,V0,1,none,True,,,A | B | C,A | B | C,True,0.009,0.0
+independent,V1 new,1,none,True,,,A | B | C,A | B | C,True,0.008,0.0
+independent,V2 new,1,none,True,,,A | B | C,A | B | C,True,0.167,0.159
+independent,V0,2,none,True,,,A | B | C,A | B | C,True,0.009,0.0
+independent,V1 new,2,none,True,,,A | B | C,A | B | C,True,0.008,0.0
+independent,V2 new,2,none,True,,,A | B | C,A | B | C,True,0.294,0.286
+independent,V0,3,none,True,,,A | B | C,A | B | C,True,0.009,0.0
+independent,V1 new,3,none,True,,,A | B | C,A | B | C,True,0.008,0.0
+independent,V2 new,3,none,True,,,A | B | C,A | B | C,True,0.299,0.291
+independent,V0,4,none,True,,,A | B | C,A | B | C,True,0.009,0.0
+independent,V1 new,4,none,True,,,A | B | C,A | B | C,True,0.008,0.0
+independent,V2 new,4,none,True,,,A | B | C,A | B | C,True,0.273,0.265
+independent,V1 old,0,none,True,,,A | B | C,A | B | C,True,0.023,0.0
+independent,V2 old,0,none,True,,,A | B | C,A | B | C,True,0.917,0.894
+independent,V1 old,1,none,True,,,A | B | C,A | B | C,True,0.02,0.0
+independent,V2 old,1,none,True,,,A | B | C,A | B | C,True,0.892,0.873
+independent,V1 old,2,none,True,,,A | B | C,A | B | C,True,0.02,0.0
+independent,V2 old,2,none,True,,,A | B | C,A | B | C,True,0.832,0.812
+independent,V1 old,3,none,True,,,A | B | C,A | B | C,True,0.02,0.0
+independent,V2 old,3,none,True,,,A | B | C,A | B | C,True,0.893,0.874
+independent,V1 old,4,none,True,,,A | B | C,A | B | C,True,0.021,0.0
+independent,V2 old,4,none,True,,,A | B | C,A | B | C,True,0.888,0.867
+pair_isolated,V0,42,A-B,True,,,A-B | C,A-B | C,True,0.009,0.0
+pair_isolated,V1 new,42,A-B,True,,,A-B | C,A-B | C,True,0.009,0.0
+pair_isolated,V2 new,42,A-B,True,,,A-B | C,A-B | C,True,0.426,0.417
+pair_isolated,V0,0,A-B,True,,,A-B | C,A-B | C,True,0.009,0.0
+pair_isolated,V1 new,0,A-B,True,,,A-B | C,A-B | C,True,0.008,0.0
+pair_isolated,V2 new,0,A-B,True,,,A-B | C,A-B | C,True,0.353,0.345
+pair_isolated,V0,1,A-B,True,,,A-B | C,A-B | C,True,0.009,0.0
+pair_isolated,V1 new,1,A-B,True,,,A-B | C,A-B | C,True,0.008,0.0
+pair_isolated,V2 new,1,A-B,True,,,A-B | C,A-B | C,True,0.177,0.168
+pair_isolated,V0,2,A-B,True,,,A-B | C,A-B | C,True,0.009,0.0
+pair_isolated,V1 new,2,A-B,True,,,A-B | C,A-B | C,True,0.008,0.0
+pair_isolated,V2 new,2,A-B,True,,,A-B | C,A-B | C,True,0.297,0.289
+pair_isolated,V0,3,A-B,True,,,A-B | C,A-B | C,True,0.009,0.0
+pair_isolated,V1 new,3,A-B,True,,,A-B | C,A-B | C,True,0.008,0.0
+pair_isolated,V2 new,3,A-B,True,,,A-B | C,A-B | C,True,0.301,0.293
+pair_isolated,V0,4,A-B,True,,,A-B | C,A-B | C,True,0.009,0.0
+pair_isolated,V1 new,4,A-B,True,,,A-B | C,A-B | C,True,0.008,0.0
+pair_isolated,V2 new,4,A-B,True,,,A-B | C,A-B | C,True,0.258,0.25
+pair_isolated,V1 old,0,A-B,True,,,A-B | C,A-B | C,True,0.023,0.0
+pair_isolated,V2 old,0,A-B,True,,,A-B | C,A-B | C,True,0.876,0.853
+pair_isolated,V1 old,1,A-B,True,,,A-B | C,A-B | C,True,0.02,0.0
+pair_isolated,V2 old,1,A-B,True,,,A-B | C,A-B | C,True,0.904,0.883
+pair_isolated,V1 old,2,A-B,True,,,A-B | C,A-B | C,True,0.021,0.0
+pair_isolated,V2 old,2,A-B,True,,,A-B | C,A-B | C,True,0.916,0.895
+pair_isolated,V1 old,3,A-B,True,,,A-B | C,A-B | C,True,0.022,0.0
+pair_isolated,V2 old,3,A-B,True,,,A-B | C,A-B | C,True,0.911,0.889
+pair_isolated,V1 old,4,A-B,True,,,A-B | C,A-B | C,True,0.021,0.0
+pair_isolated,V2 old,4,A-B,True,,,A-B | C,A-B | C,True,0.903,0.882
+chain,V0,42,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+chain,V1 new,42,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+chain,V2 new,42,A-B A-C B-C,True,A-C at B,B-A|C:1.37 B-C|A:1.37 A-C|B:0.08,A-B | B-C,A-B | B-C,True,0.478,0.469
+chain,V0,0,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+chain,V1 new,0,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+chain,V2 new,0,A-B A-C B-C,True,A-C at B,B-A|C:1.37 B-C|A:1.37 A-C|B:0.07,A-B | B-C,A-B | B-C,True,0.396,0.387
+chain,V0,1,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+chain,V1 new,1,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.01,0.0
+chain,V2 new,1,A-B A-C B-C,True,A-C at B,A-B|C:1.37 A-C|B:0.09 B-C|A:1.37,A-B | B-C,A-B | B-C,True,0.213,0.203
+chain,V0,2,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+chain,V1 new,2,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.014,0.0
+chain,V2 new,2,A-B A-C B-C,True,A-C at B,B-A|C:1.38 B-C|A:1.37 A-C|B:0.09,A-B | B-C,A-B | B-C,True,0.354,0.339
+chain,V0,3,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+chain,V1 new,3,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+chain,V2 new,3,A-B A-C B-C,True,A-C at B,B-A|C:1.37 B-C|A:1.36 A-C|B:0.07,A-B | B-C,A-B | B-C,True,0.356,0.347
+chain,V0,4,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+chain,V1 new,4,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+chain,V2 new,4,A-B A-C B-C,True,A-C at B,A-B|C:1.37 A-C|B:0.08 B-C|A:1.37,A-B | B-C,A-B | B-C,True,0.311,0.302
+chain,V1 old,0,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.029,0.0
+chain,V2 old,0,A-B A-C B-C,True,A-C at B,A-B|C:1.39 A-C|B:0.08 B-C|A:1.38,A-B | B-C,A-B | B-C,True,0.988,0.958
+chain,V1 old,1,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.025,0.0
+chain,V2 old,1,A-B A-C B-C,True,A-C at B,A-B|C:1.38 A-C|B:0.07 B-C|A:1.37,A-B | B-C,A-B | B-C,True,1.04,1.015
+chain,V1 old,2,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.027,0.0
+chain,V2 old,2,A-B A-C B-C,True,A-C at B,A-B|C:1.37 A-C|B:0.09 B-C|A:1.37,A-B | B-C,A-B | B-C,True,0.961,0.933
+chain,V1 old,3,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.028,0.0
+chain,V2 old,3,A-B A-C B-C,True,A-C at B,A-B|C:1.38 A-C|B:0.09 B-C|A:1.37,A-B | B-C,A-B | B-C,True,0.954,0.926
+chain,V1 old,4,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.027,0.0
+chain,V2 old,4,A-B A-C B-C,True,A-C at B,A-B|C:1.38 A-C|B:0.07 B-C|A:1.37,A-B | B-C,A-B | B-C,True,0.974,0.947
+common_cause,V0,42,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.01,0.0
+common_cause,V1 new,42,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+common_cause,V2 new,42,A-B A-C B-C,True,A-C at B,A-B|C:1.34 A-C|B:0.07 B-C|A:1.33,A-B | B-C,A-B | B-C,True,0.478,0.469
+common_cause,V0,0,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+common_cause,V1 new,0,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+common_cause,V2 new,0,A-B A-C B-C,True,A-C at B,B-A|C:1.36 B-C|A:1.35 A-C|B:0.06,A-B | B-C,A-B | B-C,True,0.399,0.39
+common_cause,V0,1,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+common_cause,V1 new,1,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.009,0.0
+common_cause,V2 new,1,A-B A-C B-C,True,A-C at B,B-A|C:1.34 B-C|A:1.34 A-C|B:0.07,A-B | B-C,A-B | B-C,True,0.219,0.21
+common_cause,V0,2,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.011,0.0
+common_cause,V1 new,2,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.012,0.0
+common_cause,V2 new,2,A-B A-C B-C,True,A-C at B,B-A|C:1.36 B-C|A:1.35 A-C|B:0.07,A-B | B-C,A-B | B-C,True,0.389,0.378
+common_cause,V0,3,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.01,0.0
+common_cause,V1 new,3,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.01,0.0
+common_cause,V2 new,3,A-B A-C B-C,True,A-C at B,A-B|C:1.34 A-C|B:0.06 B-C|A:1.33,A-B | B-C,A-B | B-C,True,0.394,0.384
+common_cause,V0,4,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.013,0.0
+common_cause,V1 new,4,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.011,0.0
+common_cause,V2 new,4,A-B A-C B-C,True,A-C at B,B-A|C:1.34 B-C|A:1.34 A-C|B:0.07,A-B | B-C,A-B | B-C,True,0.319,0.308
+common_cause,V1 old,0,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.025,0.0
+common_cause,V2 old,0,A-B A-C B-C,True,A-C at B,A-B|C:1.35 A-C|B:0.06 B-C|A:1.34,A-B | B-C,A-B | B-C,True,0.983,0.958
+common_cause,V1 old,1,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.025,0.0
+common_cause,V2 old,1,A-B A-C B-C,True,A-C at B,A-B|C:1.33 A-C|B:0.06 B-C|A:1.33,A-B | B-C,A-B | B-C,True,0.948,0.923
+common_cause,V1 old,2,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.029,0.0
+common_cause,V2 old,2,A-B A-C B-C,True,A-C at B,A-B|C:1.35 A-C|B:0.06 B-C|A:1.34,A-B | B-C,A-B | B-C,True,0.939,0.911
+common_cause,V1 old,3,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.025,0.0
+common_cause,V2 old,3,A-B A-C B-C,True,A-C at B,A-B|C:1.33 A-C|B:0.06 B-C|A:1.33,A-B | B-C,A-B | B-C,True,0.958,0.933
+common_cause,V1 old,4,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.025,0.0
+common_cause,V2 old,4,A-B A-C B-C,True,A-C at B,A-B|C:1.33 A-C|B:0.07 B-C|A:1.33,A-B | B-C,A-B | B-C,True,0.944,0.919
+hub_join,V0,42,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.01,0.0
+hub_join,V1 new,42,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.011,0.0
+hub_join,V2 new,42,A-B A-C B-C,True,,B-C|A:0.96 B-A|C:0.96 C-A|B:0.53,A-B-C,A-B | B-C,False,0.335,0.323
+hub_join,V0,0,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.01,0.0
+hub_join,V1 new,0,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.01,0.0
+hub_join,V2 new,0,A-B A-C B-C,True,,B-C|A:0.96 B-A|C:0.96 C-A|B:0.53,A-B-C,A-B | B-C,False,0.35,0.34
+hub_join,V0,1,A-B B-C,True,,,A-B-C,A-B | B-C,False,0.01,0.0
+hub_join,V1 new,1,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.01,0.0
+hub_join,V2 new,1,A-B A-C B-C,True,,B-C|A:0.97 B-A|C:0.97 C-A|B:0.53,A-B-C,A-B | B-C,False,0.235,0.225
+hub_join,V0,2,A-B B-C,True,,,A-B-C,A-B | B-C,False,0.011,0.0
+hub_join,V1 new,2,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.011,0.0
+hub_join,V2 new,2,A-B A-C B-C,True,,B-C|A:0.95 B-A|C:0.96 C-A|B:0.55,A-B-C,A-B | B-C,False,0.286,0.276
+hub_join,V0,3,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.011,0.0
+hub_join,V1 new,3,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.014,0.0
+hub_join,V2 new,3,A-B A-C B-C,True,,B-C|A:0.96 B-A|C:0.97 C-A|B:0.53,A-B-C,A-B | B-C,False,0.394,0.381
+hub_join,V0,4,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.01,0.0
+hub_join,V1 new,4,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.01,0.0
+hub_join,V2 new,4,A-B A-C B-C,True,,B-C|A:0.97 B-A|C:0.99 C-A|B:0.52,A-B-C,A-B | B-C,False,0.263,0.253
+hub_join,V1 old,0,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.029,0.0
+hub_join,V2 old,0,A-B A-C B-C,True,,C-B|A:0.96 C-A|B:0.51 B-A|C:0.96,A-B-C,A-B | B-C,False,0.944,0.915
+hub_join,V1 old,1,A-B A-C B-C,True,,,A-B-C,A-B | B-C,False,0.076,0.0
+hub_join,V2 old,1,A-B A-C B-C,True,,C-B|A:0.96 C-A|B:0.55 B-A|C:0.96,A-B-C,A-B | B-C,False,0.983,0.907
+hub_join,V1 old,2,A-B B-C,True,,,A-B-C,A-B | B-C,False,0.029,0.0
+hub_join,V2 old,2,A-B B-C,True,,,A-B-C,A-B | B-C,False,0.861,0.831
+hub_join,V1 old,3,A-B B-C,True,,,A-B-C,A-B | B-C,False,0.033,0.0
+hub_join,V2 old,3,A-B B-C,True,,,A-B-C,A-B | B-C,False,0.851,0.818
+hub_join,V1 old,4,A-B B-C,True,,,A-B-C,A-B | B-C,False,0.029,0.0
+hub_join,V2 old,4,A-B B-C,True,,,A-B-C,A-B | B-C,False,0.843,0.814
+direct_triangle,V0,42,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+direct_triangle,V1 new,42,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+direct_triangle,V2 new,42,A-B A-C B-C,True,,A-B|C:1.29 A-C|B:1.28 B-C|A:1.29,A-B-C,A-B-C,True,0.483,0.474
+direct_triangle,V0,0,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+direct_triangle,V1 new,0,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+direct_triangle,V2 new,0,A-B A-C B-C,True,,B-A|C:1.28 B-C|A:1.29 A-C|B:1.29,A-B-C,A-B-C,True,0.394,0.385
+direct_triangle,V0,1,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+direct_triangle,V1 new,1,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.008,0.0
+direct_triangle,V2 new,1,A-B A-C B-C,True,,B-C|A:1.29 B-A|C:1.29 C-A|B:1.29,A-B-C,A-B-C,True,0.218,0.21
+direct_triangle,V0,2,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+direct_triangle,V1 new,2,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+direct_triangle,V2 new,2,A-B A-C B-C,True,,C-B|A:1.30 C-A|B:1.29 B-A|C:1.29,A-B-C,A-B-C,True,0.353,0.344
+direct_triangle,V0,3,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+direct_triangle,V1 new,3,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.011,0.0
+direct_triangle,V2 new,3,A-B A-C B-C,True,,B-C|A:1.29 B-A|C:1.29 C-A|B:1.29,A-B-C,A-B-C,True,0.344,0.333
+direct_triangle,V0,4,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+direct_triangle,V1 new,4,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+direct_triangle,V2 new,4,A-B A-C B-C,True,,B-A|C:1.29 B-C|A:1.29 A-C|B:1.29,A-B-C,A-B-C,True,0.303,0.294
+direct_triangle,V1 old,0,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.092,0.0
+direct_triangle,V2 old,0,A-B A-C B-C,True,,A-C|B:1.29 A-B|C:1.29 C-B|A:1.29,A-B-C,A-B-C,True,0.995,0.903
+direct_triangle,V1 old,1,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.091,0.0
+direct_triangle,V2 old,1,A-B A-C B-C,True,,A-B|C:1.29 A-C|B:1.29 B-C|A:1.29,A-B-C,A-B-C,True,1.211,1.12
+direct_triangle,V1 old,2,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.027,0.0
+direct_triangle,V2 old,2,A-B A-C B-C,True,,C-B|A:1.29 C-A|B:1.29 B-A|C:1.30,A-B-C,A-B-C,True,0.924,0.897
+direct_triangle,V1 old,3,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.029,0.0
+direct_triangle,V2 old,3,A-B A-C B-C,True,,A-B|C:1.28 A-C|B:1.28 B-C|A:1.28,A-B-C,A-B-C,True,0.976,0.947
+direct_triangle,V1 old,4,A-B A-C B-C,True,,,A-B-C,A-B-C,True,0.025,0.0
+direct_triangle,V2 old,4,A-B A-C B-C,True,,A-B|C:1.29 A-C|B:1.28 B-C|A:1.29,A-B-C,A-B-C,True,0.994,0.969
+sum_collider,V0,42,A-B B-C,True,,,A-B-C,A-B-C,True,0.008,0.0
+sum_collider,V1 new,42,A-B B-C,True,,,A-B-C,A-B-C,True,0.008,0.0
+sum_collider,V2 new,42,A-B B-C,True,,,A-B-C,A-B-C,True,0.432,0.424
+sum_collider,V0,0,A-B B-C,True,,,A-B-C,A-B-C,True,0.01,0.0
+sum_collider,V1 new,0,A-B B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+sum_collider,V2 new,0,A-B B-C,True,,,A-B-C,A-B-C,True,0.348,0.339
+sum_collider,V0,1,A-B B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+sum_collider,V1 new,1,A-B B-C,True,,,A-B-C,A-B-C,True,0.008,0.0
+sum_collider,V2 new,1,A-B B-C,True,,,A-B-C,A-B-C,True,0.168,0.159
+sum_collider,V0,2,A-B B-C,True,,,A-B-C,A-B-C,True,0.012,0.0
+sum_collider,V1 new,2,A-B B-C,True,,,A-B-C,A-B-C,True,0.01,0.0
+sum_collider,V2 new,2,A-B B-C,True,,,A-B-C,A-B-C,True,0.303,0.294
+sum_collider,V0,3,A-B B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+sum_collider,V1 new,3,A-B B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+sum_collider,V2 new,3,A-B B-C,True,,,A-B-C,A-B-C,True,0.295,0.286
+sum_collider,V0,4,A-B B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+sum_collider,V1 new,4,A-B B-C,True,,,A-B-C,A-B-C,True,0.008,0.0
+sum_collider,V2 new,4,A-B B-C,True,,,A-B-C,A-B-C,True,0.251,0.243
+sum_collider,V1 old,0,A-B B-C,True,,,A-B-C,A-B-C,True,0.087,0.0
+sum_collider,V2 old,0,A-B B-C,True,,,A-B-C,A-B-C,True,1.136,1.049
+sum_collider,V1 old,1,A-B B-C,True,,,A-B-C,A-B-C,True,0.02,0.0
+sum_collider,V2 old,1,A-B B-C,True,,,A-B-C,A-B-C,True,0.942,0.922
+sum_collider,V1 old,2,A-B B-C,True,,,A-B-C,A-B-C,True,0.024,0.0
+sum_collider,V2 old,2,A-B B-C,True,,,A-B-C,A-B-C,True,0.887,0.863
+sum_collider,V1 old,3,A-B B-C,True,,,A-B-C,A-B-C,True,0.023,0.0
+sum_collider,V2 old,3,A-B B-C,True,,,A-B-C,A-B-C,True,0.887,0.863
+sum_collider,V1 old,4,A-B B-C,True,,,A-B-C,A-B-C,True,0.025,0.0
+sum_collider,V2 old,4,A-B B-C,True,,,A-B-C,A-B-C,True,0.859,0.834
+xor,V0,42,none,True,,,A | B | C,n/a,,0.008,0.0
+xor,V1 new,42,none,True,,,A | B | C,n/a,,0.008,0.0
+xor,V2 new,42,none,True,,,A | B | C,n/a,,0.423,0.415
+xor,V0,0,none,True,,,A | B | C,n/a,,0.009,0.0
+xor,V1 new,0,none,True,,,A | B | C,n/a,,0.012,0.0
+xor,V2 new,0,none,True,,,A | B | C,n/a,,0.349,0.337
+xor,V0,1,none,True,,,A | B | C,n/a,,0.008,0.0
+xor,V1 new,1,none,True,,,A | B | C,n/a,,0.008,0.0
+xor,V2 new,1,none,True,,,A | B | C,n/a,,0.166,0.158
+xor,V0,2,none,True,,,A | B | C,n/a,,0.009,0.0
+xor,V1 new,2,none,True,,,A | B | C,n/a,,0.009,0.0
+xor,V2 new,2,none,True,,,A | B | C,n/a,,0.301,0.292
+xor,V0,3,none,True,,,A | B | C,n/a,,0.009,0.0
+xor,V1 new,3,none,True,,,A | B | C,n/a,,0.008,0.0
+xor,V2 new,3,none,True,,,A | B | C,n/a,,0.297,0.289
+xor,V0,4,none,True,,,A | B | C,n/a,,0.008,0.0
+xor,V1 new,4,none,True,,,A | B | C,n/a,,0.008,0.0
+xor,V2 new,4,none,True,,,A | B | C,n/a,,0.249,0.24
+xor,V1 old,0,none,True,,,A | B | C,n/a,,0.017,0.0
+xor,V2 old,0,none,True,,,A | B | C,n/a,,0.871,0.854
+xor,V1 old,1,none,True,,,A | B | C,n/a,,0.019,0.0
+xor,V2 old,1,none,True,,,A | B | C,n/a,,0.898,0.88
+xor,V1 old,2,none,True,,,A | B | C,n/a,,0.019,0.0
+xor,V2 old,2,none,True,,,A | B | C,n/a,,0.912,0.893
+xor,V1 old,3,none,True,,,A | B | C,n/a,,0.02,0.0
+xor,V2 old,3,none,True,,,A | B | C,n/a,,1.093,1.072
+xor,V1 old,4,none,True,,,A | B | C,n/a,,0.02,0.0
+xor,V2 old,4,none,True,,,A | B | C,n/a,,0.93,0.91
+interaction,V0,42,A-B B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+interaction,V1 new,42,A-B B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+interaction,V2 new,42,A-B B-C,True,,,A-B-C,A-B-C,True,0.426,0.417
+interaction,V0,0,A-B B-C,True,,,A-B-C,A-B-C,True,0.013,0.0
+interaction,V1 new,0,A-B B-C,True,,,A-B-C,A-B-C,True,0.011,0.0
+interaction,V2 new,0,A-B B-C,True,,,A-B-C,A-B-C,True,0.354,0.343
+interaction,V0,1,A-B B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+interaction,V1 new,1,A-B B-C,True,,,A-B-C,A-B-C,True,0.008,0.0
+interaction,V2 new,1,A-B B-C,True,,,A-B-C,A-B-C,True,0.165,0.156
+interaction,V0,2,A-B B-C,True,,,A-B-C,A-B-C,True,0.01,0.0
+interaction,V1 new,2,A-B B-C,True,,,A-B-C,A-B-C,True,0.011,0.0
+interaction,V2 new,2,A-B B-C,True,,,A-B-C,A-B-C,True,0.304,0.294
+interaction,V0,3,A-B B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+interaction,V1 new,3,A-B B-C,True,,,A-B-C,A-B-C,True,0.008,0.0
+interaction,V2 new,3,A-B B-C,True,,,A-B-C,A-B-C,True,0.296,0.288
+interaction,V0,4,A-B B-C,True,,,A-B-C,A-B-C,True,0.009,0.0
+interaction,V1 new,4,A-B B-C,True,,,A-B-C,A-B-C,True,0.008,0.0
+interaction,V2 new,4,A-B B-C,True,,,A-B-C,A-B-C,True,0.25,0.241
+interaction,V1 old,0,A-B B-C,True,,,A-B-C,A-B-C,True,0.024,0.0
+interaction,V2 old,0,A-B B-C,True,,,A-B-C,A-B-C,True,0.997,0.974
+interaction,V1 old,1,A-B B-C,True,,,A-B-C,A-B-C,True,0.034,0.0
+interaction,V2 old,1,A-B B-C,True,,,A-B-C,A-B-C,True,0.942,0.908
+interaction,V1 old,2,A-B B-C,True,,,A-B-C,A-B-C,True,0.023,0.0
+interaction,V2 old,2,A-B B-C,True,,,A-B-C,A-B-C,True,0.988,0.965
+interaction,V1 old,3,A-B B-C,True,,,A-B-C,A-B-C,True,0.026,0.0
+interaction,V2 old,3,A-B B-C,True,,,A-B-C,A-B-C,True,0.948,0.921
+interaction,V1 old,4,A-B B-C,True,,,A-B-C,A-B-C,True,0.029,0.0
+interaction,V2 old,4,A-B B-C,True,,,A-B-C,A-B-C,True,0.966,0.938

@@ -1,0 +1,125 @@
+benchmark,variant,task,dataset,columns,score
+appliances,MN,regression,all columns,105,0.3496
+appliances,MN,regression,original columns only,27,0.4295
+appliances,MN,regression,jar selection,1,0.0412
+appliances,MN,regression,python selection (seed 0),23,0.4409
+appliances,UN,regression,all columns,85,0.3553
+appliances,UN,regression,original columns only,27,0.4295
+appliances,UN,regression,jar selection,26,0.431
+appliances,UN,regression,python selection (seed 0),25,0.4329
+avocado_sales,MN,regression,all columns,53,0.89
+avocado_sales,MN,regression,original columns only,13,0.9113
+avocado_sales,MN,regression,jar selection,11,0.8427
+avocado_sales,MN,regression,python selection (seed 0),10,0.807
+avocado_sales,UN,regression,all columns,43,0.892
+avocado_sales,UN,regression,original columns only,13,0.9113
+avocado_sales,UN,regression,jar selection,11,0.8427
+avocado_sales,UN,regression,python selection (seed 0),10,0.807
+bank,MN,classification,all columns,64,0.9049
+bank,MN,classification,original columns only,16,0.9032
+bank,MN,classification,jar selection,11,0.9047
+bank,MN,classification,python selection (seed 0),7,0.8927
+bank,UN,classification,all columns,52,0.902
+bank,UN,classification,original columns only,16,0.9032
+bank,UN,classification,jar selection,15,0.9037
+bank,UN,classification,python selection (seed 0),11,0.8913
+covertype,MN,classification,all columns,49,0.7688
+covertype,MN,classification,original columns only,12,0.8008
+covertype,MN,classification,jar selection,10,0.7807
+covertype,MN,classification,python selection (seed 0),3,0.721
+covertype,UN,classification,all columns,40,0.77
+covertype,UN,classification,original columns only,12,0.8008
+covertype,UN,classification,jar selection,12,0.802
+covertype,UN,classification,python selection (seed 0),10,0.7476
+default_payment,MN,classification,all columns,90,0.8236
+default_payment,MN,classification,original columns only,23,0.8247
+default_payment,MN,classification,jar selection,19,0.8248
+default_payment,MN,classification,python selection (seed 0),19,0.8248
+default_payment,UN,classification,all columns,73,0.8236
+default_payment,UN,classification,original columns only,23,0.8247
+default_payment,UN,classification,jar selection,21,0.8245
+default_payment,UN,classification,python selection (seed 0),23,0.8248
+diamonds,MN,regression,all columns,38,0.9783
+diamonds,MN,regression,original columns only,9,0.979
+diamonds,MN,regression,jar selection,9,0.979
+diamonds,MN,regression,python selection (seed 0),4,0.8809
+diamonds,UN,regression,all columns,31,0.9783
+diamonds,UN,regression,original columns only,9,0.979
+diamonds,UN,regression,jar selection,9,0.979
+diamonds,UN,regression,python selection (seed 0),7,0.8831
+drive_diagnosis,MN,classification,all columns,184,0.9958
+drive_diagnosis,MN,classification,original columns only,48,0.9962
+drive_diagnosis,MN,classification,jar selection,48,0.9961
+drive_diagnosis,MN,classification,python selection (seed 0),44,0.9966
+drive_diagnosis,UN,classification,all columns,148,0.9959
+drive_diagnosis,UN,classification,original columns only,48,0.9962
+drive_diagnosis,UN,classification,jar selection,48,0.9961
+drive_diagnosis,UN,classification,python selection (seed 0),46,0.9963
+dry_beans,MN,classification,all columns,64,0.925
+dry_beans,MN,classification,original columns only,16,0.9271
+dry_beans,MN,classification,jar selection,16,0.9275
+dry_beans,MN,classification,python selection (seed 0),15,0.9254
+dry_beans,UN,classification,all columns,52,0.9255
+dry_beans,UN,classification,original columns only,16,0.9271
+dry_beans,UN,classification,jar selection,16,0.9275
+dry_beans,UN,classification,python selection (seed 0),15,0.9254
+house_sales,MN,regression,all columns,68,0.8909
+house_sales,MN,regression,original columns only,17,0.894
+house_sales,MN,regression,jar selection,14,0.8921
+house_sales,MN,regression,python selection (seed 0),12,0.7629
+house_sales,UN,regression,all columns,55,0.8909
+house_sales,UN,regression,original columns only,17,0.894
+house_sales,UN,regression,jar selection,16,0.8941
+house_sales,UN,regression,python selection (seed 0),14,0.7621
+jannis,MN,classification,all columns,206,0.7728
+jannis,MN,classification,original columns only,54,0.7794
+jannis,MN,classification,jar selection,26,0.7865
+jannis,MN,classification,python selection (seed 0),25,0.7819
+jannis,UN,classification,all columns,166,0.7714
+jannis,UN,classification,original columns only,54,0.7794
+jannis,UN,classification,jar selection,26,0.7865
+jannis,UN,classification,python selection (seed 0),25,0.7819
+mice_protein,UN,classification,all columns,244,1.0
+mice_protein,UN,classification,original columns only,80,1.0
+mice_protein,UN,classification,jar selection,80,1.0
+mice_protein,UN,classification,python selection (seed 0),86,1.0
+miniboone,MN,classification,all columns,192,0.9303
+miniboone,MN,classification,original columns only,50,0.9335
+miniboone,MN,classification,jar selection,51,0.9338
+miniboone,MN,classification,python selection (seed 0),41,0.9323
+miniboone,UN,classification,all columns,154,0.9316
+miniboone,UN,classification,original columns only,50,0.9335
+miniboone,UN,classification,jar selection,50,0.9335
+miniboone,UN,classification,python selection (seed 0),45,0.9337
+nasa,MN,regression,all columns,83,0.6407
+nasa,MN,regression,original columns only,21,0.646
+nasa,MN,regression,jar selection,19,0.646
+nasa,MN,regression,python selection (seed 0),10,0.6389
+nasa,UN,regression,all columns,67,0.6423
+nasa,UN,regression,original columns only,21,0.646
+nasa,UN,regression,jar selection,19,0.646
+nasa,UN,regression,python selection (seed 0),15,0.6409
+pendigits,MN,classification,all columns,64,0.991
+pendigits,MN,classification,original columns only,16,0.9923
+pendigits,MN,classification,jar selection,16,0.9924
+pendigits,MN,classification,python selection (seed 0),19,0.992
+pendigits,UN,classification,all columns,52,0.9915
+pendigits,UN,classification,original columns only,16,0.9923
+pendigits,UN,classification,jar selection,16,0.9924
+pendigits,UN,classification,python selection (seed 0),18,0.9922
+pol,MN,regression,all columns,184,0.9843
+pol,MN,regression,original columns only,48,0.9865
+pol,MN,regression,jar selection,16,0.9867
+pol,MN,regression,python selection (seed 0),15,0.9292
+pol,UN,regression,all columns,148,0.9848
+pol,UN,regression,original columns only,48,0.9865
+pol,UN,regression,jar selection,16,0.9867
+pol,UN,regression,python selection (seed 0),15,0.9292
+students,MN,classification,all columns,120,0.7679
+students,MN,classification,original columns only,31,0.7823
+students,MN,classification,jar selection,34,0.7708
+students,MN,classification,python selection (seed 0),57,0.7609
+students,UN,classification,all columns,97,0.7645
+students,UN,classification,original columns only,31,0.7823
+students,UN,classification,jar selection,38,0.7798
+students,UN,classification,python selection (seed 0),33,0.7785

@@ -1,0 +1,9 @@
+benchmark,seed,groups,groups_with_target,V1_components,V2A_components,V3_split,V3_target_dataset,left_out_by_V3
+diamonds,0,5,1,5,5,2,price y,carat x z
+diamonds,1,4,1,5,5,2,price y,carat x z
+bank,0,6,1,8,8,5,Class day month poutcome contact,pdays previous housing_loan
+bank,1,10,2,11,11,7,Class day month duration poutcome personal_loan contact,pdays previous default housing_loan
+house_sales,0,16,2,13,13,4,grade price sqft_living waterfront,bathrooms bedrooms long sqft_above sqft_basement sqft_living15 sqft_lot sqft_lot15 yr_built
+house_sales,1,24,3,14,14,5,grade lat price sqft_living waterfront,bathrooms bedrooms long sqft_above sqft_basement sqft_living15 sqft_lot sqft_lot15 yr_built
+bank_mn,0,25,1,8,8,4,Class day month poutcome,pdays previous housing_loan contact
+bank_mn,1,22,2,11,11,7,Class day month duration poutcome personal_loan contact,pdays previous default housing_loan

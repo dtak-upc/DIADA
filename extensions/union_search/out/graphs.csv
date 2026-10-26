@@ -1,0 +1,8 @@
+candidate,edges_T,added,missing,sym_diff
+T1_same,4,[],[],0
+T2_bigger,4,[],[],0
+T3_pricier,4,[],[],0
+T4_regulated,3,"[('price', 'year')]","[('price', 'rooms'), ('price', 'size')]",3
+T5_noise,0,[],"[('price', 'rooms'), ('price', 'size'), ('price', 'zone'), ('rooms', 'size')]",4
+T6_misalign,2,[],"[('price', 'rooms'), ('rooms', 'size')]",2
+T7_small,2,[],"[('price', 'rooms'), ('price', 'zone')]",2

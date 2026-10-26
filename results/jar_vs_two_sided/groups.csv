@@ -1,0 +1,113 @@
+benchmark,seed,size,has_target,group
+diamonds,0,3,False,carat x y
+diamonds,0,3,False,carat y z
+diamonds,0,2,False,cut depth
+diamonds,0,2,False,cut table
+diamonds,0,2,True,price y
+diamonds,1,3,False,carat x y
+diamonds,1,3,False,carat y z
+diamonds,1,3,False,cut depth table
+diamonds,1,2,True,price y
+bank,0,5,True,Class day month poutcome contact
+bank,0,4,False,day month poutcome housing_loan
+bank,0,4,False,day pdays previous poutcome
+bank,0,4,False,day previous poutcome housing_loan
+bank,0,2,False,job education
+bank,0,2,False,default personal_loan
+bank,1,6,True,Class day month duration poutcome contact
+bank,1,6,True,Class day month duration personal_loan contact
+bank,1,6,False,day month duration poutcome default housing_loan
+bank,1,6,False,day month duration poutcome default contact
+bank,1,6,False,day month duration default housing_loan personal_loan
+bank,1,6,False,day month duration default personal_loan contact
+bank,1,5,False,day duration pdays previous poutcome
+bank,1,5,False,day duration previous poutcome housing_loan
+bank,1,4,False,day duration pdays personal_loan
+bank,1,2,False,job education
+house_sales,0,4,False,sqft_above sqft_basement sqft_living waterfront
+house_sales,0,4,False,sqft_basement sqft_lot sqft_lot15 waterfront
+house_sales,0,3,True,price sqft_living waterfront
+house_sales,0,3,False,sqft_living sqft_living15 waterfront
+house_sales,0,3,False,sqft_living15 sqft_lot waterfront
+house_sales,0,3,False,sqft_lot sqft_lot15 yr_built
+house_sales,0,2,False,bathrooms sqft_living
+house_sales,0,2,False,bedrooms long
+house_sales,0,2,False,bedrooms sqft_living
+house_sales,0,2,False,date_month date_year
+house_sales,0,2,True,grade price
+house_sales,0,2,False,grade sqft_above
+house_sales,0,2,False,grade sqft_living15
+house_sales,0,2,False,grade sqft_lot15
+house_sales,0,2,False,long sqft_lot
+house_sales,0,2,False,sqft_above yr_built
+house_sales,1,4,False,sqft_basement sqft_lot sqft_lot15 yr_built
+house_sales,1,4,False,sqft_lot sqft_lot15 waterfront yr_built
+house_sales,1,3,False,bedrooms lat waterfront
+house_sales,1,3,False,bedrooms long waterfront
+house_sales,1,3,False,bedrooms sqft_living waterfront
+house_sales,1,3,False,bedrooms sqft_lot15 waterfront
+house_sales,1,3,True,lat price waterfront
+house_sales,1,3,False,lat sqft_living15 waterfront
+house_sales,1,3,False,lat sqft_lot waterfront
+house_sales,1,3,False,long sqft_above waterfront
+house_sales,1,3,False,long sqft_lot waterfront
+house_sales,1,3,True,price sqft_living waterfront
+house_sales,1,3,False,sqft_above sqft_living waterfront
+house_sales,1,3,False,sqft_basement sqft_living sqft_lot
+house_sales,1,3,False,sqft_living sqft_living15 waterfront
+house_sales,1,3,False,sqft_living sqft_lot waterfront
+house_sales,1,3,False,sqft_living15 sqft_lot15 waterfront
+house_sales,1,2,False,bathrooms lat
+house_sales,1,2,False,bathrooms sqft_living
+house_sales,1,2,False,bathrooms yr_built
+house_sales,1,2,False,date_month date_year
+house_sales,1,2,True,grade price
+house_sales,1,2,False,grade sqft_above
+house_sales,1,2,False,grade sqft_lot15
+bank_mn,0,5,False,day pdays previous poutcome housing_loan
+bank_mn,0,5,False,spurious_cat_2 spurious_cat_4 spurious_cat_5 spurious_num_1 spurious_num_2
+bank_mn,0,4,True,Class day month poutcome
+bank_mn,0,4,False,day month poutcome housing_loan
+bank_mn,0,4,False,day month poutcome contact
+bank_mn,0,4,False,spurious_cat_1 spurious_cat_4 spurious_cat_5 spurious_num_2
+bank_mn,0,3,False,spurious_cat_1 spurious_cat_4 spurious_num_3
+bank_mn,0,3,False,spurious_cat_2 spurious_cat_3 spurious_cat_6
+bank_mn,0,3,False,spurious_cat_2 spurious_cat_4 spurious_cat_6
+bank_mn,0,3,False,spurious_cat_3 spurious_cat_6 spurious_num_5
+bank_mn,0,3,False,spurious_cat_3 spurious_cat_6 spurious_num_6
+bank_mn,0,3,False,spurious_cat_3 spurious_num_4 spurious_num_5
+bank_mn,0,3,False,spurious_cat_3 spurious_num_4 spurious_num_6
+bank_mn,0,3,False,spurious_cat_4 spurious_cat_5 spurious_num_4
+bank_mn,0,3,False,spurious_cat_4 spurious_cat_6 spurious_num_3
+bank_mn,0,3,False,spurious_cat_4 spurious_num_1 spurious_num_3
+bank_mn,0,3,False,spurious_cat_4 spurious_num_3 spurious_num_4
+bank_mn,0,3,False,spurious_cat_5 spurious_num_2 spurious_num_5
+bank_mn,0,3,False,spurious_cat_5 spurious_num_4 spurious_num_5
+bank_mn,0,3,False,spurious_cat_6 spurious_num_3 spurious_num_6
+bank_mn,0,3,False,spurious_num_1 spurious_num_2 spurious_num_6
+bank_mn,0,3,False,spurious_num_1 spurious_num_3 spurious_num_6
+bank_mn,0,3,False,spurious_num_3 spurious_num_4 spurious_num_6
+bank_mn,0,2,False,job education
+bank_mn,0,2,False,default personal_loan
+bank_mn,1,7,False,spurious_cat_1 spurious_cat_2 spurious_cat_4 spurious_cat_5 spurious_cat_6 spurious_num_2 spurious_num_6
+bank_mn,1,7,False,spurious_cat_1 spurious_cat_2 spurious_cat_4 spurious_cat_5 spurious_num_2 spurious_num_4 spurious_num_6
+bank_mn,1,7,False,spurious_cat_1 spurious_cat_2 spurious_cat_4 spurious_cat_6 spurious_num_2 spurious_num_3 spurious_num_6
+bank_mn,1,7,False,spurious_cat_1 spurious_cat_2 spurious_cat_4 spurious_num_2 spurious_num_3 spurious_num_4 spurious_num_6
+bank_mn,1,7,False,spurious_cat_2 spurious_cat_3 spurious_cat_4 spurious_cat_6 spurious_num_2 spurious_num_5 spurious_num_6
+bank_mn,1,7,False,spurious_cat_2 spurious_cat_3 spurious_cat_4 spurious_num_2 spurious_num_4 spurious_num_5 spurious_num_6
+bank_mn,1,7,False,spurious_cat_2 spurious_cat_4 spurious_cat_5 spurious_cat_6 spurious_num_1 spurious_num_2 spurious_num_6
+bank_mn,1,7,False,spurious_cat_2 spurious_cat_4 spurious_cat_5 spurious_cat_6 spurious_num_2 spurious_num_5 spurious_num_6
+bank_mn,1,7,False,spurious_cat_2 spurious_cat_4 spurious_cat_5 spurious_num_1 spurious_num_2 spurious_num_4 spurious_num_6
+bank_mn,1,7,False,spurious_cat_2 spurious_cat_4 spurious_cat_5 spurious_num_2 spurious_num_4 spurious_num_5 spurious_num_6
+bank_mn,1,7,False,spurious_cat_2 spurious_cat_4 spurious_cat_6 spurious_num_1 spurious_num_2 spurious_num_3 spurious_num_6
+bank_mn,1,7,False,spurious_cat_2 spurious_cat_4 spurious_num_1 spurious_num_2 spurious_num_3 spurious_num_4 spurious_num_6
+bank_mn,1,6,True,Class day month duration poutcome contact
+bank_mn,1,6,True,Class day month duration personal_loan contact
+bank_mn,1,6,False,day month duration poutcome default housing_loan
+bank_mn,1,6,False,day month duration poutcome default contact
+bank_mn,1,6,False,day month duration default housing_loan personal_loan
+bank_mn,1,6,False,day month duration default personal_loan contact
+bank_mn,1,5,False,day duration pdays previous poutcome
+bank_mn,1,5,False,day duration previous poutcome housing_loan
+bank_mn,1,4,False,day duration pdays personal_loan
+bank_mn,1,2,False,job education

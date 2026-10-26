@@ -1,0 +1,6 @@
+case,A,B,C,mi_bits,mi_given_B,share_left,pairs_agreeing_on_B,p_C_agree,p_C_agree_if_A_agree,p_C_agree_if_A_differ,evidence_2_17,exact_P_C_given_B,exact_P_C_given_AB,pairs_needed_for_4,evidence_2^13,evidence_2^14,evidence_2^15,evidence_2^16,evidence_2^17,evidence_2^18,evidence_2^19,evidence_2^20,evidence_2^21
+1_chain_A-C_via_B,A,B,C,0.4422,-0.0012,-0.0,32762,0.6171,0.6225,0.6081,1.21,0.6138,0.618,2^22,0.15,0.49,0.57,0.45,1.16,1.49,1.91,2.37,3.56
+2_house_bathrooms-price_via_sqft_living,bathrooms,sqft_living,price,0.2298,0.027,0.12,13280,0.3204,0.3254,0.316,0.5,0.3182,0.3249,2^23,0.2,0.46,0.33,0.57,0.67,1.11,1.36,1.89,2.95
+3_bank_contact-Class_via_month,contact,month,Class,0.0196,0.0192,0.98,21633,0.8396,0.8462,0.8282,2.01,0.8438,0.8496,2^20,0.56,0.8,0.99,1.04,1.91,2.15,3.31,4.84,6.68
+4_bank_pdays-month_via_housing_loan,pdays,housing_loan,month,0.0596,0.0562,0.94,66524,0.2236,0.2224,0.2292,1.11,0.2253,0.2247,2^23,0.47,0.36,0.65,0.52,1.13,0.32,1.34,1.37,2.32
+5_house_price-yr_built_via_sqft_living,price,sqft_living,yr_built,0.0524,0.0929,1.77,13010,0.1385,0.1522,0.1321,1.92,0.1397,0.1511,2^20,0.54,0.33,0.89,0.97,1.52,2.67,3.29,4.24,6.24

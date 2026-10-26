@@ -1,0 +1,57 @@
+benchmark,version,seed,edges,tests,splits,split_edges,groups,largest_group,mn_size,mn_overlap_jar,seconds,seconds_v2_step
+diamonds,V0,42,18,0,0,,1,10,10,1.0,0.582,0.0
+diamonds,V1 new,42,19,0,0,,1,10,10,1.0,0.576,0.0
+diamonds,V2 new,42,19,39,3,carat-price price-z x-z,3,8,6,0.6,2.004,1.428
+diamonds,V0,0,15,0,0,,1,8,8,0.8,0.55,0.0
+diamonds,V1 new,0,15,0,0,,1,8,8,0.8,0.565,0.0
+diamonds,V2 new,0,15,36,4,carat-price price-x price-z x-z,3,6,2,0.2,1.95,1.385
+diamonds,V0,1,19,0,0,,1,9,9,0.9,0.549,0.0
+diamonds,V1 new,1,19,0,0,,1,9,9,0.9,0.566,0.0
+diamonds,V2 new,1,19,54,4,carat-price price-x price-z x-z,3,7,3,0.3,1.687,1.122
+diamonds,V0 jar (stored),0,18,0,0,,1,10,10,1.0,1.341,0.0
+diamonds,V1 old,0,13,0,0,,2,5,5,0.5,0.347,0.0
+diamonds,V2 old,0,13,33,4,carat-price price-x price-z x-z,4,3,2,0.2,1.545,1.198
+diamonds,V1 old,1,12,0,0,,2,5,5,0.5,0.458,0.0
+diamonds,V2 old,1,12,30,3,carat-price price-z x-z,4,3,3,0.3,1.524,1.066
+bank,V0,42,29,0,0,,3,12,12,1.0,0.557,0.0
+bank,V1 new,42,30,0,0,,3,13,13,0.923,0.635,0.0
+bank,V2 new,42,30,66,1,V14-V15,4,12,13,0.923,1.839,1.204
+bank,V0,0,27,0,0,,3,12,12,1.0,0.569,0.0
+bank,V1 new,0,30,0,0,,2,13,13,0.923,0.599,0.0
+bank,V2 new,0,30,78,0,,2,13,13,0.923,2.061,1.463
+bank,V0,1,28,0,0,,2,15,15,0.8,0.572,0.0
+bank,V1 new,1,31,0,0,,2,15,15,0.8,0.575,0.0
+bank,V2 new,1,31,81,0,,2,15,15,0.8,1.473,0.898
+bank,V0 jar (stored),0,29,0,0,,3,12,12,1.0,1.381,0.0
+bank,V1 old,0,22,0,0,,3,8,8,0.667,1.626,0.0
+bank,V2 old,0,22,78,0,,3,8,8,0.667,3.212,1.586
+bank,V1 old,1,30,0,0,,2,11,11,0.917,1.833,0.0
+bank,V2 old,1,30,114,1,V14-V15,3,10,11,0.917,3.807,1.974
+house_sales,V0,42,51,0,0,,2,14,14,1.0,0.479,0.0
+house_sales,V1 new,42,55,0,0,,2,14,14,1.0,0.545,0.0
+house_sales,V2 new,42,55,234,0,,2,14,14,1.0,2.262,1.717
+house_sales,V0,0,50,0,0,,2,14,14,1.0,0.487,0.0
+house_sales,V1 new,0,51,0,0,,2,14,14,1.0,0.516,0.0
+house_sales,V2 new,0,51,219,0,,2,14,14,1.0,2.524,2.008
+house_sales,V0,1,54,0,0,,2,14,14,1.0,0.497,0.0
+house_sales,V1 new,1,58,0,0,,2,14,14,1.0,0.545,0.0
+house_sales,V2 new,1,58,291,0,,2,14,14,1.0,2.104,1.559
+house_sales,V0 jar (stored),0,51,0,0,,2,14,14,1.0,1.333,0.0
+house_sales,V1 old,0,73,0,0,,2,13,13,0.929,6.383,0.0
+house_sales,V2 old,0,73,681,0,,2,13,13,0.929,10.127,3.744
+house_sales,V1 old,1,80,0,0,,2,14,14,1.0,4.903,0.0
+house_sales,V2 old,1,80,747,0,,2,14,14,1.0,8.827,3.923
+bank_mn,V0,42,71,0,0,,4,12,12,1.0,3.374,0.0
+bank_mn,V1 new,42,73,0,0,,4,13,13,0.923,3.479,0.0
+bank_mn,V2 new,42,73,231,8,V14-V15 spurious_cat_1-spurious_cat_5 spurious_cat_3-spurious_cat_5 spurious_cat_3-spurious_num_1 spurious_cat_5-spurious_num_3 spurious_cat_6-spurious_num_4 spurious_num_1-spurious_num_5 spurious_num_3-spurious_num_5,14,12,13,0.923,5.46,1.981
+bank_mn,V0,0,62,0,0,,4,12,12,1.0,3.559,0.0
+bank_mn,V1 new,0,66,0,0,,3,13,13,0.923,3.473,0.0
+bank_mn,V2 new,0,66,192,7,spurious_cat_1-spurious_cat_5 spurious_cat_3-spurious_cat_5 spurious_cat_3-spurious_num_1 spurious_cat_5-spurious_num_3 spurious_cat_6-spurious_num_4 spurious_num_1-spurious_num_5 spurious_num_3-spurious_num_5,12,13,13,0.923,5.486,2.013
+bank_mn,V0,1,76,0,0,,2,29,29,0.414,3.357,0.0
+bank_mn,V1 new,1,79,0,0,,2,29,29,0.414,3.804,0.0
+bank_mn,V2 new,1,79,279,7,spurious_cat_1-spurious_cat_5 spurious_cat_3-spurious_cat_5 spurious_cat_3-spurious_num_1 spurious_cat_5-spurious_num_3 spurious_cat_6-spurious_num_4 spurious_num_1-spurious_num_5 spurious_num_3-spurious_num_5,11,25,28,0.429,5.529,1.725
+bank_mn,V0 jar (stored),0,71,0,0,,4,12,12,1.0,6.35,0.0
+bank_mn,V1 old,0,73,0,0,,4,12,8,0.667,14.186,0.0
+bank_mn,V2 old,0,73,372,8,spurious_cat_1-spurious_cat_5 spurious_cat_3-spurious_cat_5 spurious_cat_3-spurious_num_1 spurious_cat_3-spurious_num_3 spurious_cat_5-spurious_num_3 spurious_cat_6-spurious_num_4 spurious_num_1-spurious_num_5 spurious_num_3-spurious_num_5,11,8,8,0.667,17.047,2.861
+bank_mn,V1 old,1,54,0,0,,3,12,11,0.917,8.352,0.0
+bank_mn,V2 old,1,54,180,8,V14-V15 spurious_cat_1-spurious_cat_5 spurious_cat_3-spurious_cat_5 spurious_cat_3-spurious_num_1 spurious_cat_5-spurious_num_3 spurious_cat_6-spurious_num_4 spurious_num_1-spurious_num_5 spurious_num_3-spurious_num_5,11,10,11,0.917,10.678,2.326

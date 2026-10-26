@@ -1,0 +1,64 @@
+benchmark,version,runs,grouping_ok,groupings,extra_seconds
+independent,V0,6,6.0,A | B | C (6),0.0
+independent,V1 old,5,5.0,A | B | C (5),0.0
+independent,V1 new,6,6.0,A | B | C (6),0.0
+independent,V2 old,5,5.0,A | B | C (5),0.8640000000000001
+independent,V2 new,6,6.0,A | B | C (6),0.29216666666666663
+independent,V3 old,5,5.0,A | B | C (5),0.8640000000000001
+independent,V3 new,6,6.0,A | B | C (6),0.29216666666666663
+pair_isolated,V0,6,6.0,A-B | C (6),0.0
+pair_isolated,V1 old,5,5.0,A-B | C (5),0.0
+pair_isolated,V1 new,6,6.0,A-B | C (6),0.0
+pair_isolated,V2 old,5,5.0,A-B | C (5),0.8804000000000001
+pair_isolated,V2 new,6,6.0,A-B | C (6),0.292
+pair_isolated,V3 old,5,5.0,A-B | C (5),0.881
+pair_isolated,V3 new,6,6.0,A-B | C (6),0.292
+chain,V0,6,0.0,A-B-C (6),0.0
+chain,V1 old,5,0.0,A-B-C (5),0.0
+chain,V1 new,6,0.0,A-B-C (6),0.0
+chain,V2 old,5,5.0,A-B | B-C (5),0.9558
+chain,V2 new,6,6.0,A-B | B-C (6),0.3421666666666667
+chain,V3 old,5,5.0,A-B | B-C (5),0.9561999999999999
+chain,V3 new,6,6.0,A-B | B-C (6),0.3423333333333333
+common_cause,V0,6,0.0,A-B-C (6),0.0
+common_cause,V1 old,5,0.0,A-B-C (5),0.0
+common_cause,V1 new,6,0.0,A-B-C (6),0.0
+common_cause,V2 old,5,5.0,A-B | B-C (5),0.9288000000000001
+common_cause,V2 new,6,6.0,A-B | B-C (6),0.3416666666666666
+common_cause,V3 old,5,5.0,A-B | B-C (5),0.9288000000000001
+common_cause,V3 new,6,6.0,A-B | B-C (6),0.342
+hub_join,V0,6,0.0,A-B-C (6),0.0
+hub_join,V1 old,5,0.0,A-B-C (5),0.0
+hub_join,V1 new,6,0.0,A-B-C (6),0.0
+hub_join,V2 old,5,0.0,A-B-C (5),0.857
+hub_join,V2 new,6,0.0,A-B-C (6),0.2831666666666667
+hub_join,V3 old,5,3.0,A-B | B-C (3) / A-B-C (2),0.885
+hub_join,V3 new,6,0.0,A-B-C (6),0.2831666666666667
+direct_triangle,V0,6,6.0,A-B-C (6),0.0
+direct_triangle,V1 old,5,5.0,A-B-C (5),0.0
+direct_triangle,V1 new,6,6.0,A-B-C (6),0.0
+direct_triangle,V2 old,5,5.0,A-B-C (5),0.9672000000000001
+direct_triangle,V2 new,6,6.0,A-B-C (6),0.34349999999999997
+direct_triangle,V3 old,5,5.0,A-B-C (5),0.9672000000000001
+direct_triangle,V3 new,6,6.0,A-B-C (6),0.34366666666666673
+sum_collider,V0,6,6.0,A-B-C (6),0.0
+sum_collider,V1 old,5,5.0,A-B-C (5),0.0
+sum_collider,V1 new,6,6.0,A-B-C (6),0.0
+sum_collider,V2 old,5,5.0,A-B-C (5),0.9061999999999999
+sum_collider,V2 new,6,6.0,A-B-C (6),0.293
+sum_collider,V3 old,5,5.0,A-B-C (5),0.9532
+sum_collider,V3 new,6,6.0,A-B-C (6),0.3303333333333333
+xor,V0,6,,A | B | C (6),0.0
+xor,V1 old,5,,A | B | C (5),0.0
+xor,V1 new,6,,A | B | C (6),0.0
+xor,V2 old,5,,A | B | C (5),0.9218
+xor,V2 new,6,,A | B | C (6),0.29716666666666663
+xor,V3 old,5,,A | B | C (5),0.9218
+xor,V3 new,6,,A | B | C (6),0.29716666666666663
+interaction,V0,6,6.0,A-B-C (6),0.0
+interaction,V1 old,5,5.0,A-B-C (5),0.0
+interaction,V1 new,6,6.0,A-B-C (6),0.0
+interaction,V2 old,5,5.0,A-B-C (5),0.9411999999999999
+interaction,V2 new,6,6.0,A-B-C (6),0.29316666666666663
+interaction,V3 old,5,5.0,A-B-C (5),0.991
+interaction,V3 new,6,6.0,A-B-C (6),0.3315

@@ -1,0 +1,2549 @@
+[
+ {
+  "benchmark": "diamonds",
+  "version": "V0 base",
+  "seed": 0,
+  "cols": 10,
+  "rows": 53940,
+  "seconds": 0.14,
+  "rounds": 6,
+  "pairs": 64512,
+  "nodes": 270,
+  "edges": {
+   "carat-y": {
+    "value": 43.18,
+    "mi": 1.3766
+   },
+   "x-y": {
+    "value": 43.03,
+    "mi": 1.6082
+   },
+   "price-y": {
+    "value": 34.35,
+    "mi": 1.6568
+   },
+   "y-z": {
+    "value": 31.23,
+    "mi": 2.1685
+   },
+   "carat-z": {
+    "value": 42.6,
+    "mi": 1.3725
+   },
+   "carat-x": {
+    "value": 36.36,
+    "mi": 1.2864
+   },
+   "carat-price": {
+    "value": 17.44,
+    "mi": 1.1145
+   },
+   "x-z": {
+    "value": 35.73,
+    "mi": 1.4233
+   },
+   "price-x": {
+    "value": 14.09,
+    "mi": 1.2334
+   },
+   "price-z": {
+    "value": 34.36,
+    "mi": 1.584
+   },
+   "cut-table": {
+    "value": 5.97,
+    "mi": 0.4303
+   }
+  },
+  "un_kept": [
+   "carat",
+   "cut",
+   "price",
+   "table",
+   "x",
+   "y",
+   "z"
+  ],
+  "mn_target_cluster": [
+   "carat",
+   "price",
+   "x",
+   "y",
+   "z"
+  ],
+  "injected_linked": [],
+  "png": "results\\two_sided\\png\\diamonds_base_seed0.png"
+ },
+ {
+  "benchmark": "diamonds",
+  "version": "V0 base",
+  "seed": 1,
+  "cols": 10,
+  "rows": 53940,
+  "seconds": 0.143,
+  "rounds": 6,
+  "pairs": 64512,
+  "nodes": 277,
+  "edges": {
+   "carat-y": {
+    "value": 42.92,
+    "mi": 1.3766
+   },
+   "carat-x": {
+    "value": 35.75,
+    "mi": 1.2864
+   },
+   "carat-z": {
+    "value": 30.24,
+    "mi": 1.3725
+   },
+   "carat-price": {
+    "value": 17.01,
+    "mi": 1.1145
+   },
+   "x-y": {
+    "value": 42.89,
+    "mi": 1.6082
+   },
+   "y-z": {
+    "value": 31.55,
+    "mi": 2.1685
+   },
+   "price-y": {
+    "value": 30.25,
+    "mi": 1.6568
+   },
+   "x-z": {
+    "value": 25.49,
+    "mi": 1.4233
+   },
+   "price-x": {
+    "value": 14.42,
+    "mi": 1.2334
+   },
+   "price-z": {
+    "value": 24.7,
+    "mi": 1.584
+   },
+   "cut-table": {
+    "value": 10.12,
+    "mi": 0.4303
+   },
+   "cut-depth": {
+    "value": 5.52,
+    "mi": 0.3777
+   }
+  },
+  "un_kept": [
+   "carat",
+   "cut",
+   "depth",
+   "price",
+   "table",
+   "x",
+   "y",
+   "z"
+  ],
+  "mn_target_cluster": [
+   "carat",
+   "price",
+   "x",
+   "y",
+   "z"
+  ],
+  "injected_linked": [],
+  "png": "results\\two_sided\\png\\diamonds_base_seed1.png"
+ },
+ {
+  "benchmark": "diamonds",
+  "version": "V1 two-sided",
+  "seed": 0,
+  "cols": 10,
+  "rows": 53940,
+  "seconds": 0.286,
+  "rounds": 8,
+  "pairs": 261120,
+  "nodes": 310,
+  "edges": {
+   "carat-x": {
+    "value": 147.85,
+    "mi": 1.2864
+   },
+   "carat-price": {
+    "value": 108.33,
+    "mi": 1.1145
+   },
+   "carat-y": {
+    "value": 91.07,
+    "mi": 1.3766
+   },
+   "carat-z": {
+    "value": 79.36,
+    "mi": 1.3725
+   },
+   "price-x": {
+    "value": 120.69,
+    "mi": 1.2334
+   },
+   "x-y": {
+    "value": 91.07,
+    "mi": 1.6082
+   },
+   "x-z": {
+    "value": 85.48,
+    "mi": 1.4233
+   },
+   "price-z": {
+    "value": 70.69,
+    "mi": 1.584
+   },
+   "price-y": {
+    "value": 53.14,
+    "mi": 1.6568
+   },
+   "y-z": {
+    "value": 58.17,
+    "mi": 2.1685
+   },
+   "cut-table": {
+    "value": 18.53,
+    "mi": 0.4303
+   },
+   "depth-table": {
+    "value": 4.12,
+    "mi": 0.1325
+   },
+   "cut-depth": {
+    "value": 10.35,
+    "mi": 0.3777
+   }
+  },
+  "un_kept": [
+   "carat",
+   "cut",
+   "depth",
+   "price",
+   "table",
+   "x",
+   "y",
+   "z"
+  ],
+  "mn_target_cluster": [
+   "carat",
+   "price",
+   "x",
+   "y",
+   "z"
+  ],
+  "injected_linked": [],
+  "png": "results\\two_sided\\png\\diamonds_two_sided_seed0.png"
+ },
+ {
+  "benchmark": "diamonds",
+  "version": "V1 two-sided",
+  "seed": 1,
+  "cols": 10,
+  "rows": 53940,
+  "seconds": 0.361,
+  "rounds": 9,
+  "pairs": 392192,
+  "nodes": 309,
+  "edges": {
+   "carat-x": {
+    "value": 147.98,
+    "mi": 1.2864
+   },
+   "carat-z": {
+    "value": 128.78,
+    "mi": 1.3725
+   },
+   "carat-y": {
+    "value": 113.66,
+    "mi": 1.3766
+   },
+   "carat-price": {
+    "value": 73.75,
+    "mi": 1.1145
+   },
+   "x-z": {
+    "value": 128.78,
+    "mi": 1.4233
+   },
+   "price-x": {
+    "value": 119.58,
+    "mi": 1.2334
+   },
+   "x-y": {
+    "value": 113.66,
+    "mi": 1.6082
+   },
+   "y-z": {
+    "value": 76.38,
+    "mi": 2.1685
+   },
+   "price-z": {
+    "value": 42.38,
+    "mi": 1.584
+   },
+   "price-y": {
+    "value": 80.98,
+    "mi": 1.6568
+   },
+   "cut-table": {
+    "value": 16.87,
+    "mi": 0.4303
+   },
+   "cut-depth": {
+    "value": 8.63,
+    "mi": 0.3777
+   }
+  },
+  "un_kept": [
+   "carat",
+   "cut",
+   "depth",
+   "price",
+   "table",
+   "x",
+   "y",
+   "z"
+  ],
+  "mn_target_cluster": [
+   "carat",
+   "price",
+   "x",
+   "y",
+   "z"
+  ],
+  "injected_linked": [],
+  "png": "results\\two_sided\\png\\diamonds_two_sided_seed1.png"
+ },
+ {
+  "benchmark": "bank",
+  "version": "V0 base",
+  "seed": 0,
+  "cols": 17,
+  "rows": 45211,
+  "seconds": 0.223,
+  "rounds": 6,
+  "pairs": 64512,
+  "nodes": 590,
+  "edges": {
+   "V15-V16": {
+    "value": 54.32,
+    "mi": 0.2055
+   },
+   "V14-V15": {
+    "value": 32.94,
+    "mi": 0.0614
+   },
+   "V11-V15": {
+    "value": 7.84,
+    "mi": 0.027
+   },
+   "V14-V16": {
+    "value": 42.89,
+    "mi": 0.294
+   },
+   "V11-V7": {
+    "value": 17.51,
+    "mi": 0.2012
+   },
+   "V11-V9": {
+    "value": 11.02,
+    "mi": 0.4283
+   },
+   "V2-V4": {
+    "value": 6.88,
+    "mi": 0.4423
+   }
+  },
+  "un_kept": [
+   "V11",
+   "V14",
+   "V15",
+   "V16",
+   "V2",
+   "V4",
+   "V7",
+   "V9"
+  ],
+  "mn_target_cluster": [
+   "Class"
+  ],
+  "injected_linked": [],
+  "png": "results\\two_sided\\png\\bank_base_seed0.png"
+ },
+ {
+  "benchmark": "bank",
+  "version": "V0 base",
+  "seed": 1,
+  "cols": 17,
+  "rows": 45211,
+  "seconds": 0.262,
+  "rounds": 7,
+  "pairs": 130048,
+  "nodes": 591,
+  "edges": {
+   "V15-V16": {
+    "value": 76.89,
+    "mi": 0.2055
+   },
+   "V14-V16": {
+    "value": 41.89,
+    "mi": 0.294
+   },
+   "Class-V16": {
+    "value": 10.14,
+    "mi": 0.0424
+   },
+   "V14-V15": {
+    "value": 32.15,
+    "mi": 0.0614
+   },
+   "V15-V5": {
+    "value": 8.88,
+    "mi": 0.0006
+   },
+   "Class-V12": {
+    "value": 5.6,
+    "mi": 0.0993
+   },
+   "V11-V7": {
+    "value": 9.73,
+    "mi": 0.2012
+   },
+   "V11-V9": {
+    "value": 6.96,
+    "mi": 0.4283
+   },
+   "V2-V4": {
+    "value": 4.88,
+    "mi": 0.4423
+   }
+  },
+  "un_kept": [
+   "Class",
+   "V11",
+   "V12",
+   "V14",
+   "V15",
+   "V16",
+   "V2",
+   "V4",
+   "V5",
+   "V7",
+   "V9"
+  ],
+  "mn_target_cluster": [
+   "Class",
+   "V12",
+   "V14",
+   "V15",
+   "V16",
+   "V5"
+  ],
+  "injected_linked": [],
+  "png": "results\\two_sided\\png\\bank_base_seed1.png"
+ },
+ {
+  "benchmark": "bank",
+  "version": "V1 two-sided",
+  "seed": 0,
+  "cols": 17,
+  "rows": 45211,
+  "seconds": 1.332,
+  "rounds": 17,
+  "pairs": 1440768,
+  "nodes": 800,
+  "edges": {
+   "V15-V16": {
+    "value": 225.97,
+    "mi": 0.2055
+   },
+   "V14-V16": {
+    "value": 218.83,
+    "mi": 0.294
+   },
+   "V16-V9": {
+    "value": 132.77,
+    "mi": 0.09
+   },
+   "Class-V16": {
+    "value": 81.2,
+    "mi": 0.0424
+   },
+   "V11-V16": {
+    "value": 65.61,
+    "mi": 0.0915
+   },
+   "V14-V15": {
+    "value": 134.68,
+    "mi": 0.0614
+   },
+   "V15-V9": {
+    "value": 130.9,
+    "mi": 0.0334
+   },
+   "Class-V15": {
+    "value": 79.59,
+    "mi": 0.0087
+   },
+   "V11-V15": {
+    "value": 52.66,
+    "mi": 0.027
+   },
+   "V14-V9": {
+    "value": 132.77,
+    "mi": 0.0448
+   },
+   "Class-V14": {
+    "value": 74.93,
+    "mi": 0.0009
+   },
+   "V11-V14": {
+    "value": 53.86,
+    "mi": 0.0596
+   },
+   "V14-V7": {
+    "value": 35.18,
+    "mi": 0.0156
+   },
+   "V11-V9": {
+    "value": 65.61,
+    "mi": 0.4283
+   },
+   "V7-V9": {
+    "value": 41.63,
+    "mi": 0.0338
+   },
+   "Class-V9": {
+    "value": 39.64,
+    "mi": 0.0196
+   },
+   "V11-V7": {
+    "value": 90.81,
+    "mi": 0.2012
+   },
+   "Class-V7": {
+    "value": 43.79,
+    "mi": 0.0139
+   },
+   "V10-V11": {
+    "value": 33.5,
+    "mi": 0.4413
+   },
+   "Class-V11": {
+    "value": 19.31,
+    "mi": 0.035
+   },
+   "V2-V4": {
+    "value": 8.5,
+    "mi": 0.4423
+   },
+   "V5-V8": {
+    "value": 6.31,
+    "mi": 0.0034
+   }
+  },
+  "un_kept": [
+   "Class",
+   "V10",
+   "V11",
+   "V14",
+   "V15",
+   "V16",
+   "V2",
+   "V4",
+   "V5",
+   "V7",
+   "V8",
+   "V9"
+  ],
+  "mn_target_cluster": [
+   "Class",
+   "V10",
+   "V11",
+   "V14",
+   "V15",
+   "V16",
+   "V7",
+   "V9"
+  ],
+  "injected_linked": [],
+  "png": "results\\two_sided\\png\\bank_two_sided_seed0.png"
+ },
+ {
+  "benchmark": "bank",
+  "version": "V1 two-sided",
+  "seed": 1,
+  "cols": 17,
+  "rows": 45211,
+  "seconds": 1.326,
+  "rounds": 16,
+  "pairs": 1309696,
+  "nodes": 960,
+  "edges": {
+   "V14-V16": {
+    "value": 294.13,
+    "mi": 0.294
+   },
+   "V14-V15": {
+    "value": 189.39,
+    "mi": 0.0614
+   },
+   "V14-V9": {
+    "value": 92.68,
+    "mi": 0.0448
+   },
+   "Class-V14": {
+    "value": 76.27,
+    "mi": 0.0009
+   },
+   "V11-V14": {
+    "value": 66.1,
+    "mi": 0.0596
+   },
+   "V14-V7": {
+    "value": 31.6,
+    "mi": 0.0156
+   },
+   "V14-V5": {
+    "value": 11.18,
+    "mi": 0.0003
+   },
+   "V15-V16": {
+    "value": 243.12,
+    "mi": 0.2055
+   },
+   "V16-V9": {
+    "value": 104.99,
+    "mi": 0.09
+   },
+   "V11-V16": {
+    "value": 95.71,
+    "mi": 0.0915
+   },
+   "Class-V16": {
+    "value": 83.9,
+    "mi": 0.0424
+   },
+   "V16-V8": {
+    "value": 62.74,
+    "mi": 0.0027
+   },
+   "V16-V5": {
+    "value": 15.64,
+    "mi": 0.0015
+   },
+   "V15-V9": {
+    "value": 87.82,
+    "mi": 0.0334
+   },
+   "Class-V15": {
+    "value": 79.64,
+    "mi": 0.0087
+   },
+   "V11-V15": {
+    "value": 58.14,
+    "mi": 0.027
+   },
+   "V15-V8": {
+    "value": 31.74,
+    "mi": 0.0002
+   },
+   "V15-V5": {
+    "value": 14.03,
+    "mi": 0.0006
+   },
+   "V11-V9": {
+    "value": 68.27,
+    "mi": 0.4283
+   },
+   "V7-V9": {
+    "value": 55.61,
+    "mi": 0.0338
+   },
+   "Class-V9": {
+    "value": 42.36,
+    "mi": 0.0196
+   },
+   "V11-V7": {
+    "value": 93.32,
+    "mi": 0.2012
+   },
+   "Class-V11": {
+    "value": 42.46,
+    "mi": 0.035
+   },
+   "V10-V11": {
+    "value": 40.36,
+    "mi": 0.4413
+   },
+   "Class-V7": {
+    "value": 49.68,
+    "mi": 0.0139
+   },
+   "Class-V8": {
+    "value": 30.07,
+    "mi": 0.0038
+   },
+   "Class-V12": {
+    "value": 15.2,
+    "mi": 0.0993
+   },
+   "Class-V5": {
+    "value": 10.65,
+    "mi": 0.0004
+   },
+   "V5-V8": {
+    "value": 32.35,
+    "mi": 0.0034
+   },
+   "V2-V4": {
+    "value": 5.9,
+    "mi": 0.4423
+   }
+  },
+  "un_kept": [
+   "Class",
+   "V10",
+   "V11",
+   "V12",
+   "V14",
+   "V15",
+   "V16",
+   "V2",
+   "V4",
+   "V5",
+   "V7",
+   "V8",
+   "V9"
+  ],
+  "mn_target_cluster": [
+   "Class",
+   "V10",
+   "V11",
+   "V12",
+   "V14",
+   "V15",
+   "V16",
+   "V5",
+   "V7",
+   "V8",
+   "V9"
+  ],
+  "injected_linked": [],
+  "png": "results\\two_sided\\png\\bank_two_sided_seed1.png"
+ },
+ {
+  "benchmark": "house_sales",
+  "version": "V0 base",
+  "seed": 0,
+  "cols": 18,
+  "rows": 21613,
+  "seconds": 1.191,
+  "rounds": 14,
+  "pairs": 1047552,
+  "nodes": 680,
+  "edges": {
+   "sqft_above-sqft_living": {
+    "value": 42.2,
+    "mi": 1.2999
+   },
+   "bathrooms-sqft_living": {
+    "value": 39.03,
+    "mi": 0.5715
+   },
+   "sqft_living-sqft_living15": {
+    "value": 30.16,
+    "mi": 0.5846
+   },
+   "bedrooms-sqft_living": {
+    "value": 25.52,
+    "mi": 0.3955
+   },
+   "bathrooms-sqft_above": {
+    "value": 10.62,
+    "mi": 0.4447
+   },
+   "bathrooms-grade": {
+    "value": 13.26,
+    "mi": 0.4156
+   },
+   "bathrooms-yr_built": {
+    "value": 11.24,
+    "mi": 0.3252
+   },
+   "grade-sqft_living15": {
+    "value": 26.6,
+    "mi": 0.452
+   },
+   "sqft_living15-waterfront": {
+    "value": 8.15,
+    "mi": 0.0044
+   },
+   "grade-waterfront": {
+    "value": 13.92,
+    "mi": 0.005
+   },
+   "price-waterfront": {
+    "value": 17.05,
+    "mi": 0.0162
+   },
+   "sqft_lot-sqft_lot15": {
+    "value": 5.71,
+    "mi": 1.4575
+   },
+   "date_month-date_year": {
+    "value": 4.54,
+    "mi": 0.814
+   }
+  },
+  "un_kept": [
+   "bathrooms",
+   "bedrooms",
+   "date_month",
+   "date_year",
+   "grade",
+   "price",
+   "sqft_above",
+   "sqft_living",
+   "sqft_living15",
+   "sqft_lot",
+   "sqft_lot15",
+   "waterfront",
+   "yr_built"
+  ],
+  "mn_target_cluster": [
+   "bathrooms",
+   "bedrooms",
+   "grade",
+   "price",
+   "sqft_above",
+   "sqft_living",
+   "sqft_living15",
+   "waterfront",
+   "yr_built"
+  ],
+  "injected_linked": [],
+  "png": "results\\two_sided\\png\\house_sales_base_seed0.png"
+ },
+ {
+  "benchmark": "house_sales",
+  "version": "V0 base",
+  "seed": 1,
+  "cols": 18,
+  "rows": 21613,
+  "seconds": 1.17,
+  "rounds": 14,
+  "pairs": 1047552,
+  "nodes": 687,
+  "edges": {
+   "sqft_above-sqft_living": {
+    "value": 41.64,
+    "mi": 1.2999
+   },
+   "bathrooms-sqft_living": {
+    "value": 28.65,
+    "mi": 0.5715
+   },
+   "sqft_living-sqft_living15": {
+    "value": 24.06,
+    "mi": 0.5846
+   },
+   "grade-sqft_living": {
+    "value": 18.89,
+    "mi": 0.5664
+   },
+   "bedrooms-sqft_living": {
+    "value": 16.83,
+    "mi": 0.3955
+   },
+   "sqft_basement-sqft_living": {
+    "value": 10.75,
+    "mi": 0.235
+   },
+   "bathrooms-sqft_above": {
+    "value": 29.14,
+    "mi": 0.4447
+   },
+   "grade-sqft_above": {
+    "value": 24.29,
+    "mi": 0.5454
+   },
+   "sqft_above-sqft_living15": {
+    "value": 23.64,
+    "mi": 0.4777
+   },
+   "bathrooms-bedrooms": {
+    "value": 7.02,
+    "mi": 0.2342
+   },
+   "grade-sqft_living15": {
+    "value": 18.49,
+    "mi": 0.452
+   },
+   "grade-waterfront": {
+    "value": 8.45,
+    "mi": 0.005
+   },
+   "sqft_living15-waterfront": {
+    "value": 8.18,
+    "mi": 0.0044
+   },
+   "price-waterfront": {
+    "value": 11.42,
+    "mi": 0.0162
+   },
+   "sqft_lot-sqft_lot15": {
+    "value": 5.76,
+    "mi": 1.4575
+   },
+   "date_month-date_year": {
+    "value": 4.62,
+    "mi": 0.814
+   }
+  },
+  "un_kept": [
+   "bathrooms",
+   "bedrooms",
+   "date_month",
+   "date_year",
+   "grade",
+   "price",
+   "sqft_above",
+   "sqft_basement",
+   "sqft_living",
+   "sqft_living15",
+   "sqft_lot",
+   "sqft_lot15",
+   "waterfront"
+  ],
+  "mn_target_cluster": [
+   "bathrooms",
+   "bedrooms",
+   "grade",
+   "price",
+   "sqft_above",
+   "sqft_basement",
+   "sqft_living",
+   "sqft_living15",
+   "waterfront"
+  ],
+  "injected_linked": [],
+  "png": "results\\two_sided\\png\\house_sales_base_seed1.png"
+ },
+ {
+  "benchmark": "house_sales",
+  "version": "V1 two-sided",
+  "seed": 0,
+  "cols": 18,
+  "rows": 21613,
+  "seconds": 4.877,
+  "rounds": 31,
+  "pairs": 3275776,
+  "nodes": 2321,
+  "edges": {
+   "sqft_lot-sqft_lot15": {
+    "value": 251.42,
+    "mi": 1.4575
+   },
+   "sqft_lot15-yr_built": {
+    "value": 56.26,
+    "mi": 0.3305
+   },
+   "long-sqft_lot15": {
+    "value": 53.82,
+    "mi": 0.1969
+   },
+   "sqft_living-sqft_lot15": {
+    "value": 34.76,
+    "mi": 0.1061
+   },
+   "sqft_living15-sqft_lot15": {
+    "value": 24.13,
+    "mi": 0.1433
+   },
+   "price-sqft_lot15": {
+    "value": 19.44,
+    "mi": 0.0752
+   },
+   "grade-sqft_lot15": {
+    "value": 19.01,
+    "mi": 0.0884
+   },
+   "sqft_above-sqft_lot15": {
+    "value": 10.4,
+    "mi": 0.1076
+   },
+   "bathrooms-sqft_lot15": {
+    "value": 5.67,
+    "mi": 0.0338
+   },
+   "bedrooms-sqft_lot15": {
+    "value": 5.56,
+    "mi": 0.0588
+   },
+   "sqft_basement-sqft_lot15": {
+    "value": 4.36,
+    "mi": 0.0237
+   },
+   "sqft_lot-yr_built": {
+    "value": 44.43,
+    "mi": 0.3181
+   },
+   "long-sqft_lot": {
+    "value": 34.97,
+    "mi": 0.1772
+   },
+   "sqft_living15-sqft_lot": {
+    "value": 26.62,
+    "mi": 0.1306
+   },
+   "sqft_living-sqft_lot": {
+    "value": 23.96,
+    "mi": 0.1131
+   },
+   "bedrooms-sqft_lot": {
+    "value": 21.42,
+    "mi": 0.0647
+   },
+   "price-sqft_lot": {
+    "value": 14.97,
+    "mi": 0.0659
+   },
+   "sqft_above-sqft_lot": {
+    "value": 9.77,
+    "mi": 0.113
+   },
+   "grade-sqft_lot": {
+    "value": 6.05,
+    "mi": 0.0823
+   },
+   "bathrooms-sqft_lot": {
+    "value": 4.18,
+    "mi": 0.033
+   },
+   "sqft_above-sqft_living": {
+    "value": 188.32,
+    "mi": 1.2999
+   },
+   "sqft_basement-sqft_living": {
+    "value": 176.8,
+    "mi": 0.235
+   },
+   "bathrooms-sqft_living": {
+    "value": 116.37,
+    "mi": 0.5715
+   },
+   "sqft_living-sqft_living15": {
+    "value": 111.58,
+    "mi": 0.5846
+   },
+   "bedrooms-sqft_living": {
+    "value": 90.08,
+    "mi": 0.3955
+   },
+   "grade-sqft_living": {
+    "value": 57.88,
+    "mi": 0.5664
+   },
+   "price-sqft_living": {
+    "value": 48.61,
+    "mi": 0.4107
+   },
+   "long-sqft_living": {
+    "value": 35.89,
+    "mi": 0.0753
+   },
+   "sqft_living-yr_built": {
+    "value": 20.03,
+    "mi": 0.1324
+   },
+   "sqft_above-sqft_basement": {
+    "value": 176.8,
+    "mi": 0.0454
+   },
+   "bathrooms-sqft_above": {
+    "value": 95.61,
+    "mi": 0.4447
+   },
+   "bedrooms-sqft_above": {
+    "value": 90.08,
+    "mi": 0.2797
+   },
+   "sqft_above-sqft_living15": {
+    "value": 79.9,
+    "mi": 0.4777
+   },
+   "grade-sqft_above": {
+    "value": 64.26,
+    "mi": 0.5454
+   },
+   "price-sqft_above": {
+    "value": 40.65,
+    "mi": 0.2844
+   },
+   "long-sqft_above": {
+    "value": 35.79,
+    "mi": 0.13
+   },
+   "sqft_above-yr_built": {
+    "value": 27.38,
+    "mi": 0.2432
+   },
+   "bathrooms-sqft_basement": {
+    "value": 79.31,
+    "mi": 0.0771
+   },
+   "sqft_basement-sqft_living15": {
+    "value": 63.72,
+    "mi": 0.0483
+   },
+   "sqft_basement-yr_built": {
+    "value": 53.72,
+    "mi": 0.0584
+   },
+   "bedrooms-sqft_basement": {
+    "value": 45.65,
+    "mi": 0.0838
+   },
+   "grade-sqft_basement": {
+    "value": 39.75,
+    "mi": 0.036
+   },
+   "price-sqft_basement": {
+    "value": 30.45,
+    "mi": 0.0641
+   },
+   "long-sqft_basement": {
+    "value": 27.53,
+    "mi": 0.026
+   },
+   "sqft_basement-waterfront": {
+    "value": 16.04,
+    "mi": 0.0026
+   },
+   "bathrooms-grade": {
+    "value": 90.65,
+    "mi": 0.4156
+   },
+   "bathrooms-sqft_living15": {
+    "value": 86.26,
+    "mi": 0.2795
+   },
+   "bathrooms-bedrooms": {
+    "value": 75.48,
+    "mi": 0.2342
+   },
+   "bathrooms-yr_built": {
+    "value": 65.63,
+    "mi": 0.3252
+   },
+   "bathrooms-price": {
+    "value": 43.98,
+    "mi": 0.2298
+   },
+   "bathrooms-long": {
+    "value": 27.23,
+    "mi": 0.0783
+   },
+   "bathrooms-waterfront": {
+    "value": 11.83,
+    "mi": 0.0035
+   },
+   "grade-sqft_living15": {
+    "value": 85.01,
+    "mi": 0.452
+   },
+   "long-sqft_living15": {
+    "value": 63.14,
+    "mi": 0.1377
+   },
+   "price-sqft_living15": {
+    "value": 62.03,
+    "mi": 0.3009
+   },
+   "bedrooms-sqft_living15": {
+    "value": 51.04,
+    "mi": 0.1552
+   },
+   "sqft_living15-yr_built": {
+    "value": 26.62,
+    "mi": 0.1194
+   },
+   "sqft_living15-waterfront": {
+    "value": 18.81,
+    "mi": 0.0044
+   },
+   "grade-price": {
+    "value": 70.45,
+    "mi": 0.4469
+   },
+   "bedrooms-grade": {
+    "value": 56.7,
+    "mi": 0.1428
+   },
+   "grade-long": {
+    "value": 28.92,
+    "mi": 0.0673
+   },
+   "grade-yr_built": {
+    "value": 28.59,
+    "mi": 0.2463
+   },
+   "grade-waterfront": {
+    "value": 20.75,
+    "mi": 0.005
+   },
+   "bedrooms-price": {
+    "value": 42.15,
+    "mi": 0.101
+   },
+   "bedrooms-yr_built": {
+    "value": 31.61,
+    "mi": 0.0936
+   },
+   "bedrooms-waterfront": {
+    "value": 6.69,
+    "mi": 0.0005
+   },
+   "price-waterfront": {
+    "value": 28.98,
+    "mi": 0.0162
+   },
+   "long-price": {
+    "value": 28.92,
+    "mi": 0.0484
+   },
+   "price-yr_built": {
+    "value": 19.44,
+    "mi": 0.0524
+   },
+   "long-yr_built": {
+    "value": 27.12,
+    "mi": 0.2493
+   },
+   "waterfront-yr_built": {
+    "value": 4.17,
+    "mi": 0.0007
+   },
+   "long-waterfront": {
+    "value": 6.17,
+    "mi": 0.0039
+   },
+   "date_month-date_year": {
+    "value": 8.67,
+    "mi": 0.814
+   }
+  },
+  "un_kept": [
+   "bathrooms",
+   "bedrooms",
+   "date_month",
+   "date_year",
+   "grade",
+   "long",
+   "price",
+   "sqft_above",
+   "sqft_basement",
+   "sqft_living",
+   "sqft_living15",
+   "sqft_lot",
+   "sqft_lot15",
+   "waterfront",
+   "yr_built"
+  ],
+  "mn_target_cluster": [
+   "bathrooms",
+   "bedrooms",
+   "grade",
+   "long",
+   "price",
+   "sqft_above",
+   "sqft_basement",
+   "sqft_living",
+   "sqft_living15",
+   "sqft_lot",
+   "sqft_lot15",
+   "waterfront",
+   "yr_built"
+  ],
+  "injected_linked": [],
+  "png": "results\\two_sided\\png\\house_sales_two_sided_seed0.png"
+ },
+ {
+  "benchmark": "house_sales",
+  "version": "V1 two-sided",
+  "seed": 1,
+  "cols": 18,
+  "rows": 21613,
+  "seconds": 3.811,
+  "rounds": 24,
+  "pairs": 2358272,
+  "nodes": 2298,
+  "edges": {
+   "sqft_lot-sqft_lot15": {
+    "value": 257.7,
+    "mi": 1.4575
+   },
+   "sqft_lot15-yr_built": {
+    "value": 58.97,
+    "mi": 0.3305
+   },
+   "long-sqft_lot15": {
+    "value": 45.58,
+    "mi": 0.1969
+   },
+   "lat-sqft_lot15": {
+    "value": 30.9,
+    "mi": 0.1709
+   },
+   "sqft_living15-sqft_lot15": {
+    "value": 30.62,
+    "mi": 0.1433
+   },
+   "grade-sqft_lot15": {
+    "value": 27.23,
+    "mi": 0.0884
+   },
+   "bedrooms-sqft_lot15": {
+    "value": 24.19,
+    "mi": 0.0588
+   },
+   "price-sqft_lot15": {
+    "value": 23.16,
+    "mi": 0.0752
+   },
+   "sqft_living-sqft_lot15": {
+    "value": 13.72,
+    "mi": 0.1061
+   },
+   "sqft_above-sqft_lot15": {
+    "value": 10.29,
+    "mi": 0.1076
+   },
+   "bathrooms-sqft_lot15": {
+    "value": 5.95,
+    "mi": 0.0338
+   },
+   "sqft_lot-yr_built": {
+    "value": 56.68,
+    "mi": 0.3181
+   },
+   "long-sqft_lot": {
+    "value": 43.52,
+    "mi": 0.1772
+   },
+   "grade-sqft_lot": {
+    "value": 29.66,
+    "mi": 0.0823
+   },
+   "sqft_living15-sqft_lot": {
+    "value": 27.27,
+    "mi": 0.1306
+   },
+   "bedrooms-sqft_lot": {
+    "value": 24.74,
+    "mi": 0.0647
+   },
+   "lat-sqft_lot": {
+    "value": 24.64,
+    "mi": 0.14
+   },
+   "price-sqft_lot": {
+    "value": 20.29,
+    "mi": 0.0659
+   },
+   "sqft_living-sqft_lot": {
+    "value": 17.8,
+    "mi": 0.1131
+   },
+   "sqft_above-sqft_lot": {
+    "value": 17.43,
+    "mi": 0.113
+   },
+   "bathrooms-sqft_lot": {
+    "value": 4.01,
+    "mi": 0.033
+   },
+   "sqft_above-sqft_living": {
+    "value": 168.42,
+    "mi": 1.2999
+   },
+   "bathrooms-sqft_living": {
+    "value": 99.97,
+    "mi": 0.5715
+   },
+   "sqft_living-sqft_living15": {
+    "value": 81.67,
+    "mi": 0.5846
+   },
+   "grade-sqft_living": {
+    "value": 53.45,
+    "mi": 0.5664
+   },
+   "bedrooms-sqft_living": {
+    "value": 52.44,
+    "mi": 0.3955
+   },
+   "sqft_basement-sqft_living": {
+    "value": 43.82,
+    "mi": 0.235
+   },
+   "price-sqft_living": {
+    "value": 43.52,
+    "mi": 0.4107
+   },
+   "sqft_living-yr_built": {
+    "value": 19.11,
+    "mi": 0.1324
+   },
+   "long-sqft_living": {
+    "value": 15.63,
+    "mi": 0.0753
+   },
+   "lat-sqft_living": {
+    "value": 10.3,
+    "mi": 0.0367
+   },
+   "bathrooms-sqft_above": {
+    "value": 79.83,
+    "mi": 0.4447
+   },
+   "grade-sqft_above": {
+    "value": 65.36,
+    "mi": 0.5454
+   },
+   "sqft_above-sqft_living15": {
+    "value": 64.39,
+    "mi": 0.4777
+   },
+   "bedrooms-sqft_above": {
+    "value": 46.92,
+    "mi": 0.2797
+   },
+   "sqft_above-sqft_basement": {
+    "value": 43.82,
+    "mi": 0.0454
+   },
+   "price-sqft_above": {
+    "value": 40.86,
+    "mi": 0.2844
+   },
+   "long-sqft_above": {
+    "value": 29.3,
+    "mi": 0.13
+   },
+   "sqft_above-yr_built": {
+    "value": 25.68,
+    "mi": 0.2432
+   },
+   "lat-sqft_above": {
+    "value": 17.72,
+    "mi": 0.0375
+   },
+   "bathrooms-sqft_living15": {
+    "value": 71.13,
+    "mi": 0.2795
+   },
+   "bathrooms-grade": {
+    "value": 68.57,
+    "mi": 0.4156
+   },
+   "bathrooms-yr_built": {
+    "value": 51.73,
+    "mi": 0.3252
+   },
+   "bathrooms-bedrooms": {
+    "value": 46.3,
+    "mi": 0.2342
+   },
+   "bathrooms-price": {
+    "value": 40.43,
+    "mi": 0.2298
+   },
+   "bathrooms-sqft_basement": {
+    "value": 33.11,
+    "mi": 0.0771
+   },
+   "bathrooms-long": {
+    "value": 26.67,
+    "mi": 0.0783
+   },
+   "bathrooms-waterfront": {
+    "value": 8.75,
+    "mi": 0.0035
+   },
+   "grade-sqft_living15": {
+    "value": 93.51,
+    "mi": 0.452
+   },
+   "grade-price": {
+    "value": 92.55,
+    "mi": 0.4469
+   },
+   "bedrooms-grade": {
+    "value": 45.1,
+    "mi": 0.1428
+   },
+   "grade-yr_built": {
+    "value": 37.07,
+    "mi": 0.2463
+   },
+   "grade-long": {
+    "value": 31.01,
+    "mi": 0.0673
+   },
+   "grade-sqft_basement": {
+    "value": 29.9,
+    "mi": 0.036
+   },
+   "grade-lat": {
+    "value": 23.15,
+    "mi": 0.0798
+   },
+   "grade-waterfront": {
+    "value": 18.77,
+    "mi": 0.005
+   },
+   "price-sqft_living15": {
+    "value": 59.65,
+    "mi": 0.3009
+   },
+   "long-sqft_living15": {
+    "value": 58.49,
+    "mi": 0.1377
+   },
+   "bedrooms-sqft_living15": {
+    "value": 45.1,
+    "mi": 0.1552
+   },
+   "lat-sqft_living15": {
+    "value": 34.35,
+    "mi": 0.0544
+   },
+   "sqft_living15-yr_built": {
+    "value": 30.62,
+    "mi": 0.1194
+   },
+   "sqft_basement-sqft_living15": {
+    "value": 28.03,
+    "mi": 0.0483
+   },
+   "sqft_living15-waterfront": {
+    "value": 20.28,
+    "mi": 0.0044
+   },
+   "lat-price": {
+    "value": 57.86,
+    "mi": 0.3468
+   },
+   "bedrooms-price": {
+    "value": 38.96,
+    "mi": 0.101
+   },
+   "long-price": {
+    "value": 37.67,
+    "mi": 0.0484
+   },
+   "price-waterfront": {
+    "value": 31.33,
+    "mi": 0.0162
+   },
+   "price-yr_built": {
+    "value": 29.53,
+    "mi": 0.0524
+   },
+   "price-sqft_basement": {
+    "value": 11.97,
+    "mi": 0.0641
+   },
+   "long-yr_built": {
+    "value": 31.83,
+    "mi": 0.2493
+   },
+   "bedrooms-yr_built": {
+    "value": 24.74,
+    "mi": 0.0936
+   },
+   "lat-yr_built": {
+    "value": 21.73,
+    "mi": 0.1504
+   },
+   "sqft_basement-yr_built": {
+    "value": 17.11,
+    "mi": 0.0584
+   },
+   "lat-long": {
+    "value": 37.67,
+    "mi": 0.1528
+   },
+   "long-sqft_basement": {
+    "value": 17.68,
+    "mi": 0.026
+   },
+   "lat-sqft_basement": {
+    "value": 4.81,
+    "mi": 0.0179
+   },
+   "bedrooms-sqft_basement": {
+    "value": 25.87,
+    "mi": 0.0838
+   },
+   "bedrooms-waterfront": {
+    "value": 5.14,
+    "mi": 0.0005
+   },
+   "sqft_basement-waterfront": {
+    "value": 17.63,
+    "mi": 0.0026
+   },
+   "date_month-date_year": {
+    "value": 7.0,
+    "mi": 0.814
+   }
+  },
+  "un_kept": [
+   "bathrooms",
+   "bedrooms",
+   "date_month",
+   "date_year",
+   "grade",
+   "lat",
+   "long",
+   "price",
+   "sqft_above",
+   "sqft_basement",
+   "sqft_living",
+   "sqft_living15",
+   "sqft_lot",
+   "sqft_lot15",
+   "waterfront",
+   "yr_built"
+  ],
+  "mn_target_cluster": [
+   "bathrooms",
+   "bedrooms",
+   "grade",
+   "lat",
+   "long",
+   "price",
+   "sqft_above",
+   "sqft_basement",
+   "sqft_living",
+   "sqft_living15",
+   "sqft_lot",
+   "sqft_lot15",
+   "waterfront",
+   "yr_built"
+  ],
+  "injected_linked": [],
+  "png": "results\\two_sided\\png\\house_sales_two_sided_seed1.png"
+ },
+ {
+  "benchmark": "bank_mn",
+  "version": "V0 base",
+  "seed": 0,
+  "cols": 65,
+  "rows": 45211,
+  "seconds": 2.543,
+  "rounds": 7,
+  "pairs": 130048,
+  "nodes": 8509,
+  "edges": {
+   "V15-V16": {
+    "value": 54.32,
+    "mi": 0.2055
+   },
+   "V14-V15": {
+    "value": 32.94,
+    "mi": 0.0614
+   },
+   "V11-V15": {
+    "value": 7.84,
+    "mi": 0.027
+   },
+   "V14-V16": {
+    "value": 42.89,
+    "mi": 0.294
+   },
+   "spurious_cat_5-spurious_num_1": {
+    "value": 46.92,
+    "mi": 1.0266
+   },
+   "spurious_cat_3-spurious_cat_5": {
+    "value": 41.62,
+    "mi": 0.6837
+   },
+   "spurious_cat_5-spurious_num_5": {
+    "value": 35.93,
+    "mi": 0.7743
+   },
+   "spurious_cat_5-spurious_num_3": {
+    "value": 32.85,
+    "mi": 0.7281
+   },
+   "spurious_num_1-spurious_num_5": {
+    "value": 25.12,
+    "mi": 0.6844
+   },
+   "spurious_num_1-spurious_num_3": {
+    "value": 22.92,
+    "mi": 1.0516
+   },
+   "spurious_cat_3-spurious_num_5": {
+    "value": 33.33,
+    "mi": 1.2552
+   },
+   "spurious_num_3-spurious_num_5": {
+    "value": 8.44,
+    "mi": 0.5146
+   },
+   "V11-V7": {
+    "value": 17.51,
+    "mi": 0.2012
+   },
+   "V11-V9": {
+    "value": 11.02,
+    "mi": 0.4283
+   },
+   "spurious_cat_4-spurious_cat_6": {
+    "value": 11.31,
+    "mi": 0.5618
+   },
+   "spurious_cat_4-spurious_num_4": {
+    "value": 8.02,
+    "mi": 0.6271
+   },
+   "spurious_cat_2-spurious_cat_4": {
+    "value": 6.53,
+    "mi": 0.3658
+   },
+   "spurious_cat_2-spurious_cat_6": {
+    "value": 10.16,
+    "mi": 0.4812
+   },
+   "V2-V4": {
+    "value": 6.88,
+    "mi": 0.4423
+   }
+  },
+  "un_kept": [
+   "V11",
+   "V14",
+   "V15",
+   "V16",
+   "V2",
+   "V4",
+   "V7",
+   "V9",
+   "spurious_cat_2",
+   "spurious_cat_3",
+   "spurious_cat_4",
+   "spurious_cat_5",
+   "spurious_cat_6",
+   "spurious_num_1",
+   "spurious_num_3",
+   "spurious_num_4",
+   "spurious_num_5"
+  ],
+  "mn_target_cluster": [
+   "Class"
+  ],
+  "injected_linked": [
+   "spurious_cat_2",
+   "spurious_cat_3",
+   "spurious_cat_4",
+   "spurious_cat_5",
+   "spurious_cat_6",
+   "spurious_num_1",
+   "spurious_num_3",
+   "spurious_num_4",
+   "spurious_num_5"
+  ],
+  "png": "results\\two_sided\\png\\bank_mn_base_seed0.png"
+ },
+ {
+  "benchmark": "bank_mn",
+  "version": "V0 base",
+  "seed": 1,
+  "cols": 65,
+  "rows": 45211,
+  "seconds": 2.469,
+  "rounds": 7,
+  "pairs": 130048,
+  "nodes": 8505,
+  "edges": {
+   "V15-V16": {
+    "value": 76.89,
+    "mi": 0.2055
+   },
+   "V14-V15": {
+    "value": 32.15,
+    "mi": 0.0614
+   },
+   "V15-V5": {
+    "value": 8.88,
+    "mi": 0.0006
+   },
+   "V14-V16": {
+    "value": 41.89,
+    "mi": 0.294
+   },
+   "Class-V16": {
+    "value": 10.14,
+    "mi": 0.0424
+   },
+   "spurious_cat_5-spurious_num_1": {
+    "value": 23.11,
+    "mi": 1.0266
+   },
+   "spurious_num_1-spurious_num_3": {
+    "value": 15.6,
+    "mi": 1.0516
+   },
+   "spurious_num_1-spurious_num_5": {
+    "value": 14.55,
+    "mi": 0.6844
+   },
+   "spurious_cat_3-spurious_cat_5": {
+    "value": 19.7,
+    "mi": 0.6837
+   },
+   "spurious_cat_5-spurious_num_5": {
+    "value": 16.7,
+    "mi": 0.7743
+   },
+   "spurious_cat_5-spurious_num_3": {
+    "value": 14.16,
+    "mi": 0.7281
+   },
+   "spurious_cat_3-spurious_num_5": {
+    "value": 22.49,
+    "mi": 1.2552
+   },
+   "spurious_cat_4-spurious_cat_6": {
+    "value": 15.92,
+    "mi": 0.5618
+   },
+   "spurious_cat_4-spurious_num_4": {
+    "value": 10.84,
+    "mi": 0.6271
+   },
+   "spurious_cat_2-spurious_cat_4": {
+    "value": 9.41,
+    "mi": 0.3658
+   },
+   "spurious_cat_2-spurious_cat_6": {
+    "value": 14.15,
+    "mi": 0.4812
+   },
+   "spurious_cat_1-spurious_num_3": {
+    "value": 7.18,
+    "mi": 0.5981
+   },
+   "Class-V12": {
+    "value": 5.6,
+    "mi": 0.0993
+   },
+   "V11-V7": {
+    "value": 9.73,
+    "mi": 0.2012
+   },
+   "V11-V9": {
+    "value": 6.96,
+    "mi": 0.4283
+   },
+   "V2-V4": {
+    "value": 4.88,
+    "mi": 0.4423
+   }
+  },
+  "un_kept": [
+   "Class",
+   "V11",
+   "V12",
+   "V14",
+   "V15",
+   "V16",
+   "V2",
+   "V4",
+   "V5",
+   "V7",
+   "V9",
+   "spurious_cat_1",
+   "spurious_cat_2",
+   "spurious_cat_3",
+   "spurious_cat_4",
+   "spurious_cat_5",
+   "spurious_cat_6",
+   "spurious_num_1",
+   "spurious_num_3",
+   "spurious_num_4",
+   "spurious_num_5"
+  ],
+  "mn_target_cluster": [
+   "Class",
+   "V12",
+   "V14",
+   "V15",
+   "V16",
+   "V5"
+  ],
+  "injected_linked": [
+   "spurious_cat_1",
+   "spurious_cat_2",
+   "spurious_cat_3",
+   "spurious_cat_4",
+   "spurious_cat_5",
+   "spurious_cat_6",
+   "spurious_num_1",
+   "spurious_num_3",
+   "spurious_num_4",
+   "spurious_num_5"
+  ],
+  "png": "results\\two_sided\\png\\bank_mn_base_seed1.png"
+ },
+ {
+  "benchmark": "bank_mn",
+  "version": "V1 two-sided",
+  "seed": 0,
+  "cols": 65,
+  "rows": 45211,
+  "seconds": 10.878,
+  "rounds": 24,
+  "pairs": 2358272,
+  "nodes": 10725,
+  "edges": {
+   "spurious_cat_3-spurious_num_5": {
+    "value": 266.6,
+    "mi": 1.2552
+   },
+   "spurious_cat_3-spurious_cat_5": {
+    "value": 245.96,
+    "mi": 0.6837
+   },
+   "spurious_cat_3-spurious_num_1": {
+    "value": 201.53,
+    "mi": 0.5239
+   },
+   "spurious_cat_3-spurious_num_3": {
+    "value": 182.51,
+    "mi": 0.3626
+   },
+   "spurious_cat_1-spurious_cat_3": {
+    "value": 167.47,
+    "mi": 0.1241
+   },
+   "spurious_cat_2-spurious_cat_3": {
+    "value": 132.36,
+    "mi": 0.0971
+   },
+   "spurious_cat_3-spurious_cat_4": {
+    "value": 123.08,
+    "mi": 0.0638
+   },
+   "spurious_cat_3-spurious_num_2": {
+    "value": 83.67,
+    "mi": 0.0495
+   },
+   "spurious_cat_3-spurious_num_6": {
+    "value": 83.33,
+    "mi": 0.1424
+   },
+   "spurious_cat_5-spurious_num_5": {
+    "value": 179.81,
+    "mi": 0.7743
+   },
+   "spurious_num_1-spurious_num_5": {
+    "value": 167.16,
+    "mi": 0.6844
+   },
+   "spurious_num_3-spurious_num_5": {
+    "value": 149.41,
+    "mi": 0.5146
+   },
+   "spurious_cat_1-spurious_num_5": {
+    "value": 106.75,
+    "mi": 0.1969
+   },
+   "spurious_cat_2-spurious_num_5": {
+    "value": 76.52,
+    "mi": 0.0676
+   },
+   "spurious_cat_4-spurious_num_5": {
+    "value": 75.31,
+    "mi": 0.0626
+   },
+   "spurious_num_5-spurious_num_6": {
+    "value": 54.31,
+    "mi": 0.1079
+   },
+   "spurious_cat_5-spurious_num_1": {
+    "value": 201.53,
+    "mi": 1.0266
+   },
+   "spurious_cat_5-spurious_num_3": {
+    "value": 182.51,
+    "mi": 0.7281
+   },
+   "spurious_cat_1-spurious_cat_5": {
+    "value": 148.14,
+    "mi": 0.2078
+   },
+   "spurious_cat_5-spurious_cat_6": {
+    "value": 98.47,
+    "mi": 0.0966
+   },
+   "spurious_cat_5-spurious_num_6": {
+    "value": 77.41,
+    "mi": 0.1048
+   },
+   "spurious_cat_5-spurious_num_4": {
+    "value": 73.44,
+    "mi": 0.0529
+   },
+   "V15-V16": {
+    "value": 225.97,
+    "mi": 0.2055
+   },
+   "V14-V16": {
+    "value": 218.83,
+    "mi": 0.294
+   },
+   "V16-V9": {
+    "value": 132.77,
+    "mi": 0.09
+   },
+   "Class-V16": {
+    "value": 81.2,
+    "mi": 0.0424
+   },
+   "V11-V16": {
+    "value": 65.61,
+    "mi": 0.0915
+   },
+   "V14-V15": {
+    "value": 134.68,
+    "mi": 0.0614
+   },
+   "V15-V9": {
+    "value": 130.9,
+    "mi": 0.0334
+   },
+   "Class-V15": {
+    "value": 79.59,
+    "mi": 0.0087
+   },
+   "V11-V15": {
+    "value": 52.66,
+    "mi": 0.027
+   },
+   "V14-V9": {
+    "value": 132.77,
+    "mi": 0.0448
+   },
+   "Class-V14": {
+    "value": 74.93,
+    "mi": 0.0009
+   },
+   "V11-V14": {
+    "value": 53.86,
+    "mi": 0.0596
+   },
+   "V14-V7": {
+    "value": 35.18,
+    "mi": 0.0156
+   },
+   "spurious_num_1-spurious_num_3": {
+    "value": 213.49,
+    "mi": 1.0516
+   },
+   "spurious_cat_1-spurious_num_1": {
+    "value": 107.48,
+    "mi": 0.2788
+   },
+   "spurious_cat_6-spurious_num_1": {
+    "value": 92.93,
+    "mi": 0.1902
+   },
+   "spurious_num_1-spurious_num_6": {
+    "value": 70.06,
+    "mi": 0.0753
+   },
+   "spurious_num_1-spurious_num_4": {
+    "value": 46.95,
+    "mi": 0.0809
+   },
+   "spurious_cat_1-spurious_num_3": {
+    "value": 127.85,
+    "mi": 0.5981
+   },
+   "spurious_cat_2-spurious_num_3": {
+    "value": 95.32,
+    "mi": 0.0538
+   },
+   "spurious_cat_6-spurious_num_3": {
+    "value": 89.33,
+    "mi": 0.1571
+   },
+   "spurious_num_2-spurious_num_3": {
+    "value": 86.13,
+    "mi": 0.1233
+   },
+   "spurious_cat_4-spurious_cat_6": {
+    "value": 175.42,
+    "mi": 0.5618
+   },
+   "spurious_cat_2-spurious_cat_6": {
+    "value": 173.84,
+    "mi": 0.4812
+   },
+   "spurious_cat_6-spurious_num_4": {
+    "value": 99.2,
+    "mi": 0.4188
+   },
+   "spurious_cat_6-spurious_num_6": {
+    "value": 75.28,
+    "mi": 0.0219
+   },
+   "spurious_cat_6-spurious_num_2": {
+    "value": 75.28,
+    "mi": 0.1025
+   },
+   "spurious_cat_1-spurious_cat_6": {
+    "value": 71.15,
+    "mi": 0.0178
+   },
+   "spurious_cat_4-spurious_num_4": {
+    "value": 132.58,
+    "mi": 0.6271
+   },
+   "spurious_cat_2-spurious_cat_4": {
+    "value": 120.46,
+    "mi": 0.3658
+   },
+   "spurious_cat_1-spurious_cat_4": {
+    "value": 71.15,
+    "mi": 0.0416
+   },
+   "spurious_cat_4-spurious_num_6": {
+    "value": 58.96,
+    "mi": 0.0511
+   },
+   "spurious_cat_2-spurious_num_2": {
+    "value": 92.94,
+    "mi": 0.4519
+   },
+   "spurious_cat_2-spurious_num_4": {
+    "value": 72.16,
+    "mi": 0.088
+   },
+   "spurious_cat_2-spurious_num_6": {
+    "value": 72.16,
+    "mi": 0.0652
+   },
+   "spurious_cat_1-spurious_cat_2": {
+    "value": 62.05,
+    "mi": 0.0394
+   },
+   "spurious_cat_1-spurious_num_6": {
+    "value": 83.22,
+    "mi": 0.1455
+   },
+   "spurious_cat_1-spurious_num_2": {
+    "value": 72.96,
+    "mi": 0.3456
+   },
+   "spurious_cat_1-spurious_num_4": {
+    "value": 55.49,
+    "mi": 0.0903
+   },
+   "V11-V9": {
+    "value": 65.61,
+    "mi": 0.4283
+   },
+   "V7-V9": {
+    "value": 41.63,
+    "mi": 0.0338
+   },
+   "Class-V9": {
+    "value": 39.64,
+    "mi": 0.0196
+   },
+   "spurious_num_4-spurious_num_6": {
+    "value": 82.99,
+    "mi": 0.4302
+   },
+   "spurious_num_2-spurious_num_4": {
+    "value": 53.59,
+    "mi": 0.0369
+   },
+   "spurious_num_2-spurious_num_6": {
+    "value": 116.33,
+    "mi": 0.5444
+   },
+   "V11-V7": {
+    "value": 90.81,
+    "mi": 0.2012
+   },
+   "Class-V7": {
+    "value": 43.79,
+    "mi": 0.0139
+   },
+   "V10-V11": {
+    "value": 33.5,
+    "mi": 0.4413
+   },
+   "Class-V11": {
+    "value": 19.31,
+    "mi": 0.035
+   },
+   "V2-V4": {
+    "value": 8.5,
+    "mi": 0.4423
+   },
+   "V5-V8": {
+    "value": 6.31,
+    "mi": 0.0034
+   }
+  },
+  "un_kept": [
+   "Class",
+   "V10",
+   "V11",
+   "V14",
+   "V15",
+   "V16",
+   "V2",
+   "V4",
+   "V5",
+   "V7",
+   "V8",
+   "V9",
+   "spurious_cat_1",
+   "spurious_cat_2",
+   "spurious_cat_3",
+   "spurious_cat_4",
+   "spurious_cat_5",
+   "spurious_cat_6",
+   "spurious_num_1",
+   "spurious_num_2",
+   "spurious_num_3",
+   "spurious_num_4",
+   "spurious_num_5",
+   "spurious_num_6"
+  ],
+  "mn_target_cluster": [
+   "Class",
+   "V10",
+   "V11",
+   "V14",
+   "V15",
+   "V16",
+   "V7",
+   "V9"
+  ],
+  "injected_linked": [
+   "spurious_cat_1",
+   "spurious_cat_2",
+   "spurious_cat_3",
+   "spurious_cat_4",
+   "spurious_cat_5",
+   "spurious_cat_6",
+   "spurious_num_1",
+   "spurious_num_2",
+   "spurious_num_3",
+   "spurious_num_4",
+   "spurious_num_5",
+   "spurious_num_6"
+  ],
+  "png": "results\\two_sided\\png\\bank_mn_two_sided_seed0.png"
+ },
+ {
+  "benchmark": "bank_mn",
+  "version": "V1 two-sided",
+  "seed": 1,
+  "cols": 65,
+  "rows": 45211,
+  "seconds": 6.49,
+  "rounds": 16,
+  "pairs": 1309696,
+  "nodes": 9137,
+  "edges": {
+   "V14-V16": {
+    "value": 294.13,
+    "mi": 0.294
+   },
+   "V15-V16": {
+    "value": 243.12,
+    "mi": 0.2055
+   },
+   "V16-V9": {
+    "value": 104.99,
+    "mi": 0.09
+   },
+   "V11-V16": {
+    "value": 95.71,
+    "mi": 0.0915
+   },
+   "Class-V16": {
+    "value": 83.9,
+    "mi": 0.0424
+   },
+   "V16-V8": {
+    "value": 62.74,
+    "mi": 0.0027
+   },
+   "V16-V5": {
+    "value": 15.64,
+    "mi": 0.0015
+   },
+   "V14-V15": {
+    "value": 189.39,
+    "mi": 0.0614
+   },
+   "V14-V9": {
+    "value": 92.68,
+    "mi": 0.0448
+   },
+   "Class-V14": {
+    "value": 76.27,
+    "mi": 0.0009
+   },
+   "V11-V14": {
+    "value": 66.1,
+    "mi": 0.0596
+   },
+   "V14-V7": {
+    "value": 31.6,
+    "mi": 0.0156
+   },
+   "V14-V5": {
+    "value": 11.18,
+    "mi": 0.0003
+   },
+   "V15-V9": {
+    "value": 87.82,
+    "mi": 0.0334
+   },
+   "Class-V15": {
+    "value": 79.64,
+    "mi": 0.0087
+   },
+   "V11-V15": {
+    "value": 58.14,
+    "mi": 0.027
+   },
+   "V15-V8": {
+    "value": 31.74,
+    "mi": 0.0002
+   },
+   "V15-V5": {
+    "value": 14.03,
+    "mi": 0.0006
+   },
+   "spurious_cat_3-spurious_num_5": {
+    "value": 180.97,
+    "mi": 1.2552
+   },
+   "spurious_num_1-spurious_num_5": {
+    "value": 115.04,
+    "mi": 0.6844
+   },
+   "spurious_num_3-spurious_num_5": {
+    "value": 102.65,
+    "mi": 0.5146
+   },
+   "spurious_cat_5-spurious_num_5": {
+    "value": 63.69,
+    "mi": 0.7743
+   },
+   "spurious_cat_1-spurious_num_5": {
+    "value": 35.71,
+    "mi": 0.1969
+   },
+   "spurious_cat_3-spurious_cat_5": {
+    "value": 127.8,
+    "mi": 0.6837
+   },
+   "spurious_cat_1-spurious_cat_3": {
+    "value": 120.72,
+    "mi": 0.1241
+   },
+   "spurious_cat_3-spurious_num_1": {
+    "value": 115.04,
+    "mi": 0.5239
+   },
+   "spurious_cat_3-spurious_num_3": {
+    "value": 102.65,
+    "mi": 0.3626
+   },
+   "spurious_num_1-spurious_num_3": {
+    "value": 131.5,
+    "mi": 1.0516
+   },
+   "spurious_cat_5-spurious_num_1": {
+    "value": 101.62,
+    "mi": 1.0266
+   },
+   "spurious_cat_1-spurious_num_1": {
+    "value": 60.28,
+    "mi": 0.2788
+   },
+   "spurious_cat_1-spurious_num_3": {
+    "value": 91.49,
+    "mi": 0.5981
+   },
+   "spurious_cat_5-spurious_num_3": {
+    "value": 87.52,
+    "mi": 0.7281
+   },
+   "spurious_cat_1-spurious_cat_5": {
+    "value": 72.85,
+    "mi": 0.2078
+   },
+   "spurious_cat_1-spurious_num_2": {
+    "value": 45.28,
+    "mi": 0.3456
+   },
+   "V11-V9": {
+    "value": 68.27,
+    "mi": 0.4283
+   },
+   "V7-V9": {
+    "value": 55.61,
+    "mi": 0.0338
+   },
+   "Class-V9": {
+    "value": 42.36,
+    "mi": 0.0196
+   },
+   "V11-V7": {
+    "value": 93.32,
+    "mi": 0.2012
+   },
+   "Class-V11": {
+    "value": 42.46,
+    "mi": 0.035
+   },
+   "V10-V11": {
+    "value": 40.36,
+    "mi": 0.4413
+   },
+   "Class-V7": {
+    "value": 49.68,
+    "mi": 0.0139
+   },
+   "Class-V8": {
+    "value": 30.07,
+    "mi": 0.0038
+   },
+   "Class-V12": {
+    "value": 15.2,
+    "mi": 0.0993
+   },
+   "Class-V5": {
+    "value": 10.65,
+    "mi": 0.0004
+   },
+   "V5-V8": {
+    "value": 32.35,
+    "mi": 0.0034
+   },
+   "spurious_num_2-spurious_num_6": {
+    "value": 12.62,
+    "mi": 0.5444
+   },
+   "spurious_cat_2-spurious_num_2": {
+    "value": 11.41,
+    "mi": 0.4519
+   },
+   "spurious_cat_2-spurious_cat_6": {
+    "value": 24.41,
+    "mi": 0.4812
+   },
+   "spurious_cat_4-spurious_cat_6": {
+    "value": 18.43,
+    "mi": 0.5618
+   },
+   "spurious_cat_6-spurious_num_4": {
+    "value": 10.39,
+    "mi": 0.4188
+   },
+   "spurious_cat_2-spurious_cat_4": {
+    "value": 14.58,
+    "mi": 0.3658
+   },
+   "spurious_cat_4-spurious_num_4": {
+    "value": 14.94,
+    "mi": 0.6271
+   },
+   "spurious_num_4-spurious_num_6": {
+    "value": 11.94,
+    "mi": 0.4302
+   },
+   "V2-V4": {
+    "value": 5.9,
+    "mi": 0.4423
+   }
+  },
+  "un_kept": [
+   "Class",
+   "V10",
+   "V11",
+   "V12",
+   "V14",
+   "V15",
+   "V16",
+   "V2",
+   "V4",
+   "V5",
+   "V7",
+   "V8",
+   "V9",
+   "spurious_cat_1",
+   "spurious_cat_2",
+   "spurious_cat_3",
+   "spurious_cat_4",
+   "spurious_cat_5",
+   "spurious_cat_6",
+   "spurious_num_1",
+   "spurious_num_2",
+   "spurious_num_3",
+   "spurious_num_4",
+   "spurious_num_5",
+   "spurious_num_6"
+  ],
+  "mn_target_cluster": [
+   "Class",
+   "V10",
+   "V11",
+   "V12",
+   "V14",
+   "V15",
+   "V16",
+   "V5",
+   "V7",
+   "V8",
+   "V9"
+  ],
+  "injected_linked": [
+   "spurious_cat_1",
+   "spurious_cat_2",
+   "spurious_cat_3",
+   "spurious_cat_4",
+   "spurious_cat_5",
+   "spurious_cat_6",
+   "spurious_num_1",
+   "spurious_num_2",
+   "spurious_num_3",
+   "spurious_num_4",
+   "spurious_num_5",
+   "spurious_num_6"
+  ],
+  "png": "results\\two_sided\\png\\bank_mn_two_sided_seed1.png"
+ }
+]
