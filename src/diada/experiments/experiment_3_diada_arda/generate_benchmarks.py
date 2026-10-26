@@ -57,18 +57,12 @@ def _run_diada_and_save(df: pd.DataFrame, file_name_diada: str) -> pd.DataFrame:
     """invoke_diada + write the soundness table to the same data/output/output_*.csv path
     the original script always wrote, then return it for immediate use.
 
-    Explicitly pinned to engine="jar" (this happens to match invoke_diada's
-    own default too, but is spelled out here rather than relied on, so this
-    reproducibility path keeps using the exact same engine that produced
-    experiment_results/experiment_3_diada_arda/results_final_*.csv even if
-    invoke_diada's default is ever changed again) -- LIMA is a randomized
-    approximation that was
-    empirically found to select a different (though heavily overlapping)
-    set of "sound" column pairs than the jar (see core/diada_tool.py's
-    module docstring), so switching engines here would break exact
-    continuity with the paper's published numbers. Pass engine="lima"
-    explicitly if you want this sweep on that engine instead."""
-    diada_output = invoke_diada(df, NUM_BUCKETS, engine="jar")
+    Uses engine="lima", the Python port of the jar: it returns exactly the
+    jar's output on every UN and MN benchmark of this sweep (checked cell by
+    cell, explorations/jar_like_vs_jar.py), so the published
+    experiment_results/experiment_3_diada_arda/results_final_*.csv stay
+    reproducible. Pass engine="jar" to run it on the jar itself."""
+    diada_output = invoke_diada(df, NUM_BUCKETS, engine="lima")
     diada_output.to_csv(paths.OUTPUT_DIR / f"output_{file_name_diada}.csv", index=False)
     return diada_output
 

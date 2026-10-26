@@ -18,25 +18,31 @@ For each dataset (miniboone, jannis, drive_diagnosis) and each algorithm
     and the column count swept over range(0, 100, 2) via Dataset.expand().
 Every point is the mean of REPEATS (5) timed runs.
 
-Algorithms:
-  - LIMA ("ours", DIADA in the paper): LIMAScheduler + LIMASampler.
-  - Apriori / FP-Growth: MonoScheduler + APRIORISampler / FPSampler. These
-    sample one fixed domain of n = BASELINE_SAMPLE_K / eps pairs and
-    enumerate every predicate set of up to APRIORI_FP_DEPTH (3) predicates.
+Algorithms (all in diada.core.LIMA, on the same data, predicates, pair
+sampler and statistics):
+  - LIMA ("ours", DIADA in the paper): diada.core.LIMA.LIMA, the Python port
+    of the algorithm in DIADA-0.8.jar (same output as the jar). It decides
+    itself how many pairs each predicate needs and which patterns to
+    explore; eps is its `approx` (the jar's argument).
+  - Apriori / FP-Growth: diada.core.LIMA.baselines. These sample one fixed
+    set of n = BASELINE_SAMPLE_K / eps pairs and count every predicate set
+    of up to APRIORI_FP_DEPTH (3) predicates on it (Apriori by filtering
+    pairs, FP-Growth on pairs merged by behaviour); both give the same
+    counts and score every edge with LIMA's test.
 
-Known caveat: on this port, LIMA's timings do NOT match Figure 4 / the
-pickle (roughly 10x slower on miniboone at 20 columns, eps=1e-5). The
-baselines run correctly: on a shared sample, Apriori and FP-Growth return
-identical counts for every lattice node. So this script runs the
-experiment as described in the paper, but it is not expected to reproduce
-the published numbers until the LIMA port is fixed.
+History: an earlier version ran all three on the previous Python port of
+LIMA (from the LIMA_py repo), whose LIMA timings were about 10x slower than
+Figure 4. That port was replaced by the jar port; none of this sweep has
+been rerun since.
 
 Differences from the original
 experiment_results/experiment_1_scalability/benchmark.py, all disclosed
 here rather than silently applied
 -----------------------------------------------------------------------
-  1. Import paths fixed to the installed `diada.core.LIMA.*` package (the
-     original used old flat, pre-port imports that no longer resolve).
+  1. The algorithms come from the installed `diada.core.LIMA` package (the
+     original used old flat, pre-port imports that no longer resolve), and
+     each timed run is one call to the algorithm's run() (the original timed
+     LIMA.step() calls).
   2. The original's main() computes a `rows_series` inside
      runScalabilityBenchmark() (via _rowsSeries()/_runSeries(vary_rows=True))
      for every (dataset, algo) pair, but then only ever reads the
@@ -85,7 +91,7 @@ here rather than silently applied
      = 20/eps but never passed it to LIMA.step() (which only takes the
      iteration number), so its baselines always sampled 1024 pairs whatever
      eps was. This port uses BASELINE_SAMPLE_K = 5 and actually applies it
-     (see _build_lima).
+     (see _build_algorithm).
   7. Column draws. Figure 4's caption says each of the 5 repetitions
      evaluates "different random sets of columns"; the original expanded
      once per point and reused it for all repeats. This port redraws the
@@ -132,13 +138,8 @@ import pandas as pd
 
 from ... import paths
 from ...core.diada_tool import _label_columns
-from ...core.LIMA.data.dataset.Dataset import Dataset
-from ...core.LIMA.LIMA.LIMA import LIMA
-from ...core.LIMA.LIMA.sampler.APRIORISampler import APRIORISampler
-from ...core.LIMA.LIMA.sampler.FPSampler import FPSampler
-from ...core.LIMA.LIMA.sampler.LIMASampler import LIMASampler
-from ...core.LIMA.LIMA.scheduler.LIMAScheduler import LIMAScheduler
-from ...core.LIMA.LIMA.scheduler.MonoScheduler import MonoScheduler
+from ...core.LIMA import LIMA, Dataset
+from ...core.LIMA.baselines import BASELINES
 
 ALL_ALGORITHMS = ("apriori", "FP-GROWTH", "LIMA")
 ALL_DATASETS = ("miniboone", "jannis", "drive_diagnosis")
@@ -214,7 +215,7 @@ def get_or_label_dataset(name: str) -> Dataset:
         raw = pd.read_csv(paths.BASE_DATASETS_DIR / f"{name}.csv")
         labelled = _label_columns(raw, num_buckets=1)
         labelled.to_csv(labelled_path, index=False)
-    return Dataset(str(labelled_path))
+    return Dataset.from_csv(labelled_path)
 
 
 _RAW_COLUMNS = ["series_type", "dataset", "algo", "x", "elapsed_seconds", "repeats_run", "status"]
@@ -250,34 +251,22 @@ def append_point(row):
     df.to_csv(RAW_CSV, mode="w" if header else "a", header=header, index=False)
 
 
-def _derive_params(approx: float, dataset_size: int) -> Tuple[int, int]:
-    estN = min(BASELINE_SAMPLE_K / approx, 1 * dataset_size ** 2)
-    return int(estN), 100
+def _baseline_sample_size(approx: float, dataset_size: int) -> int:
+    return int(min(BASELINE_SAMPLE_K / approx, 1 * dataset_size ** 2))
 
 
-def _time_run(lima: LIMA, max_iter: int) -> float:
+def _time_run(algorithm) -> float:
     start = time.perf_counter()
-    for i in range(max_iter):
-        if lima.step(i):
-            break
+    algorithm.run()
     return time.perf_counter() - start
 
 
-def _build_lima(dataset: Dataset, approx: float, algo: str, dataset_size: int) -> LIMA:
+def _build_algorithm(dataset: Dataset, approx: float, algo: str):
     if algo == "LIMA":
-        return LIMA(dataset, scheduler=LIMAScheduler(), sampler=LIMASampler(), approx=approx)
-    estN, _ = _derive_params(approx, dataset_size)
-    if algo == "apriori":
-        sampler = APRIORISampler(APRIORI_FP_DEPTH)
-    elif algo == "FP-GROWTH":
-        sampler = FPSampler(APRIORI_FP_DEPTH)
-    else:
+        return LIMA(dataset, approx=approx)
+    if algo not in BASELINES:
         raise ValueError(f"unknown algorithm {algo!r}")
-    lima = LIMA(dataset, scheduler=MonoScheduler(), sampler=sampler, approx=approx)
-    # MonoScheduler samples exactly once; make that single step draw the
-    # eps-derived sample size instead of LIMA's default 2**10 first step.
-    lima.getStepSize = lambda iteration: estN
-    return lima
+    return BASELINES[algo](dataset, _baseline_sample_size(approx, dataset.size), depth=APRIORI_FP_DEPTH)
 
 
 def _run_point(make_dataset, approx: float, algo: str) -> Tuple[float, int, str]:
@@ -289,10 +278,7 @@ def _run_point(make_dataset, approx: float, algo: str) -> Tuple[float, int, str]
     for _ in range(REPEATS):
         try:
             dataset = make_dataset()
-            dataset_size = len(dataset.df)
-            _, max_iter = _derive_params(approx, dataset_size)
-            lima = _build_lima(dataset, approx, algo, dataset_size)
-            elapsed = _time_run(lima, max_iter)
+            elapsed = _time_run(_build_algorithm(dataset, approx, algo))
         except MemoryError:
             return float("nan"), len(elapsed_times) + 1, "oom"
         elapsed_times.append(elapsed)
@@ -336,7 +322,7 @@ def run_sample_size_series(name: str, base_dataset: Dataset, algo: str):
         import numpy as np
         state = np.random.get_state()
         np.random.seed(0)
-        base_dataset = base_dataset.expand(len(base_dataset.df), ROW_COLS)
+        base_dataset = base_dataset.expand(base_dataset.size, ROW_COLS)
         np.random.set_state(state)
     _run_series(
         name, algo, "row", _aprox_inv_series(),

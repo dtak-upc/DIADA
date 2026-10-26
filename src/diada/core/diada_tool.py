@@ -3,52 +3,24 @@ Column-soundness scoring: how related every pair of columns in a table is.
 
 Was benchmarks_generation/diada.py. Two engines are available:
 
-  - "jar" (default): the original DIADA-0.8.jar, invoked via `java -jar`
-    (requires a Java runtime on PATH). Deterministic -- see below.
-  - "lima": the in-process Python port of LIMA under diada.core.LIMA (moved
-    here from the sibling LIMA_py repo -- see
-    src/diada/core/LIMA/__init__.py). This is the algorithm DIADA-0.8.jar
-    itself implements (in Java); needs no JVM/Java install, but is a
-    randomized approximation of the jar's output -- see below -- so it's
-    opt-in rather than the default. Pass engine="lima" explicitly to use it.
+  - "lima" (default): the in-process Python port of the algorithm inside
+    DIADA-0.8.jar (diada.core.LIMA). With the default approx and seed (42,
+    the jar's) it returns the jar's output exactly -- every value, so every
+    edge -- on the 4 old benchmarks and the UN and MN versions of the 17
+    noise benchmarks (explorations/jar_like_vs_jar.py), in about a third of
+    the jar's time (410 s vs 1,353 s over those 38 runs). Needs no Java.
+    With numeric (Integer/Double) columns, i.e. num_buckets <= 1, a few
+    values differ (the jar skips some patterns because of an integer-
+    overflow bug in its pattern hash, see diada/core/LIMA/lima.py); the
+    edges were still the same on the datasets checked.
+  - "jar": the original DIADA-0.8.jar, invoked via `java -jar` (needs a
+    Java runtime on PATH). Kept as an alternative. With Java's default heap
+    it runs out of memory on the largest benchmarks (e.g. mice_protein MN):
+    it keeps every lattice node it visits.
 
-IMPORTANT -- the two engines are NOT numerically interchangeable:
-
-  - LIMA is a randomized sampling algorithm with no fixed seed anywhere in
-    the port (same as the upstream LIMA_py repo), so two calls to
-    invoke_diada_lima on the same data return DIFFERENT relatedness values
-    and a different -- though heavily overlapping -- set of "sound" pairs
-    each time. The jar, by contrast, was empirically deterministic in
-    testing (identical output across repeated runs on the same input).
-  - The two engines' soundness scores live on different scales. LIMA's
-    numbers are z-scores from its internal significance test (it only
-    reports edges that already cleared its own significance bar, so its
-    minimum reported value sits right at that bar); the jar's numbers are a
-    differently-scaled statistic computed over a much larger candidate set,
-    most of which never gets close to DEFAULT_THRESHOLD=4 in
-    dataset_builder.py. Don't compare raw soundness values across engines,
-    and be aware that DEFAULT_THRESHOLD's effect on each engine's output
-    differs (it does much more filtering on the jar's output than on
-    LIMA's, which is already mostly pre-filtered by construction).
-  - Measured on four base_datasets (num_buckets=10, threshold=4; jar was
-    deterministic across repeated runs in every case, so these are jar vs.
-    a single LIMA run):
-
-        dataset       rows x cols   jar time  lima time   jar >thr4  lima >thr4  jaccard  lima subset-of-jar
-        students      4424 x 32     1.4s      3.7s        252        176         ~0.45    98.9%
-        pendigits     10992 x 17    0.9s      0.7s        210         42         0.20     100%
-        diamonds      53940 x 10    1.8s      0.5s         30         22         0.73     100%
-        mice_protein  1080 x 81     20.4s     12.3s      2847        266         0.09     100%
-
-    Two consistent takeaways: (1) LIMA is *always* a near-total subset of
-    the jar's raw (unfiltered) relations (>=98.9% across all four) -- it
-    never contradicts the jar, it's just far more conservative about what
-    it reports as "sound" -- and (2) that conservatism gets much more
-    pronounced as column count grows (mice_protein, 81 columns: LIMA finds
-    266 vs. the jar's 2847). Whether LIMA reports similar timing to the jar
-    varies by dataset -- it was faster on 3 of 4 here (notably on
-    mice_protein, the slowest case for both: 12.3s vs. 20.4s) but slower on
-    students -- no simple rule found yet linking speed to rows/columns.
+Both are deterministic for a given seed and their soundness values are the
+same statistic (the smallest standardized log-odds difference of an edge),
+so DEFAULT_THRESHOLD=4 in dataset_builder.py means the same for both.
 
 Both engines share `_label_columns` (unchanged: same type-labelling scheme,
 same bucketing rules) and return the same soundness triple format:
@@ -83,14 +55,14 @@ import numpy as np
 import pandas as pd
 
 from .. import paths
-from .LIMA import runLima
+from .LIMA import DEFAULT_SEED, run_lima
 
 KURTOSIS_SENSIBILITY = 2
 DEFAULT_APPROX = 0.000001  # LIMA's scheduler-threshold parameter; same value the jar was always called with
 
 
-def invoke_diada(df: pd.DataFrame, num_buckets: int, engine: str = "jar", jar_path: Optional[Path] = None,
-                  approx: float = DEFAULT_APPROX, verbose: bool = True) -> pd.DataFrame:
+def invoke_diada(df: pd.DataFrame, num_buckets: int, engine: str = "lima", jar_path: Optional[Path] = None,
+                  approx: float = DEFAULT_APPROX, seed: int = DEFAULT_SEED, verbose: bool = True) -> pd.DataFrame:
     """
     Score every pair of columns in `df` for soundness and return the result
     as a DataFrame of ["column_1", "column_2", "soundness"] (one row per
@@ -105,15 +77,15 @@ def invoke_diada(df: pd.DataFrame, num_buckets: int, engine: str = "jar", jar_pa
                   Integer/Double/String per column; >1 additionally buckets
                   every numeric column into `num_buckets` bins before typing
                   it as String (see _label_columns)
-    engine      : "jar" (default) -- the original DIADA-0.8.jar via subprocess
-                  (needs Java); or "lima" -- the in-process Python port,
-                  opt-in only (randomized approximation -- not numerically
-                  interchangeable, see module docstring).
+    engine      : "lima" (default) -- the in-process Python port, same
+                  output as the jar; or "jar" -- the original DIADA-0.8.jar
+                  via subprocess (needs Java). See the module docstring.
     jar_path    : only used when engine="jar". Path to DIADA-0.8.jar
                   (default: paths.JAR_PATH)
-    approx      : only used when engine="lima". LIMA's scheduler threshold
-                  (default: the same 0.000001 the jar was always invoked
-                  with, so results are comparable)
+    approx      : only used when engine="lima". LIMA's precision parameter
+                  (default: the same 0.000001 the jar is always invoked with)
+    seed        : only used when engine="lima". The pair sampler's seed
+                  (default 42, the jar's)
     verbose     : print progress/timing, matching the original script's output
 
     Returns
@@ -123,27 +95,24 @@ def invoke_diada(df: pd.DataFrame, num_buckets: int, engine: str = "jar", jar_pa
     un-bucketed) column names.
     """
     if engine == "lima":
-        return invoke_diada_lima(df, num_buckets, approx=approx, verbose=verbose)
+        return invoke_diada_lima(df, num_buckets, approx=approx, seed=seed, verbose=verbose)
     elif engine == "jar":
         return invoke_diada_jar(df, num_buckets, jar_path=jar_path, verbose=verbose)
     else:
         raise ValueError(f"engine must be 'lima' or 'jar', got {engine!r}")
 
 
-def invoke_diada_lima(df: pd.DataFrame, num_buckets: int, approx: float = DEFAULT_APPROX, verbose: bool = True) -> pd.DataFrame:
-    """Score `df` using the in-process LIMA port (diada.core.LIMA.runLima).
-    See `invoke_diada` for the parameters shared with the jar engine."""
+def invoke_diada_lima(df: pd.DataFrame, num_buckets: int, approx: float = DEFAULT_APPROX, seed: int = DEFAULT_SEED,
+                      verbose: bool = True) -> pd.DataFrame:
+    """Score `df` using the in-process LIMA (diada.core.LIMA.run_lima), on the
+    values exactly as the jar would read them from the CSV it is given. See
+    `invoke_diada` for the parameters shared with the jar engine."""
     if verbose:
         print("Executing DIADA (engine=lima)")
     start_time = time.time()
 
     data = _label_columns(df.copy(), num_buckets)
-    col_names = data.columns.tolist()  # index i <-> LIMA's predicate-group id i, same convention as the jar's column id
-
-    with tempfile.TemporaryDirectory(prefix="diada_run_") as tmp_dir:
-        input_path = Path(tmp_dir) / "temp_data.csv"
-        data.to_csv(input_path, index=False)
-        matrix = runLima(str(input_path), approx)
+    matrix, col_names = run_lima(data, approx=approx, seed=seed)  # column i <-> the jar's column id i
 
     soundness_df = _relatedness_matrix_to_soundness_df(matrix, col_names)
 
@@ -156,9 +125,8 @@ def invoke_diada_lima(df: pd.DataFrame, num_buckets: int, approx: float = DEFAUL
 def invoke_diada_jar(df: pd.DataFrame, num_buckets: int, jar_path: Optional[Path] = None, verbose: bool = True) -> pd.DataFrame:
     """Score `df` using the original DIADA-0.8.jar via subprocess (requires
     Java on PATH). See `invoke_diada` for the parameters shared with the
-    "lima" engine. Kept for comparison against the "lima" engine and as a
-    fallback if Java is available but something about the LIMA port is ever
-    in doubt."""
+    "lima" engine. Kept as an alternative to (and a check on) the "lima"
+    engine."""
     jar_path = Path(jar_path) if jar_path is not None else paths.JAR_PATH
     if not jar_path.exists():
         raise FileNotFoundError(f"DIADA jar not found at {jar_path}")

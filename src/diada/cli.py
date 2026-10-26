@@ -34,10 +34,9 @@ def build_arg_parser() -> argparse.ArgumentParser:
                               "Trains a single model -- if you want the full 1..N feature-count sweep used for "
                               "the paper's reproducibility experiments instead, use "
                               "`python -m diada.experiments.experiment_3_diada_arda.run_paper_experiments`.")
-    parser.add_argument("--engine", default="jar", choices=["lima", "jar"],
-                         help="Soundness-scoring engine: 'jar' (default, the original DIADA-0.8.jar, needs "
-                              "Java on PATH) or 'lima' (pure Python, no Java needed, but a randomized "
-                              "approximation -- opt-in only). NOT numerically interchangeable -- see README's "
+    parser.add_argument("--engine", default="lima", choices=["lima", "jar"],
+                         help="Soundness-scoring engine: 'lima' (default, pure Python, no Java needed) or 'jar' "
+                              "(the original DIADA-0.8.jar, needs Java on PATH). Same output -- see README's "
                               "'Two soundness-scoring engines' section.")
     parser.add_argument("--output-dir", default="diada_pipeline_output", dest="output_dir")
     parser.add_argument("--no-arda", action="store_false", dest="run_arda", help="Only produce cleaned datasets, skip running ARDA.")

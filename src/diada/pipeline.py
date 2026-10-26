@@ -36,8 +36,8 @@ class PipelineConfig:
     run_arda: bool = True
     num_features: int = 10
     output_dir: str = "diada_pipeline_output"
-    engine: str = "jar"  # "jar" (default, needs Java) or "lima" (pure Python, opt-in) -- see
-                         # core/diada_tool.py's module docstring: NOT numerically interchangeable
+    engine: str = "lima"  # "lima" (default, pure Python) or "jar" (needs Java): same output, see
+                          # core/diada_tool.py's module docstring
     rifs_k: int = 10
     rifs_eta: float = 0.2
     cv: int = 3

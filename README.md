@@ -17,8 +17,7 @@ following [repository](https://github.com/dtak-upc/DIADA-demo).
 ## Prerequisites
 
 - Python >= 3.9
-- A Java runtime on your `PATH` (tested with OpenJDK 11) **needed by default**: DIADA's soundness scores are computed by the bundled `src/diada/core/DIADA-0.8.jar` unless you pass `--engine lima` / `engine="lima"` (see "Soundness-scoring engine" below)
-<!-- , since the default soundness-scoring engine is `engine="jar"` (see "Two soundness-scoring engines" below), which runs the bundled `src/diada/core/DIADA-0.8.jar` via `java -jar`. `pip install` can't set this up for you; install a JRE/JDK yourself first (e.g. `apt install openjdk-11-jre-headless`, `brew install openjdk`). If you'd rather avoid the Java dependency, pass `engine="lima"` (pure Python, no Java needed) explicitly -- it's a randomized approximation of the jar's output, not a numerically interchangeable substitute (same section). -->
+- Optional: a Java runtime on your `PATH` (tested with OpenJDK 11), only to run the bundled original `src/diada/core/DIADA-0.8.jar` with `--engine jar` / `engine="jar"`. The default engine is pure Python and gives the same output (see "Soundness-scoring engine" below)
 
 ## Install
 
@@ -61,8 +60,8 @@ DIADA/
     │   ├── diada_tool.py       invoke_diada(): runs the system and returns the soundness table
     │   ├── dataset_builder.py  build_un_datasets() / build_mn_datasets(): threshold the
     │   │                       soundness graph and build the resulting cleaned dataset(s)
-    │   ├── DIADA-0.8.jar       the original Java implementation (default engine)
-    │   └── LIMA/               Python port of the mining algorithm (opt-in engine, Experiment 1)
+    │   ├── DIADA-0.8.jar       the original Java implementation (alternative engine)
+    │   └── LIMA/               Python port of the jar's mining algorithm (default engine) + Experiment 1's baselines
     ├── arda/                 ARDA: RIFS feature selection + AutoGluon training/eval
     │   └── arda.py             the ARDA class 
     ├── experiments/          reproducibility experiments, one subpackage each
@@ -118,66 +117,11 @@ DIADA's soundness scores are thresholded into a graph, and that graph is used tw
   non-target clusters included) gets the target column appended if it isn't
   already present, so any of them can independently be handed to ARDA.
 
-<!-- ### Two soundness-scoring engines: LIMA vs. the jar
-
-`invoke_diada(df, num_buckets, engine=...)` in `core/diada_tool.py` supports
-two interchangeable-looking but **not numerically interchangeable** engines:
-
-- `"jar"` (the default) -- the original `DIADA-0.8.jar`, invoked via
-  `java -jar` (needs a Java runtime, see Prerequisites). Deterministic.
-- `"lima"` -- the in-process Python port under `core/LIMA/`. Pure Python,
-  no Java needed, but a randomized approximation of the jar's output --
-  opt-in only, see below.
-
-Both implement the same underlying soundness-testing algorithm, but:
-
-- **LIMA is randomized and unseeded** (same as the upstream LIMA_py repo it
-  was ported from) -- repeated calls on identical input return a different,
-  though heavily overlapping, set of "sound" column pairs each time. **The
-  jar was deterministic** in testing -- identical output across repeated
-  runs.
-- **Their soundness scores are on different scales.** LIMA reports z-scores
-  from its own internal significance test, so its values already cluster
-  above that test's significance bar; the jar computes a differently-scaled
-  statistic over a much larger candidate set, most of which falls well
-  below `DEFAULT_THRESHOLD=4` (the cutoff `dataset_builder.py` uses to build
-  the relevance graph). That threshold ends up doing much more filtering
-  work on the jar's output than on LIMA's. Don't compare raw soundness
-  numbers between engines.
-- **Measured on four base_datasets** (`num_buckets=10`, `threshold=4`; the
-  jar was deterministic across repeated runs in every case, so this is jar
-  vs. a single LIMA run):
-
-  | dataset | rows x cols | jar time | lima time | jar pairs >threshold | lima pairs >threshold | Jaccard overlap | lima pairs also in jar's raw output |
-  |---|---|---|---|---|---|---|---|
-  | students | 4424 x 32 | 1.4s | 3.7s | 252 | 176 | ~0.45 | 98.9% |
-  | pendigits | 10992 x 17 | 0.9s | 0.7s | 210 | 42 | 0.20 | 100% |
-  | diamonds | 53940 x 10 | 1.8s | 0.5s | 30 | 22 | 0.73 | 100% |
-  | mice_protein | 1080 x 81 | 20.4s | 12.3s | 2847 | 266 | 0.09 | 100% |
-
-  Two consistent patterns: LIMA is *always* a near-total subset of the
-  jar's raw (unfiltered) relations (>=98.9% in all four) -- it never
-  contradicts the jar, it's just far more conservative about what it calls
-  "sound" -- and that conservatism grows sharply with column count
-  (81-column `mice_protein`: LIMA finds 266 vs. the jar's 2847; 10-column
-  `diamonds`: the two are much closer, 22 vs. 30). Timing has no simple
-  rule either way -- LIMA was faster on 3 of 4 datasets here (including the
-  slowest case for both, `mice_protein`: 12.3s vs. 20.4s) but slower on
-  `students`.
-
-Practically: the default `engine="jar"` gives bit-for-bit reproducible
-soundness scores (useful if you ever need to regenerate a specific
-published number) and is what every part of this package uses unless you
-override it. If you'd rather avoid the Java dependency, pass
-`engine="lima"` explicitly -- but expect it to report meaningfully fewer
-"sound" relations than the jar (especially on wide, many-column tables),
-and note it isn't seeded, so repeated `engine="lima"` runs on the very same
-input can disagree with each other too. If either of those matters for your
-dataset, check LIMA's output against the jar's before trusting it. -->
-
 ### Soundness-scoring engine
 
-Everything in this repository scores soundness with the original Java implementation, `DIADA-0.8.jar`, by default (`--engine jar` / `PipelineConfig(engine="jar")` / `invoke_diada(..., engine="jar")`). The jar is deterministic, and it is the engine the paper's results were produced with. `--engine lima` uses the in-process Python port under `src/diada/core/LIMA/` instead: no Java needed, but it is a randomized approximation whose scores are on a different scale and which finds noticeably fewer sound relations on wide tables, so its output is not interchangeable with the jar's. The current Python port is also much slower than the timings reported in the paper (see Experiment 1 below).
+Soundness is scored by `src/diada/core/LIMA/` by default (`--engine lima` / `PipelineConfig(engine="lima")` / `invoke_diada(..., engine="lima")`): a pure-Python port of the algorithm inside the original Java implementation, `DIADA-0.8.jar`, including its random number generator (Java's `SplittableRandom`, seed 42). It is deterministic and returns the jar's output exactly: every value of the output matrix, on the 4 old benchmarks and on the UN and MN versions of the 17 noise benchmarks (`explorations/jar_like_vs_jar.py`), in about a third of the jar's time. The jar stays available with `--engine jar` (needs Java). With Java's default heap it runs out of memory on the largest benchmarks (e.g. `mice_protein` MN).
+
+With numeric (Integer/Double) columns, i.e. `num_buckets` 0 or 1, the jar skips a few patterns because of an integer overflow in its pattern hash. The port doesn't copy that bug, so a few values differ (the edges were identical on the datasets checked).
 
 ### Configuration reference (`diada-clean` flags / `PipelineConfig` fields)
 
@@ -185,7 +129,7 @@ Everything in this repository scores soundness with the original Java implementa
 |---|---|---|---|
 | `--task` | `task` | required | `classification` or `regression` |
 | `--metric` | `metric` | `accuracy` | passed to ARDA/AutoGluon (accuracy/f1 for classification, root_mean_squared_error/mae for regression) |
-| `--engine` | `engine` | `jar` | soundness-scoring engine: `jar` (needs Java) or `lima` (pure Python, randomized; see above) |
+| `--engine` | `engine` | `lima` | soundness-scoring engine: `lima` (pure Python) or `jar` (needs Java); same output, see above |
 | `--mode` | `mode` | `both` | `un`, `mn`, or `both` -- which cleaning strategy to run |
 | `--threshold` | `threshold` | `4` | soundness-score cutoff for the relevance graph; lower keeps more columns as "related" |
 | `--num-buckets` | `num_buckets` | `10` | how DIADA discretizes numeric columns before scoring; `0` = all-string, `1` = typed/unbucketed, `>1` = bin into this many buckets |
@@ -205,11 +149,11 @@ separate, more expensive mode (see `ARDA.fit_transform_full_table(..., num_featu
 ## Reproducing the paper's experiments
 
 Four numbered experiments, each its own subpackage under
-`src/diada/experiments/`; each module's docstring lists what it measures and every known deviation from the original scripts. `python -m diada.experiments.run_all` runs any/all of them in one invocation (`--experiments 1 2 3 4`, default: all four, each with its own default settings); each is independently runnable too, and all are resumable/checkpointed since each can take a long time on the full benchmark suite. Experiments 2-4 read `data/` (see "Getting the datasets") and use the jar engine; Experiment 1 benchmarks the Python LIMA port itself, so it never calls the jar.
+`src/diada/experiments/`; each module's docstring lists what it measures and every known deviation from the original scripts. `python -m diada.experiments.run_all` runs any/all of them in one invocation (`--experiments 1 2 3 4`, default: all four, each with its own default settings); each is independently runnable too, and all are resumable/checkpointed since each can take a long time on the full benchmark suite. Experiments 2-4 read `data/` (see "Getting the datasets") and use the default engine (same output as the jar); Experiment 1 benchmarks the Python LIMA itself against Apriori/FP-Growth baselines built on the same code, so it never calls the jar.
 
 Every ARDA model fit (Experiments 3-4 and `diada-clean`) is also appended to a running log, `results/results.csv` (classification) / `results/results_regression.csv` (regression), in addition to each script's own output files.
 
-- **`python -m diada.experiments.experiment_1_scalability.scalability_benchmark`**: Mining algorithm (LIMA) vs. Apriori/FP-Growth row/column scalability (Figure 4 in the paper). Add `--quick` for a few-minute smoke run (written to `results/experiment_1_scalability_quick/`), or select a subset with `--datasets`, `--algorithms`, `--series`, `--max-cols`, `--repeats` (see `--help`). Writes `scalability_raw.csv`, `results_live.pickle` (same schema as `experiment_results/experiment_1_scalability/results.pickle`) and a figure `scalability_live.png` to `results/experiment_1_scalability/`. Note: the current Python port of LIMA does not reproduce the published LIMA timings yet.
+- **`python -m diada.experiments.experiment_1_scalability.scalability_benchmark`**: Mining algorithm (LIMA) vs. Apriori/FP-Growth row/column scalability (Figure 4 in the paper). Add `--quick` for a few-minute smoke run (written to `results/experiment_1_scalability_quick/`), or select a subset with `--datasets`, `--algorithms`, `--series`, `--max-cols`, `--repeats` (see `--help`). Writes `scalability_raw.csv`, `results_live.pickle` (same schema as `experiment_results/experiment_1_scalability/results.pickle`) and a figure `scalability_live.png` to `results/experiment_1_scalability/`. Note: this sweep has not been rerun since LIMA was replaced by the port of the jar (the previous Python port was about 10x slower than the published LIMA timings).
 - **`python -m diada.experiments.experiment_2_ufs.ufs_benchmark`**: DIADA vs. 16 Unsupervised Feature Selection baselines (+ optional CAE, needs `torch`) on how well each drops injected noise columns, read from `data/noise_un/`. `--datasets <name> ...` runs a subset, `--out-dir` changes the output folder (default `results/experiment_2_ufs/`: `ufs_raw.csv`, `ufs_summary.csv`). Some spectral methods (spec, mcfs, ndfs, rsr) build an N x N matrix over the rows and run out of memory on the larger datasets; those failures are recorded in the `error` column, as in the published run.
 - **`python -m diada.experiments.experiment_3_diada_arda.generate_benchmarks`**: for each benchmark in `benchmarks.yaml` (one entry per dataset in `data/base_datasets/`, giving its target column, task, and metric), injects noise (UN = univariate, MN = multivariate/spurious-cluster), runs it through DIADA, and writes every noisy/cleaned/leftover variant to `data/`. Does **not** run ARDA; this only produces the CSV artifacts. **It overwrites the corresponding files in `data/`**, including the downloaded ones the published results were computed from. Noise injection is seeded (`random_state=0`), and in our checks it regenerated the downloaded noisy tables exactly, but back up `data/` first if you need the originals untouched.
 - **`python -m diada.experiments.experiment_3_diada_arda.run_paper_experiments`**:the full reproduction: for every dataset, generates the same noisy/cleaned variants as `generate_benchmarks` and additionally runs ARDA's full  feature-count sweep on five variants of each: raw, noisy-uncleaned (`_un_dirty`/`_mn_dirty`), and DIADA-cleaned (`_un_clean`/`_mn_clean`), matching the `benchmark` naming already used in `experiment_results/experiment_3_diada_arda/results_final_*.csv` (the raw/no-suffix variant is the "clean baseline", that is, ARDA with no noise injection and no DIADA cleaning). Results are written to `results/reproduced_regression.csv` / `results/reproduced_classification.csv` (`--output-dir` to change). Like `generate_benchmarks`, it **writes the noisy/cleaned artifacts into `data/`**, overwriting existing files for the datasets it runs. **The original `results_final_*.csv` files are never overwritten**, so you can always diff a fresh run against the paper's reference numbers.
@@ -220,7 +164,7 @@ Every ARDA model fit (Experiments 3-4 and `diada-clean`) is also appended to a r
   python -m diada.experiments.experiment_3_diada_arda.run_paper_experiments --datasets diamonds --max-features 10
   ```
 
-- **`python -m diada.experiments.experiment_4_synthetic_targets.run_synthetic_targets`**: one composition, any target (Section 6.4). For every dataset it injects UN noise plus two synthetic targets, runs DIADA (jar) once, and runs ARDA's sweep for each entry of `benchmark_2targets.yaml` (`<dataset>_synthetic_target_<k>`) on three variants: `_base` (no noise), `_noise` (pre-composition) and `_clean` (post-composition), matching the naming in `experiment_results/experiment_4_synthetic_targets/results_2targets_*.csv`. Results go to `results/experiment_4_synthetic_targets/reproduced_2targets_*.csv` and are compared against the frozen ones at the end (`comparison_reproduced.csv`). `--selection-only` skips model training and reproduces just the `selected_features` column (ARDA's ranking is computed before any model is trained), which takes hours instead of days; `--datasets`/`--max-features` run a slice; `--compare-only` re-runs the comparison; `--output-dir` changes the output folder. Unlike Experiment 3, it never writes into `data/`: its intermediate tables go to `<output-dir>/data/`. With `--selection-only`, a check run reproduced the published `selected_features` exactly on every classification dataset; on regression datasets a few near-tied features swap rank (at most 1-2 features at any feature count).
+- **`python -m diada.experiments.experiment_4_synthetic_targets.run_synthetic_targets`**: one composition, any target (Section 6.4). For every dataset it injects UN noise plus two synthetic targets, runs DIADA once, and runs ARDA's sweep for each entry of `benchmark_2targets.yaml` (`<dataset>_synthetic_target_<k>`) on three variants: `_base` (no noise), `_noise` (pre-composition) and `_clean` (post-composition), matching the naming in `experiment_results/experiment_4_synthetic_targets/results_2targets_*.csv`. Results go to `results/experiment_4_synthetic_targets/reproduced_2targets_*.csv` and are compared against the frozen ones at the end (`comparison_reproduced.csv`). `--selection-only` skips model training and reproduces just the `selected_features` column (ARDA's ranking is computed before any model is trained), which takes hours instead of days; `--datasets`/`--max-features` run a slice; `--compare-only` re-runs the comparison; `--output-dir` changes the output folder. Unlike Experiment 3, it never writes into `data/`: its intermediate tables go to `<output-dir>/data/`. With `--selection-only`, a check run reproduced the published `selected_features` exactly on every classification dataset; on regression datasets a few near-tied features swap rank (at most 1-2 features at any feature count).
 
 
 ## Original ARDA (join-based) pipeline

@@ -7,7 +7,7 @@ For every dataset in benchmarks.yaml this:
   1. injects UN (univariate) noise and the two synthetic targets
      (generate_benchmark_noise_un_synth_targets, random_state=0 -- the same
      call experiment_3_diada_arda/generate_benchmarks.py makes);
-  2. runs DIADA once on that table with the jar (NUM_BUCKETS=10), and keeps
+  2. runs DIADA once on that table (NUM_BUCKETS=10; engine lima = the jar's output), and keeps
      every column with a soundness relation above threshold (UN cleaning,
      build_un_datasets(include_synth_targets=True), which drops the real
      target). DIADA never knows which column is a target: the composition is
@@ -37,7 +37,7 @@ against the repo's data/ files:
   - The data/output/output_*_2targets.csv files in the repo are from an
     older noise scheme (noise_1..noise_N columns) and were NOT used for the
     published results; data/output/output_*_un_synth_targets.csv were, and
-    this script's jar output matches them (checked on bank and diamonds).
+    this script's DIADA output matches them (checked with the jar on bank and diamonds).
 
 Two modes:
   - default: full sweep, one AutoGluon model per feature count (up to 40 per
@@ -54,7 +54,7 @@ and finish by comparing against the frozen results (--compare-only does just
 that). Note: the published selected_features strings also list the target
 column; the comparison strips it.
 
-Intermediate tables (noisy, jar output, cleaned) are written to
+Intermediate tables (noisy, DIADA output, cleaned) are written to
 <out-dir>/data/, not to the repo's data/ folder.
 
 Run:            python -m diada.experiments.experiment_4_synthetic_targets.run_synthetic_targets
@@ -100,7 +100,7 @@ def _entries_by_dataset(entries: Dict[str, dict]) -> Dict[str, List[str]]:
 
 
 def build_variants(dataset: str, real_target: str, data_dir: Path) -> Dict[str, pd.DataFrame]:
-    """Noise injection + one jar DIADA run + UN cleaning for `dataset`;
+    """Noise injection + one DIADA run + UN cleaning for `dataset`;
     returns {"base", "noise", "clean"} DataFrames (each still holding both
     synthetic targets). Writes the intermediate tables under `data_dir`."""
     for sub in ("base_synth_targets", "noise_un_synth_targets", "output", "cleaned_un_synth_targets"):
@@ -111,8 +111,8 @@ def build_variants(dataset: str, real_target: str, data_dir: Path) -> Dict[str, 
     noisy_path = data_dir / "noise_un_synth_targets" / f"{dataset}_un_noise_synth_targets.csv"
     noisy.to_csv(noisy_path, index=False)
 
-    log(f"[{dataset}] running DIADA (jar) on {noisy.shape[1]} columns...")
-    diada_output = invoke_diada(noisy, NUM_BUCKETS, engine="jar")
+    log(f"[{dataset}] running DIADA on {noisy.shape[1]} columns...")
+    diada_output = invoke_diada(noisy, NUM_BUCKETS, engine="lima")  # the jar's output, see core/diada_tool.py
     diada_output.to_csv(data_dir / "output" / f"output_{dataset}_un_synth_targets.csv", index=False)
 
     clean = build_un_datasets(diada_output, noisy, real_target, include_synth_targets=True)["kept"]

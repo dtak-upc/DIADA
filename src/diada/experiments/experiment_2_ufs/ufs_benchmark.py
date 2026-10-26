@@ -31,7 +31,7 @@ applied
      byte-for-byte on the `bank` benchmark) -- i.e. DIADA's own UN output,
      scored with the same noise-counting logic as the UFS methods -- but no
      code in the repo actually produces that comparison. This script adds
-     it for real: invoke_diada(engine="jar", num_buckets=10) +
+     it for real: invoke_diada(engine="lima", num_buckets=10) +
      build_un_datasets(threshold=4) (same defaults
      experiments/generate_benchmarks.py uses), timed the same way as every
      UFS method, scored with ufs_baselines.is_noise/count_noise. Per
@@ -96,7 +96,7 @@ UDFS_ALPHA = 0.01
 N_KEEP = None  # auto elbow-cut, matching the notebook's defaults
 
 DIADA_NUM_BUCKETS = 10  # matches experiments/generate_benchmarks.py's NUM_BUCKETS
-DIADA_ENGINE = "jar"  # matches invoke_diada's own default and generate_benchmarks.py
+DIADA_ENGINE = "lima"  # invoke_diada's default; same output as the jar (see core/diada_tool.py)
 
 DISPLAY_NAME_OVERRIDES = {"diada": "DIADA"}
 
